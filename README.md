@@ -42,7 +42,7 @@ To use Corgi, you should first configure it to suit your environment.
 There are 5 steps that the user should do when using Corgi.
 
 1. (Export function list) Open IDA with the target binary file. Execute IDAFuncExport.py in IDA.
-2. (Start execution) python Letrock.py [arguments]
+2. (Start execution) `python Letrock.py [arguments]`
 3. (Connect device) Connect your iOS device to your computer by USB.
 4. (Perform target function) Under the guidance of Corgi, perform the function that you want to locate the methods on your iOS device.
 5. (Find the key methods) When all done, you can find the outputs of Corgi in report_dir. And the key methods are expected to be included.
