@@ -12,7 +12,11 @@ sys.setdefaultencoding("utf-8")
 import config
 
 class FuncFilter(object):
-    """docstring for FuncLister"""
+    """
+    This class is defined as a filter of method name.
+    """
+
+
     #
     # Init the instance with a filename and a filter_list(optional)
     # 

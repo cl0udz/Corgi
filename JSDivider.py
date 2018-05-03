@@ -9,7 +9,10 @@ from termcolor import colored
 import config
 
 class JSDivider(object):
-    """docstring for JSDivider"""
+    """
+    This class is defined as a util to divide the large frida script to several smaller one.
+    """
+
     def __init__(self):
         super(JSDivider, self).__init__()
         self.script_head = '''
@@ -99,6 +102,14 @@ function hookObjC(FuncName, ArgNum){
 }
 '''
 
+    #
+    # Name: divideJS
+    # Args: binname        name of the binary file
+    # Retval: the number of small frida scripts(int)
+    # Action: It will divide the script of binname in script_path 
+    #           into several smaller script(3000 functions in 1 script)
+    #           and named them with 0, 1, 2, ...
+    # 
     def divideJS(self, binname):
         self.path = config.get('script_path')
         self.f = open(os.path.join(self.path, binname) + ".js", 'r')

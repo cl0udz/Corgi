@@ -11,10 +11,20 @@ import MySQLdb
 
 
 class DataResolver(object):
-    """docstring for DataResolver"""
+    """
+    This class is defined as the resolver of collected data to generate the report.
+    """
     def __init__(self):
         super(DataResolver, self).__init__()
         
+
+    #
+    # Name: GetDifferentFuncListForActionId
+    # Args: action_id           ID of the performed action
+    #       compare_id          ID of the action to be compared with
+    # Retval: No return value
+    # Action: It will find the difference in called methods between the two actions.
+    # 
     def GetDifferentFuncListForActionId(self, action_id, compare_id):
         rp = os.path.join(config.get("report_dir"), config.get("cur_file_name")) + "_ActionID_%d.txt" % action_id
 

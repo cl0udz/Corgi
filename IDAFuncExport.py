@@ -14,7 +14,7 @@ sys.setdefaultencoding("utf-8")
 script_path = "/Volumes/Work/loccs/code/Corgi/"
 class_filtered_dir = "class_filter_result"
 
-# 匹配pattern之王
+# 匹配pattern
 pattern_list = [
 	'sub_[0-f]{8,10}', # 去掉所有子函数
 	'nullsub'
