@@ -12,7 +12,7 @@ import config
 from threading import Timer
 from termcolor import colored
 
-db = MySQLdb.connect("localhost", "root", "Cloudzzz.", "hook_log")
+db = MySQLdb.connect("localhost", "username", "password", "hook_log")
 jsno = 0
 
 actionId = 0
