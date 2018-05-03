@@ -1,0 +1,6106 @@
+void __cdecl +[WXOMTA startWithAppkey:](WXOMTA_meta *self, SEL a2, id a3)
+{
+  void *v3; // r4
+  struct objc_object *v4; // r0
+  void *v5; // r6
+  void *v6; // r5
+  struct objc_object *v7; // r0
+  void *v8; // r0
+  void *v9; // r5
+  void *v10; // r0
+  void *v11; // r10
+  void *v12; // r0
+  void *v13; // r5
+  struct objc_object *v14; // r0
+  void *v15; // r6
+  struct objc_object *v16; // r0
+  struct objc_object *v17; // r0
+  int v18; // r0
+
+  v3 = (void *)objc_retain(a3, a2);
+  v4 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+  v5 = (void *)objc_retainAutoreleasedReturnValue(v4);
+  v6 = objc_msgSend(v5, "statEnable");
+  objc_release(v5);
+  if ( v6 )
+  {
+    if ( v3 && objc_msgSend(v3, "length") )
+    {
+      v7 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+      v8 = (void *)objc_retainAutoreleasedReturnValue(v7);
+      v9 = v8;
+      v10 = objc_msgSend(v8, "appkey");
+      v11 = (void *)objc_retainAutoreleasedReturnValue(v10);
+      objc_release(v9);
+      if ( v11 )
+      {
+        v12 = objc_msgSend(v11, "stringByAppendingFormat:", CFSTR("|%@"), v3);
+        v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+        v14 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+        v15 = (void *)objc_retainAutoreleasedReturnValue(v14);
+        objc_msgSend(v15, "setAppkey:", v13);
+        objc_release(v15);
+      }
+      else
+      {
+        v16 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+        v13 = (void *)objc_retainAutoreleasedReturnValue(v16);
+        objc_msgSend(v13, "setAppkey:", v3);
+      }
+      objc_release(v13);
+      sub_8694C(CFSTR("MTA instance started"));
+      v17 = +[WXOMTA getInstance](&OBJC_CLASS___WXOMTA, "getInstance");
+      v18 = objc_retainAutoreleasedReturnValue(v17);
+      objc_release(v18);
+      sub_84A6E(1, 0, 0);
+      objc_release(v11);
+    }
+    else
+    {
+      sub_8694C(CFSTR("[ERROR]Failed to start mta sdk with nil/empty appkey."));
+    }
+  }
+  j__objc_release(v3);
+}
+
+void __cdecl +[WXOMTA trackPageViewEnd:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, id a4, char a5)
+{
+  id v5; // r5
+  WXOMTA_meta *v6; // r10
+  int v7; // r1
+  int v8; // r8
+  struct objc_object *v9; // r0
+  void *v10; // r5
+  void *v11; // r4
+  struct objc_object *v12; // r0
+  void *v13; // r4
+  void *v14; // r5
+  struct objc_object *v15; // r0
+  void *v16; // r4
+  SEL v17; // r1
+  id v18; // r2
+  id v19; // r3
+
+  v5 = a4;
+  v6 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v8 = objc_retain(v5, v7);
+  v9 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v10 = (void *)objc_retainAutoreleasedReturnValue(v9);
+  v11 = objc_msgSend(v10, "checkMTAEnable");
+  objc_release(v10);
+  if ( v11 )
+  {
+    v12 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+    v14 = objc_msgSend(v13, "statEnable");
+    objc_release(v13);
+    if ( v14 )
+    {
+      if ( v6 && objc_msgSend(v6, "length") )
+      {
+        +[WXOMTA trackDirectPageViewEnd:appkey:isRealTime:](
+          &OBJC_CLASS___WXOMTA,
+          "trackDirectPageViewEnd:appkey:isRealTime:",
+          v6,
+          v8,
+          a5);
+        v15 = +[WXOMTA getInstance](&OBJC_CLASS___WXOMTA, "getInstance");
+        v16 = (void *)objc_retainAutoreleasedReturnValue(v15);
+        objc_msgSend(v16, "setMtaCurrentPage:", 0);
+        objc_release(v16);
+      }
+      else
+      {
+        sub_8694C(CFSTR("[ERROR]Failed to trace nil/empty page."));
+      }
+    }
+  }
+  objc_release(v8);
+  j__objc_release(v6, v17, v18, v19, a5);
+}
+
+void __cdecl -[AFHTTPRequestSerializer setMutableObservedChangedKeyPaths:](AFHTTPRequestSerializer *self, SEL a2, id a3)
+{
+  j__objc_storeStrong(&self->_mutableObservedChangedKeyPaths, a3);
+}
+
+void __cdecl -[GoodsModel setGoodsItemQRCodes:](GoodsModel *self, SEL a2, id a3)
+{
+  j__objc_storeStrong(&self->_goodsItemQRCodes, a3);
+}
+
+void __cdecl -[WXOMTA setKeyForKeyChain:](WXOMTA *self, SEL a2, id a3)
+{
+  j__objc_storeStrong(&self->_keyForKeyChain, a3);
+}
+
+id __cdecl +[OrderModel JSONKeyPathsByPropertyKey](OrderModel_meta *self, SEL a2)
+{
+  __int64 v2; // d18
+  __int64 v3; // d20
+  __int64 v4; // d23
+  __int64 v5; // d22
+  __int64 v6; // d17
+  __int64 v7; // d25
+  __int64 v8; // d19
+  __int64 v9; // d21
+  __int64 v11; // [sp+4h] [bp-64h]
+  __int64 v12; // [sp+Ch] [bp-5Ch]
+  __int64 v13; // [sp+14h] [bp-54h]
+  __int64 v14; // [sp+1Ch] [bp-4Ch]
+  const __CFString *v15; // [sp+24h] [bp-44h]
+  const __CFString *v16; // [sp+28h] [bp-40h]
+  const __CFString *v17; // [sp+2Ch] [bp-3Ch]
+  __int64 v18; // [sp+30h] [bp-38h]
+  __int64 v19; // [sp+38h] [bp-30h]
+  __int64 v20; // [sp+40h] [bp-28h]
+  __int64 v21; // [sp+48h] [bp-20h]
+  const __CFString *v22; // [sp+50h] [bp-18h]
+  const __CFString *v23; // [sp+54h] [bp-14h]
+  const __CFString *v24; // [sp+58h] [bp-10h]
+
+  LODWORD(v2) = CFSTR("tid");
+  LODWORD(v3) = CFSTR("orderId");
+  LODWORD(v4) = CFSTR("price");
+  HIDWORD(v3) = CFSTR("orderNum");
+  LODWORD(v5) = CFSTR("price");
+  HIDWORD(v2) = CFSTR("num");
+  HIDWORD(v4) = CFSTR("imageURL");
+  HIDWORD(v5) = CFSTR("pic_path");
+  LODWORD(v6) = CFSTR("pic_thumb_path");
+  LODWORD(v7) = CFSTR("thumbImageURL");
+  LODWORD(v8) = CFSTR("title");
+  LODWORD(v9) = CFSTR("title");
+  HIDWORD(v6) = CFSTR("type");
+  HIDWORD(v9) = CFSTR("num_iid");
+  HIDWORD(v8) = CFSTR("num_iid");
+  HIDWORD(v7) = CFSTR("orderType");
+  v11 = v3;
+  v12 = v9;
+  v18 = v2;
+  v19 = v8;
+  v13 = v4;
+  v14 = v7;
+  v20 = v5;
+  v21 = v6;
+  v15 = CFSTR("feedBack");
+  v16 = CFSTR("refundState");
+  v22 = CFSTR("feedback");
+  v23 = CFSTR("refundState");
+  v17 = CFSTR("payType");
+  v24 = CFSTR("payType");
+  return (id)objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:");
+}
+
+id __cdecl -[AFMultipartBodyStream propertyForKey:](AFMultipartBodyStream *self, SEL a2, id a3)
+{
+  return 0;
+}
+
+id __cdecl +[GoodsImageModel JSONKeyPathsByPropertyKey](GoodsImageModel_meta *self, SEL a2)
+{
+  __int64 v2; // d18
+  __int64 v3; // d16
+  __int64 v4; // d19
+  __int64 v5; // d17
+  __int64 v7; // [sp+4h] [bp-34h]
+  __int64 v8; // [sp+Ch] [bp-2Ch]
+  const __CFString *v9; // [sp+14h] [bp-24h]
+  __int64 v10; // [sp+18h] [bp-20h]
+  __int64 v11; // [sp+20h] [bp-18h]
+  const __CFString *v12; // [sp+28h] [bp-10h]
+
+  LODWORD(v2) = CFSTR("id");
+  LODWORD(v3) = CFSTR("imageId");
+  HIDWORD(v2) = CFSTR("url");
+  HIDWORD(v3) = CFSTR("imageURL");
+  LODWORD(v4) = CFSTR("thumbnail");
+  LODWORD(v5) = CFSTR("thumbImageURL");
+  HIDWORD(v4) = CFSTR("medium");
+  HIDWORD(v5) = CFSTR("mediumImageURL");
+  v7 = v3;
+  v8 = v5;
+  v10 = v2;
+  v11 = v4;
+  v9 = CFSTR("combineImageURL");
+  v12 = CFSTR("combine");
+  return (id)objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:");
+}
+
+void __cdecl -[SDImageCache removeImageForKey:](SDImageCache *self, SEL a2, id a3)
+{
+  j__objc_msgSend(self, "removeImageForKey:withCompletion:", a3, 0);
+}
+
+id __cdecl +[YZSDKKeyChain sharedInstance](YZSDKKeyChain_meta *self, SEL a2)
+{
+  int v3; // [sp+8h] [bp-10h]
+  _DWORD *v4; // [sp+Ch] [bp-Ch]
+
+  v4 = &unk_D9934;
+  v3 = 0;
+  objc_storeStrong(&v3, &off_BAAD8);
+  if ( *v4 != -1 )
+    dispatch_once(v4, v3);
+  objc_storeStrong(&v3, 0);
+  return (id)j__objc_retainAutoreleaseReturnValue(dword_D9930);
+}
+
+id __cdecl -[NSDictionary wxApi_arrayForKey:](NSDictionary *self, SEL a2, id a3)
+{
+  __int64 v3; // d8
+  __int64 v4; // d9
+  __int64 v5; // d10
+  __int64 v6; // d11
+  __int64 v7; // d12
+  __int64 v8; // d13
+  __int64 v9; // d14
+  __int64 v10; // d15
+  _QWORD *v11; // r4
+  _QWORD *v12; // r4
+  NSDictionary *v13; // r5
+  id v14; // r4
+  void *v15; // r0
+  void *v16; // r0
+  int v17; // r1
+  int v18; // r4
+  struct objc_object *v19; // r4
+  int v21; // [sp+0h] [bp-98h]
+  void *v22; // [sp+8h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+Ch] [bp-8Ch]
+  int v24; // [sp+30h] [bp-68h]
+  int *v25; // [sp+34h] [bp-64h]
+  char v26; // [sp+40h] [bp-58h]
+  __int64 savedregs; // [sp+98h] [bp+0h]
+
+  v11 = (_QWORD *)((unsigned int)&v26 & 0xFFFFFFF0);
+  *v11 = v3;
+  v11[1] = v4;
+  v11[2] = v5;
+  v11[3] = v6;
+  v12 = (_QWORD *)(((unsigned int)&v26 & 0xFFFFFFF0) + 32);
+  *v12 = v7;
+  v12[1] = v8;
+  v12[2] = v9;
+  v12[3] = v10;
+  v13 = self;
+  v14 = a3;
+  fctx.personality = (_Unwind_Personality_Fn)&__gxx_personality_sj0;
+  fctx.lsda = &unk_B72EC;
+  fctx.jbuf[0] = &savedregs;
+  v25 = &v21;
+  v24 = (0x9E | 1) + 457750;
+  fctx.call_site = 1;
+  _Unwind_SjLj_Register(&fctx);
+  v15 = objc_msgSend((void *)v13, "objectForKey:", v14);
+  fctx.call_site = -1;
+  v22 = (void *)objc_retainAutoreleasedReturnValue(v15);
+  fctx.call_site = 2;
+  v16 = objc_msgSend(&OBJC_CLASS___NSArray, "class");
+  fctx.call_site = 3;
+  if ( objc_msgSend(v22, "isKindOfClass:", v16) )
+    v18 = objc_retain(v22, v17);
+  else
+    v18 = 0;
+  objc_release(v22);
+  v19 = (struct objc_object *)objc_autoreleaseReturnValue(v18);
+  _Unwind_SjLj_Unregister(&fctx);
+  return v19;
+}
+
+void __cdecl -[SDImageCache removeImageForKey:fromDisk:withCompletion:](SDImageCache *self, SEL a2, id a3, char a4, id a5)
+{
+  SDImageCache *v5; // r6
+  int v6; // r8
+  int v7; // r4
+  int v8; // r1
+  int v9; // r10
+  NSCache *v10; // r0
+  void *v11; // r5
+  dispatch_queue_s *v12; // r5
+  int v13; // r1
+  int v14; // r1
+  void *v15; // [sp+0h] [bp-34h]
+  int v16; // [sp+4h] [bp-30h]
+  int v17; // [sp+8h] [bp-2Ch]
+  int (*v18)(); // [sp+Ch] [bp-28h]
+  void *v19; // [sp+10h] [bp-24h]
+  int v20; // [sp+14h] [bp-20h]
+  int v21; // [sp+18h] [bp-1Ch]
+  int v22; // [sp+1Ch] [bp-18h]
+
+  v5 = self;
+  v6 = a4;
+  v7 = objc_retain(a3, a2);
+  v9 = objc_retain(a5, v8);
+  if ( v7 )
+  {
+    if ( -[SDImageCache shouldCacheImagesInMemory](v5, "shouldCacheImagesInMemory") )
+    {
+      v10 = -[SDImageCache memCache](v5, "memCache");
+      v11 = (void *)objc_retainAutoreleasedReturnValue(v10);
+      objc_msgSend(v11, "removeObjectForKey:", v7);
+      objc_release(v11);
+    }
+    if ( v6 )
+    {
+      v12 = -[SDImageCache ioQueue](v5, "ioQueue");
+      v15 = &_NSConcreteStackBlock;
+      v16 = -1040187392;
+      v17 = 0;
+      v18 = sub_43F66;
+      v19 = &unk_B9DE0;
+      v20 = objc_retain(v5, sub_43F66);
+      v21 = objc_retain(v7, v13);
+      v22 = objc_retain(v9, v14);
+      dispatch_async(v12, &v15);
+      objc_release(v22);
+      objc_release(v21);
+      objc_release(v20);
+    }
+    else if ( v9 )
+    {
+      (*(void (__fastcall **)(int))(v9 + 12))(v9);
+    }
+  }
+  objc_release(v9);
+  objc_release(v7);
+}
+
+id __cdecl +[YZSDKKeyChain getUserAgentContent](YZSDKKeyChain_meta *self, SEL a2)
+{
+  void *v2; // r0
+  void *v3; // r0
+  void *v4; // ST1C_4
+  void *v5; // r0
+  int v6; // r1
+  void *v7; // r0
+  void *v9; // [sp+24h] [bp-18h]
+  SEL v10; // [sp+28h] [bp-14h]
+  YZSDKKeyChain_meta *v11; // [sp+2Ch] [bp-10h]
+  int v12; // [sp+30h] [bp-Ch]
+
+  v11 = self;
+  v10 = a2;
+  v2 = _objc_msgSend(&OBJC_CLASS___NSUserDefaults, "standardUserDefaults");
+  v3 = (void *)objc_retainAutoreleasedReturnValue(v2);
+  v4 = v3;
+  v5 = _objc_msgSend(v3, "objectForKey:", CFSTR("UserAgent"));
+  v9 = (void *)objc_retainAutoreleasedReturnValue(v5);
+  objc_release(v4);
+  if ( !(unsigned __int8)_objc_msgSend(v11, "isNullString:", v9)
+    && (v7 = _objc_msgSend(&OBJC_CLASS___NSString, "class"), (unsigned __int8)_objc_msgSend(v9, "isKindOfClass:", v7)) )
+  {
+    v12 = objc_retain(v9, v6);
+  }
+  else
+  {
+    v12 = objc_retain(&stru_BB578, v6);
+  }
+  objc_storeStrong(&v9, 0);
+  return (id)j__objc_autoreleaseReturnValue(v12);
+}
+
+void __cdecl +[WXOMTAKeyChain save:data:](WXOMTAKeyChain_meta *self, SEL a2, id a3, id a4)
+{
+  WXOMTAKeyChain_meta *v4; // r8
+  id v5; // r4
+  int v6; // r6
+  int v7; // r1
+  int v8; // r10
+  void *v9; // r4
+  WXOMTA_meta *v10; // r4
+  void *v11; // r5
+  int v12; // r5
+  SEL v13; // r1
+  id v14; // r2
+  id v15; // r3
+  char v16; // [sp+1Ch] [bp+8h]
+
+  v4 = self;
+  v5 = a4;
+  v6 = objc_retain(a3, a2);
+  v8 = objc_retain(v5, v7);
+  v9 = objc_msgSend(v4, "getKeychainQuery:", v6);
+  objc_release(v6);
+  v10 = (WXOMTA_meta *)objc_retainAutoreleasedReturnValue(v9);
+  SecItemDelete();
+  v11 = objc_msgSend(&OBJC_CLASS___NSKeyedArchiver, "archivedDataWithRootObject:", v8);
+  objc_release(v8);
+  v12 = objc_retainAutoreleasedReturnValue(v11);
+  objc_msgSend(v10, "setObject:forKey:", v12, kSecValueData);
+  objc_release(v12);
+  SecItemAdd(v10, 0);
+  j__objc_release(v10, v13, v14, v15, v16);
+}
+
+void __cdecl -[WXOMTAEvent setAppkey:](WXOMTAEvent *self, SEL a2, id a3)
+{
+  j__objc_storeStrong(&self->_appkey, a3);
+}
+
+void __cdecl -[SDWebImageManager setCacheKeyFilter:](SDWebImageManager *self, SEL a2, id a3)
+{
+  objc_setProperty(self, a2, 16, a3, 0, 1);
+}
+
+id __cdecl -[SDImageCache imageFromMemoryCacheForKey:](SDImageCache *self, SEL a2, id a3)
+{
+  SDImageCache *v3; // r5
+  id v4; // r4
+  int v5; // r8
+  NSCache *v6; // r0
+  void *v7; // r5
+  void *v8; // r4
+  int v9; // r4
+
+  v3 = self;
+  v4 = a3;
+  v5 = objc_retain(a3, a2);
+  v6 = -[SDImageCache memCache](v3, "memCache");
+  v7 = (void *)objc_retainAutoreleasedReturnValue(v6);
+  v8 = objc_msgSend(v7, "objectForKey:", v4);
+  objc_release(v5);
+  v9 = objc_retainAutoreleasedReturnValue(v8);
+  objc_release(v7);
+  return (id)j__objc_autoreleaseReturnValue(v9);
+}
+
+void __cdecl -[MBProgressHUD observeValueForKeyPath:ofObject:change:context:](MBProgressHUD *self, SEL a2, id a3, id a4, id a5, void *a6)
+{
+  MBProgressHUD *v6; // r5
+  int v7; // r4
+
+  v6 = self;
+  v7 = objc_retain(a3, a2);
+  if ( objc_msgSend(&OBJC_CLASS___NSThread, "isMainThread") )
+    -[MBProgressHUD updateUIForKeypath:](v6, "updateUIForKeypath:", v7);
+  else
+    objc_msgSend(v6, "performSelectorOnMainThread:withObject:waitUntilDone:", "updateUIForKeypath:", v7, 0);
+  objc_release(v7);
+}
+
+id __cdecl +[TradeBuyerMessageModel JSONKeyPathsByPropertyKey](TradeBuyerMessageModel_meta *self, SEL a2)
+{
+  const __CFString *v3; // [sp+4h] [bp-1Ch]
+  const __CFString *v4; // [sp+8h] [bp-18h]
+  const __CFString *v5; // [sp+Ch] [bp-14h]
+  const __CFString *v6; // [sp+10h] [bp-10h]
+
+  v3 = CFSTR("title");
+  v4 = CFSTR("content");
+  v5 = CFSTR("title");
+  v6 = CFSTR("content");
+  return (id)objc_msgSend(
+               &OBJC_CLASS___NSDictionary,
+               "dictionaryWithObjects:forKeys:count:",
+               &v5,
+               &v3,
+               2,
+               CFSTR("title"),
+               CFSTR("content"),
+               CFSTR("title"),
+               CFSTR("content"));
+}
+
+void __cdecl +[WXOMTA trackPageViewBegin:appkey:](WXOMTA_meta *self, SEL a2, id a3, id a4)
+{
+  id v4; // r5
+  WXOMTA_meta *v5; // r10
+  int v6; // r1
+  int v7; // r8
+  struct objc_object *v8; // r0
+  void *v9; // r5
+  void *v10; // r4
+  struct objc_object *v11; // r0
+  void *v12; // r4
+  void *v13; // r5
+  struct objc_object *v14; // r0
+  void *v15; // r4
+  struct objc_object *v16; // r0
+  void *v17; // r0
+  void *v18; // r5
+  void *v19; // r0
+  int v20; // r6
+  SEL v21; // r1
+  id v22; // r2
+  id v23; // r3
+  char v24; // [sp+1Ch] [bp+8h]
+
+  v4 = a4;
+  v5 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v7 = objc_retain(v4, v6);
+  v8 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v9 = (void *)objc_retainAutoreleasedReturnValue(v8);
+  v10 = objc_msgSend(v9, "checkMTAEnable");
+  objc_release(v9);
+  if ( v10 )
+  {
+    v11 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v12 = (void *)objc_retainAutoreleasedReturnValue(v11);
+    v13 = objc_msgSend(v12, "statEnable");
+    objc_release(v12);
+    if ( v13 )
+    {
+      if ( v5 && objc_msgSend(v5, "length") )
+      {
+        v14 = +[WXOMTA getInstance](&OBJC_CLASS___WXOMTA, "getInstance");
+        v15 = (void *)objc_retainAutoreleasedReturnValue(v14);
+        objc_msgSend(v15, "setMtaCurrentPage:", v5);
+        objc_release(v15);
+        v16 = +[WXOMTA getInstance](&OBJC_CLASS___WXOMTA, "getInstance");
+        v17 = (void *)objc_retainAutoreleasedReturnValue(v16);
+        v18 = v17;
+        v19 = objc_msgSend(v17, "mtaCurrentPage");
+        v20 = objc_retainAutoreleasedReturnValue(v19);
+        +[WXOMTA trackDirectPageViewBegin:appkey:](&OBJC_CLASS___WXOMTA, "trackDirectPageViewBegin:appkey:", v20, v7);
+        objc_release(v20);
+        objc_release(v18);
+      }
+      else
+      {
+        sub_8694C(CFSTR("[ERROR]Failed to trace nil/empty page."));
+      }
+    }
+  }
+  objc_release(v7);
+  j__objc_release(v5, v21, v22, v23, v24);
+}
+
+void __cdecl +[WXOMTA trackCustomKeyValueEventDuration:withEventid:props:appKey:isRealTime:](WXOMTA_meta *self, SEL a2, unsigned int a3, id a4, id a5, id a6, char a7)
+{
+  WXOMTA_meta *v7; // r4
+  int v8; // r1
+  int v9; // r11
+  int v10; // r1
+  int v11; // r10
+  struct objc_object *v12; // r0
+  void *v13; // r6
+  void *v14; // r8
+  struct objc_object *v15; // r0
+  void *v16; // r5
+  void *v17; // r6
+  WXOMTACustomEvent *v18; // r0
+  WXOMTACustomEvent *v19; // r5
+  int v20; // r0
+  SEL v21; // r1
+  id v22; // r2
+  id v23; // r3
+  unsigned int v24; // [sp+0h] [bp-1Ch]
+
+  v24 = a3;
+  v7 = (WXOMTA_meta *)objc_retain(a4, a2);
+  v9 = objc_retain(a5, v8);
+  v11 = objc_retain(a6, v10);
+  v12 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+  v14 = objc_msgSend(v13, "checkMTAEnable");
+  objc_release(v13);
+  if ( v14 )
+  {
+    v15 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v16 = (void *)objc_retainAutoreleasedReturnValue(v15);
+    v17 = objc_msgSend(v16, "statEnable");
+    objc_release(v16);
+    if ( v17 )
+    {
+      if ( v7 && objc_msgSend(v7, "length") )
+      {
+        if ( v24 )
+        {
+          v18 = objc_msgSend(&OBJC_CLASS___WXOMTACustomEvent, "alloc");
+          v19 = -[WXOMTACustomEvent init](v18, "init");
+          -[WXOMTACustomEvent setEventID:](v19, "setEventID:", v7);
+          -[WXOMTACustomEvent setKvs:](v19, "setKvs:", v9);
+          v20 = sub_84A6E(0, v11, 0);
+          -[WXOMTAEvent setSid:](v19, "setSid:", v20);
+          -[WXOMTACustomEvent setDuration:](v19, "setDuration:", v24);
+          -[WXOMTAEvent setAppkey:](v19, "setAppkey:", v11);
+          -[WXOMTAEvent setIsRealTime:](v19, "setIsRealTime:", a7);
+          sub_823A8(v19);
+          objc_release(v19);
+        }
+        else
+        {
+          sub_8694C(CFSTR("[ERROR] event:%@ duration should not be zero"));
+        }
+      }
+      else
+      {
+        sub_8694C(CFSTR("[ERROR]Failed to trace nil/empty event_id."));
+      }
+    }
+  }
+  objc_release(v11);
+  objc_release(v9);
+  j__objc_release(v7, v21, v22, v23, (char)a5);
+}
+
+void __cdecl +[WXOMTA reportQQ:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, id a4, char a5)
+{
+  id v5; // r5
+  WXOMTA_meta *v6; // r10
+  int v7; // r1
+  int v8; // r11
+  struct objc_object *v9; // r0
+  void *v10; // r4
+  void *v11; // r5
+  struct objc_object *v12; // r0
+  void *v13; // r4
+  void *v14; // r5
+  struct objc_object *v15; // r0
+  void *v16; // r4
+  SEL v17; // r1
+  id v18; // r2
+  id v19; // r3
+
+  v5 = a4;
+  v6 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v8 = objc_retain(v5, v7);
+  v9 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v10 = (void *)objc_retainAutoreleasedReturnValue(v9);
+  v11 = objc_msgSend(v10, "checkMTAEnable");
+  objc_release(v10);
+  if ( v11 )
+  {
+    v12 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+    v14 = objc_msgSend(v13, "statEnable");
+    objc_release(v13);
+    if ( v14 )
+    {
+      v15 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+      v16 = (void *)objc_retainAutoreleasedReturnValue(v15);
+      objc_msgSend(v16, "setQq:", v6);
+      objc_release(v16);
+      sub_84A6E(0, v8, 0);
+      sub_81E70(1, v8, a5);
+    }
+  }
+  objc_release(v8);
+  j__objc_release(v6, v17, v18, v19, a5);
+}
+
+void __cdecl -[YZSDKKeyChain .cxx_destruct](YZSDKKeyChain *self, SEL a2)
+{
+  YZSDKKeyChain *v2; // ST00_4
+
+  v2 = self;
+  objc_storeStrong(&self->_appClientIPAddress, 0);
+  objc_storeStrong(&v2->_appCleintSecret, 0);
+  objc_storeStrong(&v2->_appClientID, 0);
+}
+
+void __cdecl -[SDImageCache removeImageForKey:withCompletion:](SDImageCache *self, SEL a2, id a3, id a4)
+{
+  SDImageCache *v4; // r5
+  id v5; // r4
+  WXOMTA_meta *v6; // r6
+  SEL v7; // r1
+  id v8; // r2
+  id v9; // r3
+  char v10; // [sp+18h] [bp+8h]
+
+  v4 = self;
+  v5 = a4;
+  v6 = (WXOMTA_meta *)objc_retain(a3, a2);
+  -[SDImageCache removeImageForKey:fromDisk:withCompletion:](
+    v4,
+    "removeImageForKey:fromDisk:withCompletion:",
+    v6,
+    1,
+    v5);
+  j__objc_release(v6, v7, v8, v9, v10);
+}
+
+id __cdecl -[SDImageCache defaultCachePathForKey:](SDImageCache *self, SEL a2, id a3)
+{
+  SDImageCache *v3; // r4
+  int v4; // r6
+  NSString *v5; // r0
+  int v6; // r5
+  struct objc_object *v7; // r4
+  int v8; // r4
+
+  v3 = self;
+  v4 = objc_retain(a3, a2);
+  v5 = -[SDImageCache diskCachePath](v3, "diskCachePath");
+  v6 = objc_retainAutoreleasedReturnValue(v5);
+  v7 = -[SDImageCache cachePathForKey:inPath:](v3, "cachePathForKey:inPath:", v4, v6);
+  objc_release(v4);
+  v8 = objc_retainAutoreleasedReturnValue(v7);
+  objc_release(v6);
+  return (id)j__objc_autoreleaseReturnValue(v8);
+}
+
+id __cdecl +[AFNetworkActivityIndicatorManager keyPathsForValuesAffectingIsNetworkActivityIndicatorVisible](AFNetworkActivityIndicatorManager_meta *self, SEL a2)
+{
+  return (id)j__objc_msgSend(&OBJC_CLASS___NSSet, "setWithObject:", CFSTR("activityCount"));
+}
+
+void __cdecl -[SDImageCache storeImageDataToDisk:forKey:](SDImageCache *self, SEL a2, id a3, id a4)
+{
+  SDImageCache *v4; // r6
+  id v5; // r5
+  WXOMTA_meta *v6; // r11
+  int v7; // r1
+  int v8; // r8
+  struct objc_object *v9; // r0
+  int v10; // r0
+  int v11; // r5
+  void *v12; // r0
+  void *v13; // r10
+  void *v14; // r0
+  int v15; // r6
+  SEL v16; // r1
+  id v17; // r2
+  id v18; // r3
+  char v19; // [sp+28h] [bp+8h]
+
+  v4 = self;
+  v5 = a4;
+  v6 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v8 = objc_retain(v5, v7);
+  if ( v6 )
+  {
+    if ( !objc_msgSend((void *)v4->_fileManager, "fileExistsAtPath:", v4->_diskCachePath) )
+      objc_msgSend(
+        (void *)v4->_fileManager,
+        "createDirectoryAtPath:withIntermediateDirectories:attributes:error:",
+        v4->_diskCachePath,
+        1,
+        0,
+        0);
+    v9 = -[SDImageCache defaultCachePathForKey:](v4, "defaultCachePathForKey:", v8);
+    v10 = objc_retainAutoreleasedReturnValue(v9);
+    v11 = v10;
+    v12 = objc_msgSend(&OBJC_CLASS___NSURL, "fileURLWithPath:", v10);
+    v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+    objc_msgSend((void *)v4->_fileManager, "createFileAtPath:contents:attributes:", v11, v6, 0);
+    if ( -[SDImageCache shouldDisableiCloud](v4, "shouldDisableiCloud") )
+    {
+      v14 = objc_msgSend(&OBJC_CLASS___NSNumber, "numberWithBool:", 1);
+      v15 = objc_retainAutoreleasedReturnValue(v14);
+      objc_msgSend(v13, "setResourceValue:forKey:error:", v15, NSURLIsExcludedFromBackupKey, 0);
+      objc_release(v15);
+    }
+    objc_release(v13);
+    objc_release(v11);
+  }
+  objc_release(v8);
+  j__objc_release(v6, v16, v17, v18, v19);
+}
+
+NSMutableSet *__cdecl -[AFHTTPRequestSerializer mutableObservedChangedKeyPaths](AFHTTPRequestSerializer *self, SEL a2)
+{
+  return self->_mutableObservedChangedKeyPaths;
+}
+
+void __cdecl +[WXOMTA trackException:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, id a4, char a5)
+{
+  id v5; // r5
+  WXOMTA_meta *v6; // r8
+  int v7; // r1
+  int v8; // r11
+  struct objc_object *v9; // r0
+  void *v10; // r5
+  void *v11; // r4
+  struct objc_object *v12; // r0
+  void *v13; // r5
+  void *v14; // r6
+  void *v15; // r5
+  void *v16; // r0
+  int v17; // r4
+  void *v18; // r10
+  WXOMTAErrorEvent *v19; // r0
+  WXOMTAErrorEvent *v20; // r6
+  int v21; // r0
+  SEL v22; // r1
+  id v23; // r2
+  id v24; // r3
+
+  v5 = a4;
+  v6 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v8 = objc_retain(v5, v7);
+  v9 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v10 = (void *)objc_retainAutoreleasedReturnValue(v9);
+  v11 = objc_msgSend(v10, "checkMTAEnable");
+  objc_release(v10);
+  if ( v11 )
+  {
+    v12 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+    v14 = objc_msgSend(v13, "statEnable");
+    objc_release(v13);
+    if ( v14 )
+    {
+      if ( v6 )
+      {
+        v15 = objc_msgSend(&OBJC_CLASS___NSString, "alloc");
+        v16 = objc_msgSend(v6, "callStackSymbols");
+        v17 = objc_retainAutoreleasedReturnValue(v16);
+        v18 = objc_msgSend(v15, "initWithFormat:", CFSTR("%@\n%@"), v6, v17);
+        objc_release(v17);
+        v19 = objc_msgSend(&OBJC_CLASS___WXOMTAErrorEvent, "alloc");
+        v20 = -[WXOMTAErrorEvent init](v19, "init");
+        v21 = sub_85F4E();
+        -[WXOMTAEvent setSid:](v20, "setSid:", v21);
+        -[WXOMTAErrorEvent setError:](v20, "setError:", v18);
+        -[WXOMTAErrorEvent setAttr:](v20, "setAttr:", 1);
+        -[WXOMTAEvent setAppkey:](v20, "setAppkey:", v8);
+        -[WXOMTAEvent setIsRealTime:](v20, "setIsRealTime:", a5);
+        sub_823A8(v20);
+        objc_release(v20);
+        objc_release(v18);
+      }
+      else
+      {
+        sub_8694C(CFSTR("[ERROR]Failed to trace nil exception."));
+      }
+    }
+  }
+  objc_release(v8);
+  j__objc_release(v6, v22, v23, v24, a5);
+}
+
+NSString *__cdecl -[YZSDKKeyChain appClientIPAddress](YZSDKKeyChain *self, SEL a2)
+{
+  return (NSString *)j__objc_getProperty(self);
+}
+
+void __cdecl -[YZSDKKeyChain setAppCleintSecret:](YZSDKKeyChain *self, SEL a2, id a3)
+{
+  void *v3; // r0
+  void *v4; // r1
+  struct objc_object *v5; // r2
+  YZSDKKeyChain *selfa; // [sp+10h] [bp-18h]
+  int v7; // [sp+14h] [bp-14h]
+  SEL v8; // [sp+18h] [bp-10h]
+  YZSDKKeyChain *v9; // [sp+1Ch] [bp-Ch]
+
+  v9 = self;
+  v8 = a2;
+  v7 = 0;
+  objc_storeStrong(&v7, a3);
+  v3 = _objc_msgSend(v9, "class");
+  if ( (unsigned __int8)_objc_msgSend(v3, "isNullString:", v7) && (unsigned __int8)_objc_msgSend(v9, "openDebugLog") )
+  {
+    NSLog(CFSTR("app cleintSecret 设置错误"));
+    objc_storeStrong(&v9->_appCleintSecret, &stru_BB578);
+    selfa = (YZSDKKeyChain *)1;
+  }
+  else
+  {
+    objc_storeStrong(&v9->_appCleintSecret, v7);
+    selfa = 0;
+  }
+  objc_storeStrong(&v7, 0);
+  if ( (unsigned int)selfa > 1 )
+    -[YZSDKKeyChain setAppClientIPAddress:](selfa, v4, v5);
+}
+
+NSString *__cdecl -[YZSDKKeyChain appCleintSecret](YZSDKKeyChain *self, SEL a2)
+{
+  return (NSString *)j__objc_getProperty(self);
+}
+
+void __cdecl -[SDWebImageDownloader setPassword:](SDWebImageDownloader *self, SEL a2, id a3)
+{
+  j__objc_storeStrong(&self->_password, a3);
+}
+
+void __cdecl +[WXOMTA trackCustomKeyValueEventDuration:withEventid:props:](WXOMTA_meta *self, SEL a2, unsigned int a3, id a4, id a5)
+{
+  WXOMTA_meta *v5; // r5
+  unsigned int v6; // r4
+  WXOMTA_meta *v7; // r6
+  SEL v8; // r1
+  id v9; // r2
+  id v10; // r3
+
+  v5 = self;
+  v6 = a3;
+  v7 = (WXOMTA_meta *)objc_retain(a4, a2);
+  objc_msgSend(v5, "trackCustomKeyValueEventDuration:withEventid:props:appKey:isRealTime:", v6, v7, a5, 0, 0);
+  j__objc_release(v7, v8, v9, v10, (char)a5);
+}
+
+id __cdecl -[SDImageCache scaledImageForKey:image:](SDImageCache *self, SEL a2, id a3, id a4)
+{
+  int v4; // r5
+  int v5; // r4
+  int v6; // r0
+
+  v4 = objc_retain(a3, a2);
+  v5 = sub_4571A();
+  objc_release(v4);
+  v6 = objc_retainAutoreleasedReturnValue(v5);
+  return (id)j__objc_autoreleaseReturnValue(v6);
+}
+
+unsigned int __cdecl +[MTLModel storageBehaviorForPropertyWithKey:](MTLModel_meta *self, SEL a2, id a3)
+{
+  MTLModel_meta *v3; // r5
+  id v4; // r4
+  int v5; // r8
+  void *v6; // r5
+  void *v7; // r0
+  void *v8; // r4
+  int v9; // r0
+  unsigned int v10; // r4
+  int v11; // r5
+  void *v13; // [sp+0h] [bp-2Ch]
+  int v14; // [sp+4h] [bp-28h]
+  int v15; // [sp+8h] [bp-24h]
+  int (*v16)(); // [sp+Ch] [bp-20h]
+  void *v17; // [sp+10h] [bp-1Ch]
+  int v18; // [sp+14h] [bp-18h]
+  int v19; // [sp+18h] [bp-14h]
+
+  v3 = self;
+  v4 = a3;
+  v5 = objc_retain(a3, a2);
+  v6 = objc_msgSend(v3, "class");
+  v7 = (void *)objc_retainAutorelease(v4);
+  v8 = objc_msgSend(v7, "UTF8String");
+  objc_release(v5);
+  v9 = class_getProperty(v6, v8);
+  v10 = 0;
+  if ( v9 )
+  {
+    v11 = sub_38F8C();
+    v13 = &_NSConcreteStackBlock;
+    v14 = -1073741824;
+    v15 = 0;
+    v16 = sub_3E984;
+    v17 = &unk_B9A98;
+    v18 = v11;
+    v19 = objc_retainBlock(&v13);
+    if ( *(_BYTE *)v11 && !*(_DWORD *)(v11 + 20) )
+      v10 = 0;
+    else
+      v10 = 2;
+    sub_393BC(&v19);
+    objc_release(v19);
+  }
+  return v10;
+}
+
+void __cdecl +[WXOMTA reportAppMonitorStat:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, id a4, char a5)
+{
+  id v5; // r5
+  WXOMTA_meta *v6; // r11
+  int v7; // r1
+  int v8; // r10
+  struct objc_object *v9; // r0
+  void *v10; // r5
+  void *v11; // r4
+  struct objc_object *v12; // r0
+  void *v13; // r4
+  void *v14; // r5
+  void *v15; // r0
+  int v16; // r4
+  WXOMTAMonitorStatEvent *v17; // r0
+  WXOMTAMonitorStatEvent *v18; // r6
+  int v19; // r0
+  SEL v20; // r1
+  id v21; // r2
+  id v22; // r3
+
+  v5 = a4;
+  v6 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v8 = objc_retain(v5, v7);
+  v9 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v10 = (void *)objc_retainAutoreleasedReturnValue(v9);
+  v11 = objc_msgSend(v10, "checkMTAEnable");
+  objc_release(v10);
+  if ( v11 )
+  {
+    v12 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+    v14 = objc_msgSend(v13, "statEnable");
+    objc_release(v13);
+    if ( v14 )
+    {
+      if ( v6
+        && (v15 = objc_msgSend(v6, "interface"), v16 = objc_retainAutoreleasedReturnValue(v15), objc_release(v16), v16) )
+      {
+        v17 = objc_msgSend(&OBJC_CLASS___WXOMTAMonitorStatEvent, "alloc");
+        v18 = -[WXOMTAMonitorStatEvent init](v17, "init");
+        -[WXOMTAMonitorStatEvent setStat:](v18, "setStat:", v6);
+        v19 = sub_84A6E(0, v8, 0);
+        -[WXOMTAEvent setSid:](v18, "setSid:", v19);
+        -[WXOMTAEvent setAppkey:](v18, "setAppkey:", v8);
+        -[WXOMTAEvent setIsRealTime:](v18, "setIsRealTime:", a5);
+        sub_823A8(v18);
+        objc_release(v18);
+      }
+      else
+      {
+        sub_8694C(CFSTR("[ERROR]Invalid arguments for reportAppMonitorStat:NULL stat object or null interface name in stat object."));
+      }
+    }
+  }
+  objc_release(v8);
+  j__objc_release(v6, v20, v21, v22, a5);
+}
+
+void __cdecl +[WXOMTA trackCustomKeyValueEventBegin:props:](WXOMTA_meta *self, SEL a2, id a3, id a4)
+{
+  WXOMTA_meta *v4; // r5
+  id v5; // r4
+  WXOMTA_meta *v6; // r6
+  SEL v7; // r1
+  id v8; // r2
+  id v9; // r3
+  char v10; // [sp+18h] [bp+8h]
+
+  v4 = self;
+  v5 = a4;
+  v6 = (WXOMTA_meta *)objc_retain(a3, a2);
+  objc_msgSend(v4, "trackCustomKeyValueEventBegin:props:appkey:", v6, v5, 0);
+  j__objc_release(v6, v7, v8, v9, v10);
+}
+
+NSString *__cdecl -[WXCardItem encryptCode](WXCardItem *self, SEL a2)
+{
+  return self->encryptCode;
+}
+
+void __cdecl -[SDImageCache diskImageExistsWithKey:completion:](SDImageCache *self, SEL a2, id a3, id a4)
+{
+  SDImageCache *v4; // r5
+  id v5; // r4
+  int v6; // r6
+  int v7; // r1
+  int v8; // r4
+  __int64 v9; // r1
+  dispatch_queue_s *v10; // r8
+  int v11; // r1
+  int v12; // r5
+  int v13; // r1
+  int v14; // r4
+  void *v15; // [sp+0h] [bp-30h]
+  int v16; // [sp+4h] [bp-2Ch]
+  __int64 v17; // [sp+8h] [bp-28h]
+  void *v18; // [sp+10h] [bp-20h]
+  int v19; // [sp+14h] [bp-1Ch]
+  int v20; // [sp+18h] [bp-18h]
+  int v21; // [sp+1Ch] [bp-14h]
+
+  v4 = self;
+  v5 = a4;
+  v6 = objc_retain(a3, a2);
+  v8 = objc_retain(v5, v7);
+  HIDWORD(v9) = sub_433F0;
+  v10 = v4->_ioQueue;
+  v15 = &_NSConcreteStackBlock;
+  v16 = -1040187392;
+  LODWORD(v9) = 0;
+  v17 = v9;
+  v18 = &unk_B9D60;
+  v19 = objc_retain(v4, 0);
+  v20 = v6;
+  v12 = objc_retain(v6, v11);
+  v21 = v8;
+  v14 = objc_retain(v8, v13);
+  dispatch_async(v10, &v15);
+  objc_release(v21);
+  objc_release(v20);
+  objc_release(v19);
+  objc_release(v14);
+  objc_release(v12);
+}
+
+void __cdecl -[UIProgressView observeValueForKeyPath:ofObject:change:context:](UIProgressView *self, SEL a2, id a3, id a4, id a5, void *a6)
+{
+  __int64 v6; // d8
+  __int64 v7; // d9
+  __int64 v8; // d10
+  __int64 v9; // d11
+  __int64 v10; // d12
+  __int64 v11; // d13
+  __int64 v12; // d14
+  __int64 v13; // d15
+  _QWORD *v14; // r4
+  _QWORD *v15; // r4
+  UIProgressView *v16; // r11
+  id v17; // r4
+  int v18; // r1
+  void *v19; // r4
+  void *v20; // r5
+  bool v21; // zf
+  int v22; // r0
+  int v23; // r5
+  void *v24; // r6
+  signed __int64 v25; // r0
+  int v26; // r1
+  int v27; // r0
+  int v28; // r5
+  void *v29; // r6
+  signed __int64 v30; // r0
+  int v31; // r1
+  int v32; // r0
+  int v33; // r6
+  void *v34; // r4
+  int v35; // r0
+  int v36; // r0
+  void *v37; // r1
+  int v38; // r0
+  const char *v39; // r0
+  int v40; // r0
+  const char *v41; // r0
+  int v42; // [sp+0h] [bp-E8h]
+  char *v43; // [sp+4h] [bp-E4h]
+  int v44; // [sp+8h] [bp-E0h]
+  UIProgressView *v45; // [sp+Ch] [bp-DCh]
+  const char *v46; // [sp+10h] [bp-D8h]
+  const char *v47; // [sp+14h] [bp-D4h]
+  void *v48; // [sp+18h] [bp-D0h]
+  int v49; // [sp+1Ch] [bp-CCh]
+  int v50; // [sp+20h] [bp-C8h]
+  int (*v51)(); // [sp+24h] [bp-C4h]
+  void *v52; // [sp+28h] [bp-C0h]
+  int v53; // [sp+2Ch] [bp-BCh]
+  int v54; // [sp+30h] [bp-B8h]
+  void *v55; // [sp+34h] [bp-B4h]
+  int v56; // [sp+38h] [bp-B0h]
+  int v57; // [sp+3Ch] [bp-ACh]
+  int (*v58)(); // [sp+40h] [bp-A8h]
+  void *v59; // [sp+44h] [bp-A4h]
+  int v60; // [sp+48h] [bp-A0h]
+  int v61; // [sp+4Ch] [bp-9Ch]
+  void *v62; // [sp+50h] [bp-98h]
+  void *v63; // [sp+54h] [bp-94h]
+  int v64; // [sp+58h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+5Ch] [bp-8Ch]
+  int v66; // [sp+80h] [bp-68h]
+  int *v67; // [sp+84h] [bp-64h]
+  char v68; // [sp+90h] [bp-58h]
+  __int64 savedregs; // [sp+E8h] [bp+0h]
+
+  v14 = (_QWORD *)((unsigned int)&v68 & 0xFFFFFFF0);
+  *v14 = v6;
+  v14[1] = v7;
+  v14[2] = v8;
+  v14[3] = v9;
+  v15 = (_QWORD *)(((unsigned int)&v68 & 0xFFFFFFF0) + 32);
+  *v15 = v10;
+  v15[1] = v11;
+  v15[2] = v12;
+  v15[3] = v13;
+  v16 = self;
+  v17 = a4;
+  v62 = (void *)objc_retain(a3, a2);
+  v63 = (void *)objc_retain(v17, v18);
+  v64 = objc_retain(a5, a5);
+  v19 = off_D9380;
+  v20 = off_D937C;
+  fctx.personality = (_Unwind_Personality_Fn)&__objc_personality_v0;
+  fctx.lsda = &unk_B6F8C;
+  fctx.jbuf[0] = &savedregs;
+  v67 = &v42;
+  v66 = (0x2D0 | 1) + 152190;
+  _Unwind_SjLj_Register(&fctx);
+  v21 = v20 == a6;
+  if ( v20 != a6 )
+    v21 = v19 == a6;
+  if ( v21 )
+  {
+    fctx.call_site = -1;
+    v47 = "countOfBytesSent";
+    v22 = ((int (*)(void))NSStringFromSelector)();
+    fctx.call_site = -1;
+    v23 = objc_retainAutoreleasedReturnValue(v22);
+    fctx.call_site = -1;
+    v24 = objc_msgSend(v62, "isEqualToString:", v23);
+    objc_release(v23);
+    if ( v24 )
+    {
+      fctx.call_site = -1;
+      LODWORD(v25) = objc_msgSend(v63, "countOfBytesExpectedToSend");
+      if ( v25 >= 1 )
+      {
+        v55 = &_NSConcreteStackBlock;
+        v56 = -1040187392;
+        v57 = 0;
+        v58 = sub_25580;
+        v59 = &unk_B9360;
+        v60 = objc_retain(v16, sub_25580);
+        v61 = objc_retain(v63, v26);
+        dispatch_async(&_dispatch_main_q, &v55);
+        objc_release(v61);
+        objc_release(v60);
+      }
+    }
+    fctx.call_site = -1;
+    v46 = "countOfBytesReceived";
+    v27 = ((int (*)(void))NSStringFromSelector)();
+    fctx.call_site = -1;
+    v28 = objc_retainAutoreleasedReturnValue(v27);
+    fctx.call_site = -1;
+    v29 = objc_msgSend(v62, "isEqualToString:", v28);
+    objc_release(v28);
+    if ( v29 )
+    {
+      fctx.call_site = -1;
+      LODWORD(v30) = objc_msgSend(v63, "countOfBytesExpectedToReceive");
+      if ( v30 >= 1 )
+      {
+        v48 = &_NSConcreteStackBlock;
+        v49 = -1040187392;
+        v50 = 0;
+        v51 = sub_25626;
+        v52 = &unk_B9380;
+        v53 = objc_retain(v16, sub_25626);
+        v54 = objc_retain(v63, v31);
+        dispatch_async(&_dispatch_main_q, &v48);
+        objc_release(v54);
+        objc_release(v53);
+      }
+    }
+    fctx.call_site = -1;
+    v32 = NSStringFromSelector("state");
+    fctx.call_site = -1;
+    v33 = objc_retainAutoreleasedReturnValue(v32);
+    fctx.call_site = -1;
+    v34 = objc_msgSend(v62, "isEqualToString:", v33);
+    objc_release(v33);
+    if ( v34 )
+    {
+      fctx.call_site = -1;
+      if ( objc_msgSend(v63, "state") == (void *)3 )
+      {
+        v45 = v16;
+        fctx.call_site = 1;
+        v35 = NSStringFromSelector("state");
+        fctx.call_site = -1;
+        v36 = objc_retainAutoreleasedReturnValue(v35);
+        fctx.call_site = 2;
+        v43 = "removeObserver:forKeyPath:";
+        v44 = v36;
+        objc_msgSend(v63, "removeObserver:forKeyPath:", v45);
+        objc_release(v44);
+        v37 = a6;
+        if ( off_D937C == a6 )
+        {
+          fctx.call_site = 3;
+          v38 = NSStringFromSelector(v47);
+          fctx.call_site = -1;
+          v39 = (const char *)objc_retainAutoreleasedReturnValue(v38);
+          fctx.call_site = 4;
+          v47 = v39;
+          objc_msgSend(v63, v43, v45);
+          objc_release(v47);
+          v37 = a6;
+        }
+        if ( off_D9380 == v37 )
+        {
+          fctx.call_site = 5;
+          v40 = NSStringFromSelector(v46);
+          fctx.call_site = -1;
+          v41 = (const char *)objc_retainAutoreleasedReturnValue(v40);
+          fctx.call_site = 6;
+          v47 = v41;
+          objc_msgSend(v63, v43, v45);
+          objc_release(v47);
+        }
+      }
+    }
+  }
+  objc_release(v64);
+  objc_release(v63);
+  objc_release(v62);
+  _Unwind_SjLj_Unregister(&fctx);
+}
+
+id __cdecl +[YZSDKKeyChain sdkVersion](YZSDKKeyChain_meta *self, SEL a2)
+{
+  return (id)j__objc_retainAutoreleaseReturnValue(CFSTR("v3.2.0"));
+}
+
+void __cdecl +[WXOMTA trackCustomEventBegin:args:appkey:](WXOMTA_meta *self, SEL a2, id a3, id a4, id a5)
+{
+  __int64 v5; // d8
+  __int64 v6; // d9
+  __int64 v7; // d10
+  __int64 v8; // d11
+  __int64 v9; // d12
+  __int64 v10; // d13
+  __int64 v11; // d14
+  __int64 v12; // d15
+  _QWORD *v13; // r4
+  _QWORD *v14; // r4
+  id v15; // r4
+  void *v16; // r10
+  int v17; // r1
+  int v18; // r8
+  int v19; // r1
+  int v20; // r11
+  struct objc_object *v21; // r0
+  void *v22; // r4
+  void *v23; // r5
+  struct objc_object *v24; // r0
+  void *v25; // r4
+  void *v26; // r5
+  int v27; // r0
+  int v28; // r0
+  int v29; // r0
+  int v30; // r0
+  void *v31; // r0
+  void *v32; // r0
+  char *v33; // r0
+  void *v34; // r4
+  void *v35; // r0
+  char *v36; // r0
+  int v37; // r1
+  double v38; // d8
+  void *v39; // r0
+  char *v40; // r2
+  char *v41; // r0
+  int v42; // [sp+0h] [bp-B8h]
+  void *v43; // [sp+Ch] [bp-ACh]
+  char *v44; // [sp+10h] [bp-A8h]
+  int v45; // [sp+14h] [bp-A4h]
+  int v46; // [sp+18h] [bp-A0h]
+  int v47; // [sp+1Ch] [bp-9Ch]
+  void *v48; // [sp+20h] [bp-98h]
+  int v49; // [sp+24h] [bp-94h]
+  int v50; // [sp+28h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+2Ch] [bp-8Ch]
+  int v52; // [sp+50h] [bp-68h]
+  int *v53; // [sp+54h] [bp-64h]
+  char v54; // [sp+60h] [bp-58h]
+  __int64 savedregs; // [sp+B8h] [bp+0h]
+
+  v13 = (_QWORD *)((unsigned int)&v54 & 0xFFFFFFF0);
+  *v13 = v5;
+  v13[1] = v6;
+  v13[2] = v7;
+  v13[3] = v8;
+  v14 = (_QWORD *)(((unsigned int)&v54 & 0xFFFFFFF0) + 32);
+  *v14 = v9;
+  v14[1] = v10;
+  v14[2] = v11;
+  v14[3] = v12;
+  v15 = a4;
+  v16 = (void *)objc_retain(a3, a2);
+  v18 = objc_retain(v15, v17);
+  v20 = objc_retain(a5, v19);
+  v21 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v22 = (void *)objc_retainAutoreleasedReturnValue(v21);
+  v23 = objc_msgSend(v22, "checkMTAEnable");
+  objc_release(v22);
+  fctx.personality = (_Unwind_Personality_Fn)&__objc_personality_v0;
+  fctx.lsda = &unk_B7530;
+  fctx.jbuf[0] = &savedregs;
+  v53 = &v42;
+  v52 = (0x29C | 1) + 537794;
+  _Unwind_SjLj_Register(&fctx);
+  if ( v23 )
+  {
+    fctx.call_site = -1;
+    v24 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    fctx.call_site = -1;
+    v25 = (void *)objc_retainAutoreleasedReturnValue(v24);
+    fctx.call_site = -1;
+    v26 = objc_msgSend(v25, "statEnable");
+    objc_release(v25);
+    if ( v26 )
+    {
+      if ( v16 && (fctx.call_site = -1, objc_msgSend(v16, "length")) )
+      {
+        v44 = "getInstance";
+        fctx.call_site = -1;
+        v46 = v20;
+        v27 = sub_81E70(0, v20, 0);
+        fctx.call_site = -1;
+        v28 = sub_85FFA(v27);
+        fctx.call_site = -1;
+        v50 = objc_retainAutoreleasedReturnValue(v28);
+        objc_sync_enter(v50);
+        fctx.call_site = 1;
+        v48 = v16;
+        v47 = v18;
+        v29 = sub_83794(v16, v18);
+        fctx.call_site = -1;
+        v30 = objc_retainAutoreleasedReturnValue(v29);
+        fctx.call_site = 2;
+        v49 = v30;
+        v31 = objc_msgSend((void *)dword_D9C80, "objectForKey:", v30);
+        fctx.call_site = -1;
+        v45 = objc_retainAutoreleasedReturnValue(v31);
+        if ( v45 )
+        {
+          fctx.call_site = 3;
+          sub_8694C(CFSTR("[ERROR]Duplicate key %@ for event_id:%@"));
+        }
+        else
+        {
+          fctx.call_site = 4;
+          v43 = objc_msgSend((void *)dword_D9C80, "count");
+          fctx.call_site = 5;
+          v32 = objc_msgSend(&OBJC_CLASS___WXOMTAConfig, v44);
+          fctx.call_site = -1;
+          v33 = (char *)objc_retainAutoreleasedReturnValue(v32);
+          fctx.call_site = 6;
+          v44 = v33;
+          v34 = objc_msgSend(v33, "maxParallelTimingEvents");
+          objc_release(v44);
+          if ( v43 >= v34 )
+          {
+            fctx.call_site = 7;
+            sub_8694C(CFSTR("[ERROR]Too many parallel events in memory."));
+          }
+          else
+          {
+            fctx.call_site = 8;
+            v35 = objc_msgSend(&OBJC_CLASS___NSDate, "date");
+            fctx.call_site = -1;
+            v36 = (char *)objc_retainAutoreleasedReturnValue(v35);
+            fctx.call_site = 9;
+            v44 = v36;
+            LODWORD(v38) = objc_msgSend(v36, "timeIntervalSince1970");
+            HIDWORD(v38) = v37;
+            objc_release(v44);
+            v44 = (char *)dword_D9C80;
+            fctx.call_site = 10;
+            v39 = objc_msgSend(&OBJC_CLASS___NSNumber, "numberWithUnsignedLong:", (unsigned int)v38);
+            fctx.call_site = -1;
+            v40 = (char *)objc_retainAutoreleasedReturnValue(v39);
+            fctx.call_site = 11;
+            v41 = v44;
+            v44 = v40;
+            objc_msgSend(v41, "setValue:forKey:");
+            objc_release(v44);
+          }
+        }
+        objc_release(v45);
+        objc_release(v49);
+        objc_sync_exit(v50);
+        objc_release(v50);
+        v16 = v48;
+        v18 = v47;
+        v20 = v46;
+      }
+      else
+      {
+        fctx.call_site = -1;
+        sub_8694C(CFSTR("[ERROR]Failed to trace nil/empty event_id."));
+      }
+    }
+  }
+  objc_release(v20);
+  objc_release(v18);
+  objc_release(v16);
+  _Unwind_SjLj_Unregister(&fctx);
+}
+
+void __cdecl -[WXCardItem setEncryptCode:](WXCardItem *self, SEL a2, id a3)
+{
+  objc_setProperty(self, a2, 16, a3, 0, 0);
+}
+
+void __cdecl -[YZSDKKeyChain setAppClientID:](YZSDKKeyChain *self, SEL a2, id a3)
+{
+  void *v3; // r0
+  void *v4; // r1
+  struct objc_object *v5; // r2
+  YZSDKKeyChain *selfa; // [sp+10h] [bp-18h]
+  int v7; // [sp+14h] [bp-14h]
+  SEL v8; // [sp+18h] [bp-10h]
+  YZSDKKeyChain *v9; // [sp+1Ch] [bp-Ch]
+
+  v9 = self;
+  v8 = a2;
+  v7 = 0;
+  objc_storeStrong(&v7, a3);
+  v3 = _objc_msgSend(v9, "class");
+  if ( (unsigned __int8)_objc_msgSend(v3, "isNullString:", v7) && (unsigned __int8)_objc_msgSend(v9, "openDebugLog") )
+  {
+    NSLog(CFSTR("app clientID 设置错误"));
+    objc_storeStrong(&v9->_appClientID, &stru_BB578);
+    selfa = (YZSDKKeyChain *)1;
+  }
+  else
+  {
+    objc_storeStrong(&v9->_appClientID, v7);
+    selfa = 0;
+  }
+  objc_storeStrong(&v7, 0);
+  if ( (unsigned int)selfa > 1 )
+    -[YZSDKKeyChain setAppCleintSecret:](selfa, v4, v5);
+}
+
+void __cdecl -[UIView sd_setImageLoadOperation:forKey:](UIView *self, SEL a2, id a3, id a4)
+{
+  UIView *v4; // r6
+  id v5; // r10
+  int v6; // r8
+  int v7; // r1
+  int v8; // r5
+  void *v9; // r0
+  WXOMTA_meta *v10; // r4
+  SEL v11; // r1
+  id v12; // r2
+  id v13; // r3
+  char v14; // [sp+1Ch] [bp+8h]
+
+  v4 = self;
+  v5 = a4;
+  v6 = objc_retain(a3, a2);
+  v8 = objc_retain(v5, v7);
+  objc_msgSend((void *)v4, "sd_cancelImageLoadOperationWithKey:", v8);
+  v9 = objc_msgSend((void *)v4, "operationDictionary");
+  v10 = (WXOMTA_meta *)objc_retainAutoreleasedReturnValue(v9);
+  objc_msgSend(v10, "setObject:forKey:", v6, v5);
+  objc_release(v8);
+  objc_release(v6);
+  j__objc_release(v10, v11, v12, v13, v14);
+}
+
+void __cdecl -[MBBarProgressView observeValueForKeyPath:ofObject:change:context:](MBBarProgressView *self, SEL a2, id a3, id a4, id a5, void *a6)
+{
+  objc_msgSend(self, "setNeedsDisplay", a3, a4);
+}
+
+id __cdecl -[SDImageCache cachePathForKey:inPath:](SDImageCache *self, SEL a2, id a3, id a4)
+{
+  SDImageCache *v4; // r5
+  id v5; // r8
+  int v6; // r6
+  int v7; // r1
+  int v8; // r10
+  struct objc_object *v9; // r4
+  int v10; // r4
+  void *v11; // r5
+  int v12; // r5
+
+  v4 = self;
+  v5 = a4;
+  v6 = objc_retain(a3, a2);
+  v8 = objc_retain(v5, v7);
+  v9 = -[SDImageCache cachedFileNameForKey:](v4, "cachedFileNameForKey:", v6);
+  objc_release(v6);
+  v10 = objc_retainAutoreleasedReturnValue(v9);
+  v11 = objc_msgSend(v5, "stringByAppendingPathComponent:", v10);
+  objc_release(v8);
+  v12 = objc_retainAutoreleasedReturnValue(v11);
+  objc_release(v10);
+  return (id)j__objc_autoreleaseReturnValue(v12);
+}
+
+double __cdecl -[NSDictionary wxApi_doubleForKey:](NSDictionary *self, SEL a2, id a3)
+{
+  __int64 v3; // d8
+  __int64 v4; // d9
+  __int64 v5; // d10
+  __int64 v6; // d11
+  __int64 v7; // d12
+  __int64 v8; // d13
+  __int64 v9; // d14
+  __int64 v10; // d15
+  _QWORD *v11; // r4
+  _QWORD *v12; // r4
+  NSDictionary *v13; // r5
+  id v14; // r4
+  void *v15; // r0
+  void *v16; // r0
+  double v17; // r0
+  void *v18; // r0
+  double v19; // d8
+  char *v21; // [sp+0h] [bp-98h]
+  char *v22; // [sp+4h] [bp-94h]
+  void *v23; // [sp+8h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+Ch] [bp-8Ch]
+  int v25; // [sp+30h] [bp-68h]
+  char **v26; // [sp+34h] [bp-64h]
+  char v27; // [sp+40h] [bp-58h]
+  __int64 savedregs; // [sp+98h] [bp+0h]
+
+  v11 = (_QWORD *)((unsigned int)&v27 & 0xFFFFFFF0);
+  *v11 = v3;
+  v11[1] = v4;
+  v11[2] = v5;
+  v11[3] = v6;
+  v12 = (_QWORD *)(((unsigned int)&v27 & 0xFFFFFFF0) + 32);
+  *v12 = v7;
+  v12[1] = v8;
+  v12[2] = v9;
+  v12[3] = v10;
+  v13 = self;
+  v14 = a3;
+  fctx.personality = (_Unwind_Personality_Fn)&__gxx_personality_sj0;
+  fctx.lsda = &unk_B732C;
+  fctx.jbuf[0] = &savedregs;
+  v26 = &v21;
+  v25 = (0xEC | 1) + 459034;
+  fctx.call_site = 1;
+  _Unwind_SjLj_Register(&fctx);
+  v15 = objc_msgSend((void *)v13, "objectForKey:", v14);
+  fctx.call_site = -1;
+  v23 = (void *)objc_retainAutoreleasedReturnValue(v15);
+  fctx.call_site = 2;
+  v22 = "class";
+  v16 = objc_msgSend(&OBJC_CLASS___NSNumber, "class");
+  fctx.call_site = 3;
+  v21 = "isKindOfClass:";
+  if ( objc_msgSend(v23, "isKindOfClass:", v16) )
+  {
+    fctx.call_site = 4;
+    LODWORD(v17) = objc_msgSend(v23, "doubleValue");
+LABEL_5:
+    v19 = v17;
+    goto LABEL_6;
+  }
+  fctx.call_site = 5;
+  v18 = objc_msgSend(&OBJC_CLASS___NSString, v22);
+  fctx.call_site = 6;
+  v19 = 0.0;
+  if ( objc_msgSend(v23, v21, v18) )
+  {
+    fctx.call_site = 7;
+    LODWORD(v17) = objc_msgSend(v23, "doubleValue");
+    goto LABEL_5;
+  }
+LABEL_6:
+  objc_release(v23);
+  _Unwind_SjLj_Unregister(&fctx);
+  return v19;
+}
+
+id __cdecl -[YZURLSessionManager tasksForKeyPath:](YZURLSessionManager *self, SEL a2, id a3)
+{
+  __int64 v3; // d8
+  __int64 v4; // d9
+  __int64 v5; // d10
+  __int64 v6; // d11
+  __int64 v7; // d12
+  __int64 v8; // d13
+  __int64 v9; // d14
+  __int64 v10; // d15
+  _QWORD *v11; // r4
+  _QWORD *v12; // r4
+  void *v13; // r0
+  int v14; // r1
+  int v15; // r0
+  int v16; // r1
+  int v18; // [sp+0h] [bp-118h]
+  struct objc_object *v19; // [sp+8h] [bp-110h]
+  int v20; // [sp+Ch] [bp-10Ch]
+  int v21; // [sp+10h] [bp-108h]
+  void *v22; // [sp+14h] [bp-104h]
+  void *v23; // [sp+18h] [bp-100h]
+  void *v24; // [sp+1Ch] [bp-FCh]
+  void *v25; // [sp+20h] [bp-F8h]
+  char *v26; // [sp+24h] [bp-F4h]
+  int *v27; // [sp+28h] [bp-F0h]
+  int *v28; // [sp+2Ch] [bp-ECh]
+  int *v29; // [sp+30h] [bp-E8h]
+  int v30; // [sp+34h] [bp-E4h]
+  void *v31; // [sp+40h] [bp-D8h]
+  int v32; // [sp+44h] [bp-D4h]
+  int v33; // [sp+48h] [bp-D0h]
+  int (*v34)(); // [sp+4Ch] [bp-CCh]
+  void *v35; // [sp+50h] [bp-C8h]
+  int v36; // [sp+54h] [bp-C4h]
+  int v37; // [sp+58h] [bp-C0h]
+  int *v38; // [sp+5Ch] [bp-BCh]
+  int v39; // [sp+60h] [bp-B8h]
+  int v40; // [sp+64h] [bp-B4h]
+  int *v41; // [sp+68h] [bp-B0h]
+  int v42; // [sp+6Ch] [bp-ACh]
+  int v43; // [sp+70h] [bp-A8h]
+  int (*v44)(); // [sp+74h] [bp-A4h]
+  int (*v45)(); // [sp+78h] [bp-A0h]
+  int v46; // [sp+7Ch] [bp-9Ch]
+  int v47; // [sp+80h] [bp-98h]
+  SEL v48; // [sp+84h] [bp-94h]
+  YZURLSessionManager *v49; // [sp+88h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+8Ch] [bp-8Ch]
+  int v51; // [sp+B0h] [bp-68h]
+  int *v52; // [sp+B4h] [bp-64h]
+  char v53; // [sp+C0h] [bp-58h]
+  __int64 savedregs; // [sp+118h] [bp+0h]
+
+  v11 = (_QWORD *)((unsigned int)&v53 & 0xFFFFFFF0);
+  *v11 = v3;
+  v11[1] = v4;
+  v11[2] = v5;
+  v11[3] = v6;
+  v12 = (_QWORD *)(((unsigned int)&v53 & 0xFFFFFFF0) + 32);
+  *v12 = v7;
+  v12[1] = v8;
+  v12[2] = v9;
+  v12[3] = v10;
+  v49 = self;
+  v48 = a2;
+  v47 = 0;
+  v30 = 0;
+  objc_storeStrong(&v47, a3);
+  v40 = 0;
+  v41 = &v40;
+  v42 = 838860800;
+  v43 = 28;
+  v44 = sub_6B5A0;
+  v45 = sub_6B5D6;
+  v46 = 0;
+  v29 = &v46;
+  v39 = dispatch_semaphore_create();
+  fctx.personality = (_Unwind_Personality_Fn)&__objc_personality_v0;
+  fctx.lsda = &unk_B72D0;
+  fctx.jbuf[0] = &savedregs;
+  v52 = &v18;
+  v51 = (0x132 | 1) + 449556;
+  fctx.call_site = 1;
+  v28 = &v37;
+  v27 = &v36;
+  v26 = "session";
+  v25 = v49;
+  _Unwind_SjLj_Register(&fctx);
+  v24 = objc_msgSend(v25, v26);
+  fctx.call_site = -1;
+  v13 = (void *)objc_retainAutoreleasedReturnValue(v24);
+  v31 = &_NSConcreteStackBlock;
+  v32 = -1040187392;
+  v33 = 0;
+  v34 = sub_6DD64;
+  v35 = &unk_BAFF0;
+  v23 = v13;
+  v22 = v13;
+  v36 = objc_retain(v47, v47);
+  v38 = &v40;
+  v37 = objc_retain(v39, v14);
+  fctx.call_site = 2;
+  objc_msgSend(v23, "getTasksWithCompletionHandler:", &v31);
+  objc_release(v22);
+  v15 = dispatch_semaphore_wait(v39, -1, -1);
+  v16 = v41[6];
+  v21 = v15;
+  v20 = objc_retain(v16, v16);
+  objc_storeStrong(v28, 0);
+  objc_storeStrong(v27, 0);
+  objc_storeStrong(&v39, 0);
+  _Block_object_dispose(&v40, 8);
+  objc_storeStrong(v29, 0);
+  objc_storeStrong(&v47, 0);
+  v19 = (struct objc_object *)objc_autoreleaseReturnValue(v20);
+  _Unwind_SjLj_Unregister(&fctx);
+  return v19;
+}
+
+void __cdecl +[MTAWX startWithAppkey:](MTAWX_meta *self, SEL a2, id a3)
+{
+  id v3; // r5
+  struct objc_object *v4; // r6
+  struct objc_object *v5; // r0
+  struct objc_object *v6; // r0
+  struct objc_object *v7; // r0
+  struct objc_object *v8; // r0
+  void *v9; // r0
+
+  v3 = a3;
+  v4 = +[MTAWX getInstance](&OBJC_CLASS___MTAWX, "getInstance");
+  v5 = +[MTAWX ConvertWXappkey:](&OBJC_CLASS___MTAWX, "ConvertWXappkey:", v3);
+  objc_msgSend(v4, "setAppkey:", v5);
+  v6 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+  if ( objc_msgSend(v6, "debugEnable") )
+  {
+    v7 = +[MTAWX getInstance](&OBJC_CLASS___MTAWX, "getInstance");
+    objc_msgSend(v7, "appkey");
+    NSLog(CFSTR("MTAWX appkey :%@"));
+  }
+  v8 = +[MTAWX getInstance](&OBJC_CLASS___MTAWX, "getInstance");
+  v9 = objc_msgSend(v8, "appkey");
+  j__objc_msgSend(&OBJC_CLASS___WXOMTA, "startWithAppkey:", v9);
+}
+
+void __cdecl +[WXOMTA trackCustomEvent:args:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, id a4, id a5, char a6)
+{
+  id v6; // r5
+  WXOMTA_meta *v7; // r11
+  int v8; // r1
+  int v9; // r10
+  int v10; // r1
+  int v11; // r8
+  struct objc_object *v12; // r0
+  void *v13; // r4
+  void *v14; // r6
+  struct objc_object *v15; // r0
+  void *v16; // r5
+  void *v17; // r6
+  WXOMTACustomEvent *v18; // r0
+  WXOMTACustomEvent *v19; // r5
+  int v20; // r0
+  SEL v21; // r1
+  id v22; // r2
+  id v23; // r3
+
+  v6 = a4;
+  v7 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v9 = objc_retain(v6, v8);
+  v11 = objc_retain(a5, v10);
+  v12 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+  v14 = objc_msgSend(v13, "checkMTAEnable");
+  objc_release(v13);
+  if ( v14 )
+  {
+    v15 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v16 = (void *)objc_retainAutoreleasedReturnValue(v15);
+    v17 = objc_msgSend(v16, "statEnable");
+    objc_release(v16);
+    if ( v17 )
+    {
+      if ( v7 )
+      {
+        sub_81E70(0, 0, 0);
+        v18 = objc_msgSend(&OBJC_CLASS___WXOMTACustomEvent, "alloc");
+        v19 = -[WXOMTACustomEvent init](v18, "init");
+        -[WXOMTACustomEvent setEventID:](v19, "setEventID:", v7);
+        -[WXOMTACustomEvent setArgs:](v19, "setArgs:", v9);
+        v20 = sub_84A6E(0, v11, 0);
+        -[WXOMTAEvent setSid:](v19, "setSid:", v20);
+        -[WXOMTAEvent setAppkey:](v19, "setAppkey:", v11);
+        -[WXOMTACustomEvent setDuration:](v19, "setDuration:", 0);
+        -[WXOMTAEvent setIsRealTime:](v19, "setIsRealTime:", a6);
+        sub_823A8(v19);
+        objc_release(v19);
+      }
+      else
+      {
+        sub_8694C(CFSTR("[ERROR]Failed to trace nil event_id."));
+      }
+    }
+  }
+  objc_release(v11);
+  objc_release(v9);
+  j__objc_release(v7, v21, v22, v23, (char)a5);
+}
+
+id __cdecl -[MTLModel decodeValueForKey:withCoder:modelVersion:](MTLModel *self, SEL a2, id a3, id a4, unsigned int a5)
+{
+  __int64 v5; // d8
+  __int64 v6; // d9
+  __int64 v7; // d10
+  __int64 v8; // d11
+  __int64 v9; // d12
+  __int64 v10; // d13
+  __int64 v11; // d14
+  __int64 v12; // d15
+  _QWORD *v13; // r4
+  _QWORD *v14; // r4
+  id v15; // r4
+  int v16; // r1
+  void *v17; // r5
+  int v18; // r4
+  void *v19; // r6
+  void *v20; // r8
+  void *v21; // r0
+  int v22; // r0
+  int v23; // r6
+  void *v24; // r0
+  void *v25; // r5
+  int v26; // r1
+  int v27; // r4
+  int v28; // r0
+  void *v29; // r0
+  void *v30; // r0
+  void *v31; // r0
+  void *v32; // r0
+  int v33; // r4
+  void *v34; // r0
+  void *v35; // r2
+  void *v36; // r0
+  void *v37; // r0
+  struct objc_object *v38; // r4
+  void *v40; // r0
+  void *v41; // [sp+0h] [bp-A8h]
+  int v42; // [sp+4h] [bp-A4h]
+  int v43; // [sp+8h] [bp-A0h]
+  unsigned int v44; // [sp+Ch] [bp-9Ch]
+  void *v45; // [sp+10h] [bp-98h]
+  void *v46; // [sp+14h] [bp-94h]
+  int v47; // [sp+18h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+1Ch] [bp-8Ch]
+  int v49; // [sp+40h] [bp-68h]
+  void **v50; // [sp+44h] [bp-64h]
+  char v51; // [sp+50h] [bp-58h]
+  __int64 savedregs; // [sp+A8h] [bp+0h]
+
+  v13 = (_QWORD *)((unsigned int)&v51 & 0xFFFFFFF0);
+  *v13 = v5;
+  v13[1] = v6;
+  v13[2] = v7;
+  v13[3] = v8;
+  v14 = (_QWORD *)(((unsigned int)&v51 & 0xFFFFFFF0) + 32);
+  *v14 = v9;
+  v14[1] = v10;
+  v14[2] = v11;
+  v14[3] = v12;
+  v46 = self;
+  v15 = a4;
+  v47 = objc_retain(a3, a2);
+  v17 = (void *)objc_retain(v15, v16);
+  v44 = a5;
+  v45 = v17;
+  v18 = sub_3F274("decode", v47, "WithCoder:modelVersion:");
+  v19 = objc_msgSend(v46, "respondsToSelector:", v18);
+  fctx.personality = (_Unwind_Personality_Fn)&__objc_personality_v0;
+  fctx.lsda = &unk_B70A0;
+  fctx.jbuf[0] = &savedregs;
+  v50 = &v41;
+  v49 = (0x242 | 1) + 250688;
+  _Unwind_SjLj_Register(&fctx);
+  if ( v19 )
+  {
+    v20 = v46;
+    fctx.call_site = -1;
+    v21 = objc_msgSend(v46, "methodSignatureForSelector:", v18);
+    fctx.call_site = -1;
+    v22 = objc_retainAutoreleasedReturnValue(v21);
+    v23 = v22;
+    fctx.call_site = -1;
+    v24 = objc_msgSend(&OBJC_CLASS___NSInvocation, "invocationWithMethodSignature:", v22);
+    fctx.call_site = -1;
+    v25 = (void *)objc_retainAutoreleasedReturnValue(v24);
+    objc_release(v23);
+    fctx.call_site = -1;
+    objc_msgSend(v25, "setTarget:", v20);
+    fctx.call_site = -1;
+    objc_msgSend(v25, "setSelector:", v18);
+    fctx.call_site = -1;
+    objc_msgSend(v25, "setArgument:atIndex:", &v45, 2);
+    fctx.call_site = -1;
+    objc_msgSend(v25, "setArgument:atIndex:", &v44, 3);
+    fctx.call_site = -1;
+    objc_msgSend(v25, "invoke");
+    v43 = 0;
+    fctx.call_site = -1;
+    objc_msgSend(v25, "getReturnValue:", &v43);
+    v27 = objc_retain(v43, v26);
+    v28 = (int)v25;
+  }
+  else
+  {
+    fctx.call_site = 1;
+    if ( !sub_3D610(v17) )
+    {
+      fctx.call_site = 7;
+      v40 = objc_msgSend(v45, "decodeObjectForKey:", v47);
+      fctx.call_site = -1;
+      v27 = objc_retainAutoreleasedReturnValue(v40);
+      goto LABEL_6;
+    }
+    fctx.call_site = 2;
+    v29 = objc_msgSend(v46, "class");
+    fctx.call_site = 3;
+    v30 = objc_msgSend(v29, "allowedSecureCodingClassesByPropertyKey");
+    fctx.call_site = -1;
+    v31 = (void *)objc_retainAutoreleasedReturnValue(v30);
+    fctx.call_site = 4;
+    v42 = (int)v31;
+    v32 = objc_msgSend(v31, "objectForKeyedSubscript:", v47);
+    fctx.call_site = -1;
+    v33 = objc_retainAutoreleasedReturnValue(v32);
+    objc_release(v42);
+    v41 = v45;
+    fctx.call_site = 5;
+    v42 = v33;
+    v34 = objc_msgSend(&OBJC_CLASS___NSSet, "setWithArray:", v33);
+    fctx.call_site = -1;
+    v35 = (void *)objc_retainAutoreleasedReturnValue(v34);
+    fctx.call_site = 6;
+    v36 = v41;
+    v41 = v35;
+    v37 = objc_msgSend(v36, "decodeObjectOfClasses:forKey:");
+    fctx.call_site = -1;
+    v27 = objc_retainAutoreleasedReturnValue(v37);
+    objc_release(v41);
+    v28 = v42;
+  }
+  objc_release(v28);
+LABEL_6:
+  objc_release(v45);
+  objc_release(v47);
+  v38 = (struct objc_object *)objc_autoreleaseReturnValue(v27);
+  _Unwind_SjLj_Unregister(&fctx);
+  return v38;
+}
+
+void __cdecl -[SDImageCache removeImageForKey:fromDisk:](SDImageCache *self, SEL a2, id a3, char a4)
+{
+  -[SDImageCache removeImageForKey:fromDisk:withCompletion:](
+    self,
+    "removeImageForKey:fromDisk:withCompletion:",
+    a3,
+    a4,
+    0);
+}
+
+NSString *__cdecl -[YZSDKKeyChain appClientID](YZSDKKeyChain *self, SEL a2)
+{
+  return (NSString *)j__objc_getProperty(self);
+}
+
+void __cdecl -[UIView sd_cancelImageLoadOperationWithKey:](UIView *self, SEL a2, id a3)
+{
+  void *v3; // r0
+  void *v4; // r0
+  signed __int64 v5; // r4
+  void *v6; // r0
+  void *v7; // r6
+  void *v8; // r0
+  int v9; // r1
+  void *v10; // r4
+  void *v11; // r8
+  int v12; // r6
+  unsigned int v13; // r10
+  void *v14; // r0
+  void *v15; // [sp+4h] [bp-8Ch]
+  signed __int64 v16; // [sp+8h] [bp-88h]
+  __int64 v17; // [sp+10h] [bp-80h]
+  __int64 v18; // [sp+18h] [bp-78h]
+  __int64 v19; // [sp+20h] [bp-70h]
+  __int64 v20; // [sp+28h] [bp-68h]
+  char v21; // [sp+34h] [bp-5Ch]
+
+  v5 = __PAIR__(objc_retain(a3, a2), (unsigned int)self);
+  v3 = objc_msgSend((void *)v5, "operationDictionary");
+  v4 = (void *)objc_retainAutoreleasedReturnValue(v3);
+  LODWORD(v5) = v4;
+  v6 = objc_msgSend(v4, "objectForKey:", HIDWORD(v5));
+  v7 = (void *)objc_retainAutoreleasedReturnValue(v6);
+  if ( v7 )
+  {
+    v8 = objc_msgSend(&OBJC_CLASS___NSArray, "class");
+    if ( objc_msgSend(v7, "isKindOfClass:", v8) )
+    {
+      v16 = v5;
+      v15 = v7;
+      v17 = 0LL;
+      v18 = 0LL;
+      v19 = 0LL;
+      v20 = 0LL;
+      v10 = (void *)objc_retain(v7, v9);
+      v11 = objc_msgSend(v10, "countByEnumeratingWithState:objects:count:", &v17, &v21, 16);
+      if ( v11 )
+      {
+        v12 = *(_DWORD *)v18;
+        do
+        {
+          v13 = 0;
+          do
+          {
+            if ( *(_DWORD *)v18 != v12 )
+              objc_enumerationMutation(v10);
+            v14 = *(void **)(HIDWORD(v17) + 4 * v13);
+            if ( v14 )
+              objc_msgSend(v14, "cancel");
+            ++v13;
+          }
+          while ( v13 < (unsigned int)v11 );
+          v11 = objc_msgSend(v10, "countByEnumeratingWithState:objects:count:", &v17, &v21, 16);
+        }
+        while ( v11 );
+      }
+      objc_release(v10);
+      v5 = v16;
+      v7 = v15;
+    }
+    else if ( objc_msgSend(v7, "conformsToProtocol:", &OBJC_PROTOCOL___SDWebImageOperation) )
+    {
+      objc_msgSend(v7, "cancel");
+    }
+    objc_msgSend((void *)v5, "removeObjectForKey:", HIDWORD(v5));
+  }
+  objc_release(v7);
+  objc_release(v5);
+  objc_release(HIDWORD(v5));
+}
+
+id __cdecl +[MTAWX ConvertWXappkey:](MTAWX_meta *self, SEL a2, id a3)
+{
+  id v3; // r4
+  struct objc_object *v4; // r0
+  id result; // r0
+
+  v3 = a3;
+  if ( a3 )
+  {
+    v4 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    if ( objc_msgSend(v4, "debugEnable") )
+    {
+      objc_msgSend(CFSTR("IWXOP"), "stringByAppendingString:", v3);
+      NSLog(CFSTR("WXappkey:%@"));
+    }
+    result = (id)j__objc_msgSend(CFSTR("IWXOP"), "stringByAppendingString:", v3);
+  }
+  else
+  {
+    NSLog(CFSTR("[WARN]appkey is nil"));
+    result = 0;
+  }
+  return result;
+}
+
+id __cdecl -[NSDictionary wxApi_stringForKey:](NSDictionary *self, SEL a2, id a3)
+{
+  __int64 v3; // d8
+  __int64 v4; // d9
+  __int64 v5; // d10
+  __int64 v6; // d11
+  __int64 v7; // d12
+  __int64 v8; // d13
+  __int64 v9; // d14
+  __int64 v10; // d15
+  _QWORD *v11; // r4
+  _QWORD *v12; // r4
+  NSDictionary *v13; // r5
+  id v14; // r4
+  void *v15; // r0
+  void *v16; // r0
+  int v17; // r1
+  int v18; // r4
+  struct objc_object *v19; // r4
+  int v21; // [sp+0h] [bp-98h]
+  void *v22; // [sp+8h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+Ch] [bp-8Ch]
+  int v24; // [sp+30h] [bp-68h]
+  int *v25; // [sp+34h] [bp-64h]
+  char v26; // [sp+40h] [bp-58h]
+  __int64 savedregs; // [sp+98h] [bp+0h]
+
+  v11 = (_QWORD *)((unsigned int)&v26 & 0xFFFFFFF0);
+  *v11 = v3;
+  v11[1] = v4;
+  v11[2] = v5;
+  v11[3] = v6;
+  v12 = (_QWORD *)(((unsigned int)&v26 & 0xFFFFFFF0) + 32);
+  *v12 = v7;
+  v12[1] = v8;
+  v12[2] = v9;
+  v12[3] = v10;
+  v13 = self;
+  v14 = a3;
+  fctx.personality = (_Unwind_Personality_Fn)&__gxx_personality_sj0;
+  fctx.lsda = &unk_B72E0;
+  fctx.jbuf[0] = &savedregs;
+  v25 = &v21;
+  v24 = (0x9E | 1) + 457470;
+  fctx.call_site = 1;
+  _Unwind_SjLj_Register(&fctx);
+  v15 = objc_msgSend((void *)v13, "objectForKey:", v14);
+  fctx.call_site = -1;
+  v22 = (void *)objc_retainAutoreleasedReturnValue(v15);
+  fctx.call_site = 2;
+  v16 = objc_msgSend(&OBJC_CLASS___NSString, "class");
+  fctx.call_site = 3;
+  if ( objc_msgSend(v22, "isKindOfClass:", v16) )
+    v18 = objc_retain(v22, v17);
+  else
+    v18 = 0;
+  objc_release(v22);
+  v19 = (struct objc_object *)objc_autoreleaseReturnValue(v18);
+  _Unwind_SjLj_Unregister(&fctx);
+  return v19;
+}
+
+void __cdecl +[WXOMTA trackCustomKeyValueEventBegin:props:appkey:](WXOMTA_meta *self, SEL a2, id a3, id a4, id a5)
+{
+  __int64 v5; // d8
+  __int64 v6; // d9
+  __int64 v7; // d10
+  __int64 v8; // d11
+  __int64 v9; // d12
+  __int64 v10; // d13
+  __int64 v11; // d14
+  __int64 v12; // d15
+  _QWORD *v13; // r4
+  _QWORD *v14; // r4
+  id v15; // r4
+  void *v16; // r10
+  int v17; // r1
+  int v18; // r8
+  int v19; // r1
+  int v20; // r11
+  struct objc_object *v21; // r0
+  void *v22; // r4
+  void *v23; // r5
+  struct objc_object *v24; // r0
+  void *v25; // r4
+  void *v26; // r5
+  int v27; // r0
+  int v28; // r0
+  int v29; // r0
+  int v30; // r0
+  void *v31; // r0
+  void *v32; // r0
+  char *v33; // r0
+  void *v34; // r4
+  void *v35; // r0
+  char *v36; // r0
+  int v37; // r1
+  double v38; // d8
+  void *v39; // r0
+  char *v40; // r2
+  char *v41; // r0
+  int v42; // [sp+0h] [bp-B8h]
+  void *v43; // [sp+Ch] [bp-ACh]
+  char *v44; // [sp+10h] [bp-A8h]
+  int v45; // [sp+14h] [bp-A4h]
+  int v46; // [sp+18h] [bp-A0h]
+  int v47; // [sp+1Ch] [bp-9Ch]
+  void *v48; // [sp+20h] [bp-98h]
+  int v49; // [sp+24h] [bp-94h]
+  int v50; // [sp+28h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+2Ch] [bp-8Ch]
+  int v52; // [sp+50h] [bp-68h]
+  int *v53; // [sp+54h] [bp-64h]
+  char v54; // [sp+60h] [bp-58h]
+  __int64 savedregs; // [sp+B8h] [bp+0h]
+
+  v13 = (_QWORD *)((unsigned int)&v54 & 0xFFFFFFF0);
+  *v13 = v5;
+  v13[1] = v6;
+  v13[2] = v7;
+  v13[3] = v8;
+  v14 = (_QWORD *)(((unsigned int)&v54 & 0xFFFFFFF0) + 32);
+  *v14 = v9;
+  v14[1] = v10;
+  v14[2] = v11;
+  v14[3] = v12;
+  v15 = a4;
+  v16 = (void *)objc_retain(a3, a2);
+  v18 = objc_retain(v15, v17);
+  v20 = objc_retain(a5, v19);
+  v21 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v22 = (void *)objc_retainAutoreleasedReturnValue(v21);
+  v23 = objc_msgSend(v22, "checkMTAEnable");
+  objc_release(v22);
+  fctx.personality = (_Unwind_Personality_Fn)&__objc_personality_v0;
+  fctx.lsda = &unk_B7570;
+  fctx.jbuf[0] = &savedregs;
+  v53 = &v42;
+  v52 = (0x29C | 1) + 540494;
+  _Unwind_SjLj_Register(&fctx);
+  if ( v23 )
+  {
+    fctx.call_site = -1;
+    v24 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    fctx.call_site = -1;
+    v25 = (void *)objc_retainAutoreleasedReturnValue(v24);
+    fctx.call_site = -1;
+    v26 = objc_msgSend(v25, "statEnable");
+    objc_release(v25);
+    if ( v26 )
+    {
+      if ( v16 && (fctx.call_site = -1, objc_msgSend(v16, "length")) )
+      {
+        v44 = "getInstance";
+        fctx.call_site = -1;
+        v46 = v20;
+        v27 = sub_81E70(0, v20, 0);
+        fctx.call_site = -1;
+        v28 = sub_85FFA(v27);
+        fctx.call_site = -1;
+        v50 = objc_retainAutoreleasedReturnValue(v28);
+        objc_sync_enter(v50);
+        fctx.call_site = 1;
+        v48 = v16;
+        v47 = v18;
+        v29 = sub_84220(v16, v18);
+        fctx.call_site = -1;
+        v30 = objc_retainAutoreleasedReturnValue(v29);
+        fctx.call_site = 2;
+        v49 = v30;
+        v31 = objc_msgSend((void *)dword_D9C80, "objectForKey:", v30);
+        fctx.call_site = -1;
+        v45 = objc_retainAutoreleasedReturnValue(v31);
+        if ( v45 )
+        {
+          fctx.call_site = 3;
+          sub_8694C(CFSTR("[ERROR]Duplicate key %@ for event_id:%@"));
+        }
+        else
+        {
+          fctx.call_site = 4;
+          v43 = objc_msgSend((void *)dword_D9C80, "count");
+          fctx.call_site = 5;
+          v32 = objc_msgSend(&OBJC_CLASS___WXOMTAConfig, v44);
+          fctx.call_site = -1;
+          v33 = (char *)objc_retainAutoreleasedReturnValue(v32);
+          fctx.call_site = 6;
+          v44 = v33;
+          v34 = objc_msgSend(v33, "maxParallelTimingEvents");
+          objc_release(v44);
+          if ( v43 >= v34 )
+          {
+            fctx.call_site = 7;
+            sub_8694C(CFSTR("[ERROR]Too many parallel events in memory."));
+          }
+          else
+          {
+            fctx.call_site = 8;
+            v35 = objc_msgSend(&OBJC_CLASS___NSDate, "date");
+            fctx.call_site = -1;
+            v36 = (char *)objc_retainAutoreleasedReturnValue(v35);
+            fctx.call_site = 9;
+            v44 = v36;
+            LODWORD(v38) = objc_msgSend(v36, "timeIntervalSince1970");
+            HIDWORD(v38) = v37;
+            objc_release(v44);
+            v44 = (char *)dword_D9C80;
+            fctx.call_site = 10;
+            v39 = objc_msgSend(&OBJC_CLASS___NSNumber, "numberWithUnsignedLong:", (unsigned int)v38);
+            fctx.call_site = -1;
+            v40 = (char *)objc_retainAutoreleasedReturnValue(v39);
+            fctx.call_site = 11;
+            v41 = v44;
+            v44 = v40;
+            objc_msgSend(v41, "setValue:forKey:");
+            objc_release(v44);
+          }
+        }
+        objc_release(v45);
+        objc_release(v49);
+        objc_sync_exit(v50);
+        objc_release(v50);
+        v16 = v48;
+        v18 = v47;
+        v20 = v46;
+      }
+      else
+      {
+        fctx.call_site = -1;
+        sub_8694C(CFSTR("[ERROR]Failed to trace nil/empty event_id."));
+      }
+    }
+  }
+  objc_release(v20);
+  objc_release(v18);
+  objc_release(v16);
+  _Unwind_SjLj_Unregister(&fctx);
+}
+
+char __cdecl +[YZHTTPRequestSerializer automaticallyNotifiesObserversForKey:](YZHTTPRequestSerializer_meta *self, SEL a2, id a3)
+{
+  int v3; // r0
+  int v4; // r0
+  void *v5; // ST0C_4
+  char v6; // ST04_1
+  YZHTTPRequestSerializer_meta *v8; // [sp+10h] [bp-24h]
+  void **v9; // [sp+14h] [bp-20h]
+  int v10; // [sp+18h] [bp-1Ch]
+  int v11; // [sp+1Ch] [bp-18h]
+  SEL v12; // [sp+20h] [bp-14h]
+  YZHTTPRequestSerializer_meta *v13; // [sp+24h] [bp-10h]
+  char v14; // [sp+2Bh] [bp-9h]
+
+  v13 = self;
+  v12 = a2;
+  v11 = 0;
+  v3 = objc_storeStrong(&v11, a3);
+  v4 = sub_61406(v3);
+  v5 = (void *)objc_retainAutoreleasedReturnValue(v4);
+  v6 = (unsigned int)_objc_msgSend(v5, "containsObject:", v11);
+  objc_release(v5);
+  if ( v6 )
+  {
+    v14 = 0;
+  }
+  else
+  {
+    v8 = v13;
+    v9 = &OBJC_METACLASS___YZHTTPRequestSerializer;
+    v14 = (unsigned int)_objc_msgSendSuper2(&v8, "automaticallyNotifiesObserversForKey:", v11);
+  }
+  v10 = 1;
+  objc_storeStrong(&v11, 0);
+  return v14;
+}
+
+char __cdecl -[AFMultipartBodyStream setProperty:forKey:](AFMultipartBodyStream *self, SEL a2, id a3, id a4)
+{
+  return 0;
+}
+
+NSString *__cdecl -[WXOMTA keyForKeyChain](WXOMTA *self, SEL a2)
+{
+  return self->_keyForKeyChain;
+}
+
+void __cdecl -[YZHTTPRequestSerializer observeValueForKeyPath:ofObject:change:context:](YZHTTPRequestSerializer *self, SEL a2, id a3, id a4, id a5, void *a6)
+{
+  id v6; // ST34_4
+  void *v7; // r0
+  void *v8; // ST28_4
+  void *v9; // r0
+  int v10; // ST20_4
+  char v11; // ST18_1
+  void *v12; // r0
+  void *v13; // ST10_4
+  void *v14; // r0
+  void *v15; // ST04_4
+  void *v16; // [sp+40h] [bp-18h]
+  int v17; // [sp+44h] [bp-14h]
+  int v18; // [sp+48h] [bp-10h]
+  SEL v19; // [sp+4Ch] [bp-Ch]
+  YZHTTPRequestSerializer *v20; // [sp+50h] [bp-8h]
+
+  v20 = self;
+  v19 = a2;
+  v18 = 0;
+  v6 = a4;
+  objc_storeStrong(&v18, a3);
+  v17 = 0;
+  objc_storeStrong(&v17, v6);
+  v16 = 0;
+  objc_storeStrong(&v16, a5);
+  if ( a6 == off_D969C )
+  {
+    v7 = _objc_msgSend(v16, "objectForKeyedSubscript:", NSKeyValueChangeNewKey);
+    v8 = (void *)objc_retainAutoreleasedReturnValue(v7);
+    v9 = _objc_msgSend(&OBJC_CLASS___NSNull, "null");
+    v10 = objc_retainAutoreleasedReturnValue(v9);
+    v11 = (unsigned int)_objc_msgSend(v8, "isEqual:", v10);
+    objc_release(v10);
+    objc_release(v8);
+    if ( v11 )
+    {
+      v12 = _objc_msgSend(v20, "mutableObservedChangedKeyPaths");
+      v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+      _objc_msgSend(v13, "removeObject:", v18);
+      objc_release(v13);
+    }
+    else
+    {
+      v14 = _objc_msgSend(v20, "mutableObservedChangedKeyPaths");
+      v15 = (void *)objc_retainAutoreleasedReturnValue(v14);
+      _objc_msgSend(v15, "addObject:", v18);
+      objc_release(v15);
+    }
+  }
+  objc_storeStrong(&v16, 0);
+  objc_storeStrong(&v17, 0);
+  objc_storeStrong(&v18, 0);
+}
+
+void __cdecl -[WXOMTAConfig setAppkey:](WXOMTAConfig *self, SEL a2, id a3)
+{
+  j__objc_storeStrong(&self->_appkey, a3);
+}
+
+char __cdecl -[YZSDKKeyChain openDebugLog](YZSDKKeyChain *self, SEL a2)
+{
+  return self->_openDebugLog;
+}
+
+void __cdecl -[YZHTTPResponseSerializer setAcceptableStatusCodes:](YZHTTPResponseSerializer *self, SEL a2, id a3)
+{
+  objc_setProperty_nonatomic_copy(self, a2, a3, 8, a3, a2, self);
+}
+
+id __cdecl +[GoodsSkuModel JSONKeyPathsByPropertyKey](GoodsSkuModel_meta *self, SEL a2)
+{
+  __int64 v2; // d16
+  __int64 v3; // d17
+  __int64 v5; // [sp+4h] [bp-34h]
+  __int64 v6; // [sp+Ch] [bp-2Ch]
+  const __CFString *v7; // [sp+14h] [bp-24h]
+  __int64 v8; // [sp+18h] [bp-20h]
+  __int64 v9; // [sp+20h] [bp-18h]
+  const __CFString *v10; // [sp+28h] [bp-10h]
+
+  LODWORD(v2) = CFSTR("sku_id");
+  HIDWORD(v2) = CFSTR("sku_unique_code");
+  LODWORD(v3) = CFSTR("quantity");
+  HIDWORD(v3) = CFSTR("properties_name_json");
+  v5 = v2;
+  v6 = v3;
+  v8 = v2;
+  v9 = v3;
+  v7 = CFSTR("price");
+  v10 = CFSTR("price");
+  return (id)objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:");
+}
+
+void __cdecl +[WXOMTA trackCustomKeyValueEventEnd:props:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, id a4, id a5, char a6)
+{
+  __int64 v6; // d8
+  __int64 v7; // d9
+  __int64 v8; // d10
+  __int64 v9; // d11
+  __int64 v10; // d12
+  __int64 v11; // d13
+  __int64 v12; // d14
+  __int64 v13; // d15
+  _QWORD *v14; // r4
+  _QWORD *v15; // r4
+  id v16; // r4
+  void *v17; // r8
+  int v18; // r1
+  int v19; // r10
+  int v20; // r1
+  int v21; // r11
+  struct objc_object *v22; // r0
+  void *v23; // r5
+  void *v24; // r6
+  struct objc_object *v25; // r0
+  void *v26; // r4
+  void *v27; // r5
+  int v28; // r1
+  int v29; // r0
+  int v30; // r0
+  void *v31; // r0
+  WXOMTACustomEvent *v32; // r0
+  int v33; // r0
+  void *v34; // r0
+  void *v35; // r0
+  void *v36; // r0
+  int v37; // r1
+  __int64 v38; // r4
+  int v39; // r1
+  __int64 v40; // r0
+  signed int v41; // r2
+  __int64 v42; // kr00_8
+  unsigned __int64 v43; // kr08_8
+  signed int v44; // r1
+  signed int v45; // r4
+  int v46; // [sp+0h] [bp-B8h]
+  void *v47; // [sp+4h] [bp-B4h]
+  int v48; // [sp+8h] [bp-B0h]
+  void *v49; // [sp+Ch] [bp-ACh]
+  void *v50; // [sp+10h] [bp-A8h]
+  int v51; // [sp+14h] [bp-A4h]
+  int v52; // [sp+18h] [bp-A0h]
+  void *v53; // [sp+1Ch] [bp-9Ch]
+  int v54; // [sp+20h] [bp-98h]
+  void *v55; // [sp+24h] [bp-94h]
+  int v56; // [sp+28h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+2Ch] [bp-8Ch]
+  int v58; // [sp+50h] [bp-68h]
+  int *v59; // [sp+54h] [bp-64h]
+  char v60; // [sp+60h] [bp-58h]
+  __int64 savedregs; // [sp+B8h] [bp+0h]
+
+  v14 = (_QWORD *)((unsigned int)&v60 & 0xFFFFFFF0);
+  *v14 = v6;
+  v14[1] = v7;
+  v14[2] = v8;
+  v14[3] = v9;
+  v15 = (_QWORD *)(((unsigned int)&v60 & 0xFFFFFFF0) + 32);
+  *v15 = v10;
+  v15[1] = v11;
+  v15[2] = v12;
+  v15[3] = v13;
+  v16 = a4;
+  v17 = (void *)objc_retain(a3, a2);
+  v19 = objc_retain(v16, v18);
+  v21 = objc_retain(a5, v20);
+  v22 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v23 = (void *)objc_retainAutoreleasedReturnValue(v22);
+  v24 = objc_msgSend(v23, "checkMTAEnable");
+  objc_release(v23);
+  fctx.personality = (_Unwind_Personality_Fn)&__objc_personality_v0;
+  fctx.lsda = &unk_B758C;
+  fctx.jbuf[0] = &savedregs;
+  v59 = &v46;
+  v58 = (0x30E | 1) + 541822;
+  _Unwind_SjLj_Register(&fctx);
+  if ( v24 )
+  {
+    fctx.call_site = -1;
+    v25 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    fctx.call_site = -1;
+    v26 = (void *)objc_retainAutoreleasedReturnValue(v25);
+    fctx.call_site = -1;
+    v27 = objc_msgSend(v26, "statEnable");
+    objc_release(v26);
+    if ( v27 )
+    {
+      if ( v17 && (fctx.call_site = -1, objc_msgSend(v17, "length")) )
+      {
+        if ( dword_D9C80 )
+        {
+          v54 = v21;
+          v56 = objc_retain(dword_D9C80, v28);
+          objc_sync_enter(v56);
+          fctx.call_site = 1;
+          v53 = v17;
+          v51 = v19;
+          v29 = sub_84220(v17, v19);
+          fctx.call_site = -1;
+          v30 = objc_retainAutoreleasedReturnValue(v29);
+          fctx.call_site = 2;
+          v52 = v30;
+          v31 = objc_msgSend((void *)dword_D9C80, "valueForKey:", v30);
+          fctx.call_site = -1;
+          v50 = (void *)objc_retainAutoreleasedReturnValue(v31);
+          if ( v50 )
+          {
+            fctx.call_site = 4;
+            v32 = objc_msgSend(&OBJC_CLASS___WXOMTACustomEvent, "alloc");
+            fctx.call_site = 5;
+            v55 = -[WXOMTACustomEvent init](v32, "init");
+            fctx.call_site = 6;
+            objc_msgSend(v55, "setEventID:", v53);
+            fctx.call_site = 7;
+            objc_msgSend(v55, "setKvs:", v51);
+            fctx.call_site = 8;
+            v33 = sub_84A6E(0, v54, 0);
+            fctx.call_site = 9;
+            objc_msgSend(v55, "setSid:", v33);
+            fctx.call_site = 10;
+            v34 = objc_msgSend(&OBJC_CLASS___NSDate, "date");
+            fctx.call_site = -1;
+            v35 = (void *)objc_retainAutoreleasedReturnValue(v34);
+            fctx.call_site = 11;
+            v47 = v35;
+            v36 = objc_msgSend(v35, "timeIntervalSince1970");
+            v48 = v37;
+            v49 = v36;
+            objc_release(v47);
+            fctx.call_site = 12;
+            LODWORD(v38) = objc_msgSend(v50, "longLongValue");
+            HIDWORD(v38) = v39;
+            fctx.call_site = 13;
+            LODWORD(v40) = __fixdfdi(v49, v48);
+            v42 = v40 - v38;
+            LODWORD(v40) = (unsigned __int64)(v40 - v38) >> 32;
+            v41 = v42;
+            v44 = 0;
+            v43 = __PAIR__(v40, (unsigned int)v42) - 1;
+            if ( __PAIR__(v40, (unsigned int)v42) < 1 )
+              v44 = 1;
+            if ( v44 )
+              v41 = 1;
+            objc_msgSend(v55, "setDuration:", v41, (_DWORD)v43);
+            fctx.call_site = 14;
+            objc_msgSend(v55, "setAppkey:", v54);
+            fctx.call_site = 15;
+            objc_msgSend(v55, "setIsRealTime:", a6);
+            fctx.call_site = 16;
+            objc_msgSend((void *)dword_D9C80, "removeObjectForKey:", v52);
+            v45 = 1;
+          }
+          else
+          {
+            fctx.call_site = 3;
+            sub_8694C(CFSTR("[ERROR]NULL key %@ for event_id:%@"));
+            v45 = 0;
+            v55 = 0;
+          }
+          objc_release(v50);
+          objc_release(v52);
+          objc_sync_exit(v56);
+          objc_release(v56);
+          v19 = v51;
+          v21 = v54;
+          v17 = v53;
+          if ( v45 == 1 )
+          {
+            fctx.call_site = -1;
+            sub_823A8(v55);
+          }
+          objc_release(v55);
+        }
+      }
+      else
+      {
+        fctx.call_site = -1;
+        sub_8694C(CFSTR("[ERROR]Failed to trace nil/empty event_id."));
+      }
+    }
+  }
+  objc_release(v21);
+  objc_release(v19);
+  objc_release(v17);
+  _Unwind_SjLj_Unregister(&fctx);
+}
+
+float __cdecl -[NSDictionary wxApi_floatForKey:](NSDictionary *self, SEL a2, id a3)
+{
+  __int64 v3; // d8
+  __int64 v4; // d9
+  __int64 v5; // d10
+  __int64 v6; // d11
+  __int64 v7; // d12
+  __int64 v8; // d13
+  __int64 v9; // d14
+  __int64 v10; // d15
+  _QWORD *v11; // r4
+  _QWORD *v12; // r4
+  NSDictionary *v13; // r5
+  id v14; // r4
+  void *v15; // r0
+  void *v16; // r0
+  void *v17; // r0
+  void *v18; // r0
+  float v19; // s16
+  char *v21; // [sp+0h] [bp-98h]
+  char *v22; // [sp+4h] [bp-94h]
+  void *v23; // [sp+8h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+Ch] [bp-8Ch]
+  int v25; // [sp+30h] [bp-68h]
+  char **v26; // [sp+34h] [bp-64h]
+  char v27; // [sp+40h] [bp-58h]
+  __int64 savedregs; // [sp+98h] [bp+0h]
+
+  v11 = (_QWORD *)((unsigned int)&v27 & 0xFFFFFFF0);
+  *v11 = v3;
+  v11[1] = v4;
+  v11[2] = v5;
+  v11[3] = v6;
+  v12 = (_QWORD *)(((unsigned int)&v27 & 0xFFFFFFF0) + 32);
+  *v12 = v7;
+  v12[1] = v8;
+  v12[2] = v9;
+  v12[3] = v10;
+  v13 = self;
+  v14 = a3;
+  fctx.personality = (_Unwind_Personality_Fn)&__gxx_personality_sj0;
+  fctx.lsda = &unk_B7318;
+  fctx.jbuf[0] = &savedregs;
+  v26 = &v21;
+  v25 = (0xEE | 1) + 458670;
+  fctx.call_site = 1;
+  _Unwind_SjLj_Register(&fctx);
+  v15 = objc_msgSend((void *)v13, "objectForKey:", v14);
+  fctx.call_site = -1;
+  v23 = (void *)objc_retainAutoreleasedReturnValue(v15);
+  fctx.call_site = 2;
+  v22 = "class";
+  v16 = objc_msgSend(&OBJC_CLASS___NSNumber, "class");
+  fctx.call_site = 3;
+  v21 = "isKindOfClass:";
+  if ( objc_msgSend(v23, "isKindOfClass:", v16) )
+  {
+    fctx.call_site = 4;
+    v17 = objc_msgSend(v23, "floatValue");
+  }
+  else
+  {
+    fctx.call_site = 5;
+    v18 = objc_msgSend(&OBJC_CLASS___NSString, v22);
+    fctx.call_site = 6;
+    if ( !objc_msgSend(v23, v21, v18) )
+    {
+      v19 = 0.0;
+      goto LABEL_6;
+    }
+    fctx.call_site = 7;
+    v17 = objc_msgSend(v23, "floatValue");
+  }
+  v19 = *(float *)&v17;
+LABEL_6:
+  objc_release(v23);
+  _Unwind_SjLj_Unregister(&fctx);
+  return v19;
+}
+
+id __cdecl +[WXOMTAKeyChain getKeychainQuery:](WXOMTAKeyChain_meta *self, SEL a2, id a3)
+{
+  return (id)objc_msgSend(
+               &OBJC_CLASS___NSMutableDictionary,
+               "dictionaryWithObjectsAndKeys:",
+               kSecClassGenericPassword,
+               kSecClass,
+               a3,
+               kSecAttrService,
+               a3,
+               kSecAttrAccount,
+               kSecAttrAccessibleAfterFirstUnlock,
+               kSecAttrAccessible,
+               0);
+}
+
+char __cdecl -[SDImageCache diskImageExistsWithKey:](SDImageCache *self, SEL a2, id a3)
+{
+  SDImageCache *v3; // r6
+  int v4; // r11
+  void *v5; // r0
+  void *v6; // r8
+  struct objc_object *v7; // r0
+  int v8; // r10
+  void *v9; // r6
+  void *v10; // r0
+  void *v11; // r8
+  struct objc_object *v12; // r0
+  void *v13; // r0
+  void *v14; // r5
+  void *v15; // r0
+  int v16; // r4
+  SDImageCache *v18; // [sp+4h] [bp-1Ch]
+
+  v3 = self;
+  v4 = objc_retain(a3, a2);
+  v5 = objc_msgSend(&OBJC_CLASS___NSFileManager, "defaultManager");
+  v6 = (void *)objc_retainAutoreleasedReturnValue(v5);
+  v18 = v3;
+  v7 = -[SDImageCache defaultCachePathForKey:](v3, "defaultCachePathForKey:", v4);
+  v8 = objc_retainAutoreleasedReturnValue(v7);
+  v9 = objc_msgSend(v6, "fileExistsAtPath:", v8);
+  objc_release(v8);
+  objc_release(v6);
+  if ( !v9 )
+  {
+    v10 = objc_msgSend(&OBJC_CLASS___NSFileManager, "defaultManager");
+    v11 = (void *)objc_retainAutoreleasedReturnValue(v10);
+    v12 = -[SDImageCache defaultCachePathForKey:](v18, "defaultCachePathForKey:", v4);
+    v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+    v14 = v13;
+    v15 = objc_msgSend(v13, "stringByDeletingPathExtension");
+    v16 = objc_retainAutoreleasedReturnValue(v15);
+    v9 = (void *)(unsigned __int8)objc_msgSend(v11, "fileExistsAtPath:", v16);
+    objc_release(v16);
+    objc_release(v14);
+    objc_release(v11);
+  }
+  objc_release(v4);
+  return (char)v9;
+}
+
+void __cdecl -[MBRoundProgressView observeValueForKeyPath:ofObject:change:context:](MBRoundProgressView *self, SEL a2, id a3, id a4, id a5, void *a6)
+{
+  objc_msgSend(self, "setNeedsDisplay", a3, a4);
+}
+
+id __cdecl +[UMPTradeCouponModel JSONKeyPathsByPropertyKey](UMPTradeCouponModel_meta *self, SEL a2)
+{
+  __int64 v2; // d16
+  __int64 v3; // d18
+  __int64 v4; // d20
+  __int64 v5; // d22
+  __int64 v6; // d19
+  __int64 v7; // d17
+  __int64 v8; // d21
+  __int64 v9; // d23
+  __int64 v11; // [sp+4h] [bp-4Ch]
+  __int64 v12; // [sp+Ch] [bp-44h]
+  __int64 v13; // [sp+14h] [bp-3Ch]
+  __int64 v14; // [sp+1Ch] [bp-34h]
+  __int64 v15; // [sp+24h] [bp-2Ch]
+  __int64 v16; // [sp+2Ch] [bp-24h]
+  __int64 v17; // [sp+34h] [bp-1Ch]
+  __int64 v18; // [sp+3Ch] [bp-14h]
+
+  LODWORD(v2) = CFSTR("couponDescription");
+  LODWORD(v3) = CFSTR("coupon_id");
+  LODWORD(v4) = CFSTR("coupon_description");
+  LODWORD(v5) = CFSTR("couponId");
+  HIDWORD(v2) = CFSTR("couponCondition");
+  HIDWORD(v3) = CFSTR("coupon_name");
+  HIDWORD(v4) = CFSTR("coupon_condition");
+  HIDWORD(v5) = CFSTR("couponName");
+  LODWORD(v6) = CFSTR("coupon_type");
+  LODWORD(v7) = CFSTR("usedAt");
+  LODWORD(v8) = CFSTR("used_at");
+  HIDWORD(v6) = CFSTR("coupon_content");
+  HIDWORD(v8) = CFSTR("discount_fee");
+  LODWORD(v9) = CFSTR("couponType");
+  HIDWORD(v7) = CFSTR("discountFee");
+  HIDWORD(v9) = CFSTR("couponContent");
+  v11 = v5;
+  v12 = v9;
+  v15 = v3;
+  v16 = v6;
+  v13 = v2;
+  v14 = v7;
+  v17 = v4;
+  v18 = v8;
+  return (id)objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:");
+}
+
+id __cdecl +[TradeFetchModel JSONKeyPathsByPropertyKey](TradeFetchModel_meta *self, SEL a2)
+{
+  __int64 v2; // d22
+  __int64 v3; // d20
+  __int64 v4; // d16
+  __int64 v5; // d18
+  __int64 v6; // d19
+  __int64 v7; // d21
+  __int64 v8; // d17
+  __int64 v9; // d23
+  __int64 v11; // [sp+4h] [bp-54h]
+  __int64 v12; // [sp+Ch] [bp-4Ch]
+  __int64 v13; // [sp+14h] [bp-44h]
+  __int64 v14; // [sp+1Ch] [bp-3Ch]
+  const __CFString *v15; // [sp+24h] [bp-34h]
+  __int64 v16; // [sp+28h] [bp-30h]
+  __int64 v17; // [sp+30h] [bp-28h]
+  __int64 v18; // [sp+38h] [bp-20h]
+  __int64 v19; // [sp+40h] [bp-18h]
+  const __CFString *v20; // [sp+48h] [bp-10h]
+
+  LODWORD(v2) = CFSTR("fetcherName");
+  LODWORD(v3) = CFSTR("fetcher_name");
+  LODWORD(v4) = CFSTR("shop_mobile");
+  LODWORD(v5) = CFSTR("shopMobile");
+  HIDWORD(v3) = CFSTR("fetcher_mobile");
+  HIDWORD(v2) = CFSTR("fetcherMobile");
+  HIDWORD(v5) = CFSTR("shopState");
+  HIDWORD(v4) = CFSTR("shop_state");
+  LODWORD(v6) = CFSTR("shopCity");
+  LODWORD(v7) = CFSTR("fetch_time");
+  HIDWORD(v6) = CFSTR("shopDistrict");
+  HIDWORD(v7) = CFSTR("shop_name");
+  LODWORD(v8) = CFSTR("shop_city");
+  LODWORD(v9) = CFSTR("fetchTime");
+  HIDWORD(v8) = CFSTR("shop_district");
+  HIDWORD(v9) = CFSTR("shopName");
+  v11 = v2;
+  v12 = v9;
+  v16 = v3;
+  v17 = v7;
+  v18 = v4;
+  v19 = v8;
+  v20 = CFSTR("shop_address");
+  v13 = v5;
+  v14 = v6;
+  v15 = CFSTR("shopAddress");
+  return (id)objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:");
+}
+
+void __cdecl -[MTLModel mergeValueForKey:fromModel:](MTLModel *self, SEL a2, id a3, id a4)
+{
+  MTLModel *v4; // r10
+  id v5; // r4
+  int v6; // r8
+  int v7; // r1
+  void *v8; // r6
+  int v9; // r4
+  void *v10; // r0
+  int v11; // r0
+  int v12; // r5
+  void *v13; // r0
+  void *v14; // r6
+  void *v15; // r0
+  int v16; // r4
+  void *v17; // [sp+0h] [bp-18h]
+
+  v4 = self;
+  v5 = a4;
+  v6 = objc_retain(a3, a2);
+  v8 = (void *)objc_retain(v5, v7);
+  v17 = v8;
+  v9 = sub_3F274("merge", v6, "FromModel:");
+  if ( objc_msgSend(v4, "respondsToSelector:", v9) )
+  {
+    v10 = objc_msgSend(v4, "methodSignatureForSelector:", v9);
+    v11 = objc_retainAutoreleasedReturnValue(v10);
+    v12 = v11;
+    v13 = objc_msgSend(&OBJC_CLASS___NSInvocation, "invocationWithMethodSignature:", v11);
+    v14 = (void *)objc_retainAutoreleasedReturnValue(v13);
+    objc_release(v12);
+    objc_msgSend(v14, "setTarget:", v4);
+    objc_msgSend(v14, "setSelector:", v9);
+    objc_msgSend(v14, "setArgument:atIndex:", &v17, 2, v17);
+    objc_msgSend(v14, "invoke");
+    objc_release(v14);
+    v8 = v17;
+  }
+  else if ( v8 )
+  {
+    v15 = objc_msgSend(v8, "valueForKey:", v6);
+    v16 = objc_retainAutoreleasedReturnValue(v15);
+    objc_msgSend(v4, "setValue:forKey:", v16, v6, v17);
+    objc_release(v16);
+  }
+  objc_release(v8);
+  objc_release(v6);
+}
+
+void __cdecl +[WXOMTA trackCustomKeyValueEvent:props:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, id a4, id a5, char a6)
+{
+  id v6; // r5
+  WXOMTA_meta *v7; // r8
+  int v8; // r1
+  int v9; // r10
+  int v10; // r1
+  int v11; // r11
+  struct objc_object *v12; // r0
+  void *v13; // r6
+  void *v14; // r4
+  struct objc_object *v15; // r0
+  void *v16; // r5
+  void *v17; // r6
+  WXOMTACustomEvent *v18; // r0
+  WXOMTACustomEvent *v19; // r5
+  int v20; // r0
+  SEL v21; // r1
+  id v22; // r2
+  id v23; // r3
+
+  v6 = a4;
+  v7 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v9 = objc_retain(v6, v8);
+  v11 = objc_retain(a5, v10);
+  v12 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+  v14 = objc_msgSend(v13, "checkMTAEnable");
+  objc_release(v13);
+  if ( v14 )
+  {
+    v15 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v16 = (void *)objc_retainAutoreleasedReturnValue(v15);
+    v17 = objc_msgSend(v16, "statEnable");
+    objc_release(v16);
+    if ( v17 )
+    {
+      if ( v7 && objc_msgSend(v7, "length") )
+      {
+        sub_81E70(0, 0, 0);
+        v18 = objc_msgSend(&OBJC_CLASS___WXOMTACustomEvent, "alloc");
+        v19 = -[WXOMTACustomEvent init](v18, "init");
+        -[WXOMTACustomEvent setEventID:](v19, "setEventID:", v7);
+        -[WXOMTACustomEvent setKvs:](v19, "setKvs:", v9);
+        v20 = sub_84A6E(0, v11, 0);
+        -[WXOMTAEvent setSid:](v19, "setSid:", v20);
+        -[WXOMTAEvent setAppkey:](v19, "setAppkey:", v11);
+        -[WXOMTACustomEvent setDuration:](v19, "setDuration:", 0);
+        -[WXOMTAEvent setIsRealTime:](v19, "setIsRealTime:", a6);
+        sub_823A8(v19);
+        objc_release(v19);
+      }
+      else
+      {
+        sub_8694C(CFSTR("[ERROR]Failed to trace nil/empty event_id."));
+      }
+    }
+  }
+  objc_release(v11);
+  objc_release(v9);
+  j__objc_release(v7, v21, v22, v23, (char)a5);
+}
+
+id __cdecl -[SDWebImageManager cacheKeyForURL:](SDWebImageManager *self, SEL a2, id a3)
+{
+  SDWebImageManager *v3; // r5
+  void *v4; // r8
+  struct objc_object *v5; // r0
+  int v6; // r4
+  struct objc_object *v7; // r0
+  int v8; // r0
+  int v9; // r4
+  int v10; // r0
+  int v11; // r5
+  void *v12; // r0
+
+  v3 = self;
+  v4 = (void *)objc_retain(a3, a2);
+  v5 = -[SDWebImageManager cacheKeyFilter](v3, "cacheKeyFilter");
+  v6 = objc_retainAutoreleasedReturnValue(v5);
+  objc_release(v6);
+  if ( v6 )
+  {
+    v7 = -[SDWebImageManager cacheKeyFilter](v3, "cacheKeyFilter");
+    v8 = objc_retainAutoreleasedReturnValue(v7);
+    v9 = v8;
+    v10 = (*(int (**)(void))(v8 + 12))();
+    v11 = objc_retainAutoreleasedReturnValue(v10);
+    objc_release(v9);
+  }
+  else
+  {
+    v12 = objc_msgSend(v4, "absoluteString");
+    v11 = objc_retainAutoreleasedReturnValue(v12);
+  }
+  objc_release(v4);
+  return (id)j__objc_autoreleaseReturnValue(v11);
+}
+
+id __cdecl -[NSDictionary wxApi_dictionaryForKey:](NSDictionary *self, SEL a2, id a3)
+{
+  __int64 v3; // d8
+  __int64 v4; // d9
+  __int64 v5; // d10
+  __int64 v6; // d11
+  __int64 v7; // d12
+  __int64 v8; // d13
+  __int64 v9; // d14
+  __int64 v10; // d15
+  _QWORD *v11; // r4
+  _QWORD *v12; // r4
+  NSDictionary *v13; // r5
+  id v14; // r4
+  void *v15; // r0
+  void *v16; // r0
+  int v17; // r1
+  int v18; // r4
+  struct objc_object *v19; // r4
+  int v21; // [sp+0h] [bp-98h]
+  void *v22; // [sp+8h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+Ch] [bp-8Ch]
+  int v24; // [sp+30h] [bp-68h]
+  int *v25; // [sp+34h] [bp-64h]
+  char v26; // [sp+40h] [bp-58h]
+  __int64 savedregs; // [sp+98h] [bp+0h]
+
+  v11 = (_QWORD *)((unsigned int)&v26 & 0xFFFFFFF0);
+  *v11 = v3;
+  v11[1] = v4;
+  v11[2] = v5;
+  v11[3] = v6;
+  v12 = (_QWORD *)(((unsigned int)&v26 & 0xFFFFFFF0) + 32);
+  *v12 = v7;
+  v12[1] = v8;
+  v12[2] = v9;
+  v12[3] = v10;
+  v13 = self;
+  v14 = a3;
+  fctx.personality = (_Unwind_Personality_Fn)&__gxx_personality_sj0;
+  fctx.lsda = &unk_B72F8;
+  fctx.jbuf[0] = &savedregs;
+  v25 = &v21;
+  v24 = (0x9E | 1) + 458030;
+  fctx.call_site = 1;
+  _Unwind_SjLj_Register(&fctx);
+  v15 = objc_msgSend((void *)v13, "objectForKey:", v14);
+  fctx.call_site = -1;
+  v22 = (void *)objc_retainAutoreleasedReturnValue(v15);
+  fctx.call_site = 2;
+  v16 = objc_msgSend(&OBJC_CLASS___NSDictionary, "class");
+  fctx.call_site = 3;
+  if ( objc_msgSend(v22, "isKindOfClass:", v16) )
+    v18 = objc_retain(v22, v17);
+  else
+    v18 = 0;
+  objc_release(v22);
+  v19 = (struct objc_object *)objc_autoreleaseReturnValue(v18);
+  _Unwind_SjLj_Unregister(&fctx);
+  return v19;
+}
+
+id __cdecl -[SDWebImageDownloaderOperation scaledImageForKey:image:](SDWebImageDownloaderOperation *self, SEL a2, id a3, id a4)
+{
+  int v4; // r5
+  int v5; // r4
+  int v6; // r0
+
+  v4 = objc_retain(a3, a2);
+  v5 = sub_4571A();
+  objc_release(v4);
+  v6 = objc_retainAutoreleasedReturnValue(v5);
+  return (id)j__objc_autoreleaseReturnValue(v6);
+}
+
+id __cdecl -[SDImageCache cachedFileNameForKey:](SDImageCache *self, SEL a2, id a3)
+{
+  int v3; // r0
+  void *v4; // r0
+  void *v5; // r4
+  const char *v6; // r0
+  const char *v7; // r5
+  size_t v8; // r0
+  void *v9; // r0
+  void *v10; // r8
+  signed int v11; // r11
+  const __CFString *v12; // r5
+  void *v13; // r0
+  void *v14; // r0
+  void *v15; // r0
+  int v16; // r6
+  char **v18; // [sp+40h] [bp-74h]
+  int v19; // [sp+44h] [bp-70h]
+  int v20; // [sp+48h] [bp-6Ch]
+  int v21; // [sp+4Ch] [bp-68h]
+  int v22; // [sp+50h] [bp-64h]
+  int v23; // [sp+54h] [bp-60h]
+  int v24; // [sp+58h] [bp-5Ch]
+  int v25; // [sp+5Ch] [bp-58h]
+  int v26; // [sp+60h] [bp-54h]
+  int v27; // [sp+64h] [bp-50h]
+  int v28; // [sp+68h] [bp-4Ch]
+  int v29; // [sp+6Ch] [bp-48h]
+  int v30; // [sp+70h] [bp-44h]
+  int v31; // [sp+74h] [bp-40h]
+  int v32; // [sp+78h] [bp-3Ch]
+  int v33; // [sp+80h] [bp-34h]
+  int v34; // [sp+84h] [bp-30h]
+  unsigned __int8 v35; // [sp+88h] [bp-2Ch]
+  unsigned __int8 v36; // [sp+89h] [bp-2Bh]
+  unsigned __int8 v37; // [sp+8Ah] [bp-2Ah]
+  unsigned __int8 v38; // [sp+8Bh] [bp-29h]
+  unsigned __int8 v39; // [sp+8Ch] [bp-28h]
+  unsigned __int8 v40; // [sp+8Dh] [bp-27h]
+  unsigned __int8 v41; // [sp+8Eh] [bp-26h]
+  unsigned __int8 v42; // [sp+8Fh] [bp-25h]
+  unsigned __int8 v43; // [sp+90h] [bp-24h]
+  unsigned __int8 v44; // [sp+91h] [bp-23h]
+  unsigned __int8 v45; // [sp+92h] [bp-22h]
+  unsigned __int8 v46; // [sp+93h] [bp-21h]
+  unsigned __int8 v47; // [sp+94h] [bp-20h]
+  unsigned __int8 v48; // [sp+95h] [bp-1Fh]
+  unsigned __int8 v49; // [sp+96h] [bp-1Eh]
+  unsigned __int8 v50; // [sp+97h] [bp-1Dh]
+
+  v3 = objc_retain(a3, a2);
+  v4 = (void *)objc_retainAutorelease(v3);
+  v5 = v4;
+  v6 = (const char *)objc_msgSend(v4, "UTF8String");
+  v7 = "";
+  if ( v6 )
+    v7 = v6;
+  v8 = strlen(v7);
+  CC_MD5(v7, v8, &v35);
+  v34 = v35;
+  v33 = v36;
+  v32 = v37;
+  v31 = v38;
+  v19 = v50;
+  v20 = v49;
+  v21 = v48;
+  v22 = v47;
+  v23 = v46;
+  v24 = v45;
+  v25 = v44;
+  v26 = v43;
+  v27 = v42;
+  v28 = v41;
+  v29 = v40;
+  v30 = v39;
+  v9 = objc_msgSend(v5, "pathExtension");
+  v10 = (void *)objc_retainAutoreleasedReturnValue(v9);
+  if ( objc_msgSend(v10, "isEqualToString:", &stru_BB578) )
+  {
+    v11 = 0;
+    v12 = &stru_BB578;
+    v18 = &selRef_stringWithFormat_;
+  }
+  else
+  {
+    v13 = objc_msgSend(v5, "pathExtension");
+    v18 = (char **)objc_retainAutoreleasedReturnValue(v13);
+    v14 = objc_msgSend(&OBJC_CLASS___NSString, "stringWithFormat:", CFSTR(".%@"));
+    v12 = (const __CFString *)objc_retainAutoreleasedReturnValue(v14);
+    v11 = 1;
+  }
+  v15 = objc_msgSend(
+          &OBJC_CLASS___NSString,
+          "stringWithFormat:",
+          CFSTR("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%@"),
+          v34,
+          v33,
+          v32,
+          v31,
+          v30,
+          v29,
+          v28,
+          v27,
+          v26,
+          v25,
+          v24,
+          v23,
+          v22,
+          v21,
+          v20,
+          v19,
+          v12);
+  v16 = objc_retainAutoreleasedReturnValue(v15);
+  if ( v11 == 1 )
+  {
+    objc_release(v12);
+    objc_release(v18);
+  }
+  objc_release(v10);
+  objc_release(v5);
+  return (id)j__objc_autoreleaseReturnValue(v16);
+}
+
+void __cdecl -[SDImageCache storeImage:recalculateFromImage:imageData:forKey:toDisk:](SDImageCache *self, SEL a2, id a3, char a4, id a5, id a6, char a7)
+{
+  float32x2_t v7; // d8
+  float32x2_t v8; // d9
+  _QWORD *v9; // r4
+  SDImageCache *v10; // r10
+  char v11; // r11
+  int v12; // r5
+  int v13; // r1
+  int v14; // r4
+  int v15; // r1
+  int v16; // r0
+  int v17; // r6
+  int v18; // r6
+  int v19; // r1
+  SDImageCache *v20; // r6
+  char *v21; // r8
+  int v22; // ST10_4
+  void *v23; // r10
+  void *v24; // r4
+  float32x2_t v25; // d17
+  float32x2_t v26; // d16
+  NSCache *v27; // r0
+  void *v28; // r4
+  void *v29; // r0
+  bool v30; // zf
+  dispatch_queue_s *v31; // r8
+  int v32; // r1
+  int v33; // r1
+  int v34; // r1
+  int v35; // [sp+14h] [bp-64h]
+  void *v36; // [sp+18h] [bp-60h]
+  int v37; // [sp+1Ch] [bp-5Ch]
+  int v38; // [sp+20h] [bp-58h]
+  int (*v39)(); // [sp+24h] [bp-54h]
+  void *v40; // [sp+28h] [bp-50h]
+  int v41; // [sp+2Ch] [bp-4Ch]
+  int v42; // [sp+30h] [bp-48h]
+  int v43; // [sp+34h] [bp-44h]
+  int v44; // [sp+38h] [bp-40h]
+  char v45; // [sp+3Ch] [bp-3Ch]
+  float v46; // [sp+40h] [bp-38h]
+  char v47; // [sp+48h] [bp-30h]
+  float v48; // [sp+4Ch] [bp-2Ch]
+  char v49; // [sp+50h] [bp-28h]
+
+  v9 = (_QWORD *)((unsigned int)&v49 & 0xFFFFFFF0);
+  *v9 = v7.n64_u64[0];
+  v9[1] = v8.n64_u64[0];
+  v10 = self;
+  v11 = a4;
+  v12 = objc_retain(a3, a2);
+  v14 = objc_retain(a5, v13);
+  v16 = objc_retain(a6, v15);
+  v17 = v16;
+  if ( v12 && v16 )
+  {
+    v35 = v16;
+    v18 = a7;
+    if ( -[SDImageCache shouldCacheImagesInMemory](v10, "shouldCacheImagesInMemory") )
+    {
+      v20 = v10;
+      v21 = (char *)objc_retain(v12, v19);
+      objc_msgSend_stret(&v47, v21, "size");
+      v7.n64_f32[0] = v48;
+      objc_msgSend_stret(&v46, v21, "size");
+      v22 = v14;
+      v8.n64_f32[0] = v46;
+      v23 = objc_msgSend(v21, "scale");
+      v24 = objc_msgSend(v21, "scale");
+      objc_release(v21);
+      v25.n64_u32[0] = (unsigned __int32)v23;
+      v25.n64_u32[1] = (unsigned __int32)v23;
+      v26.n64_u64[0] = vmul_f32(vmul_f32(v7, v8), v25).n64_u64[0];
+      v25.n64_u32[0] = (unsigned __int32)v24;
+      v25.n64_u32[1] = (unsigned __int32)v24;
+      v27 = -[SDImageCache memCache](v20, "memCache");
+      v28 = (void *)objc_retainAutoreleasedReturnValue(v27);
+      v10 = v20;
+      v18 = a7;
+      objc_msgSend(v28, "setObject:forKey:cost:", v21, v35, (unsigned int)*(_QWORD *)&vcvt_u32_f32(vmul_f32(v26, v25)));
+      v29 = v28;
+      v14 = v22;
+      objc_release(v29);
+    }
+    v30 = v18 == 0;
+    v17 = v35;
+    if ( !v30 )
+    {
+      v31 = -[SDImageCache ioQueue](v10, "ioQueue");
+      v36 = &_NSConcreteStackBlock;
+      v37 = -1040187392;
+      v38 = 0;
+      v39 = sub_42F72;
+      v40 = &unk_B9D20;
+      v41 = objc_retain(v14, sub_42F72);
+      v42 = objc_retain(v12, v32);
+      v45 = v11;
+      v43 = objc_retain(v10, v33);
+      v44 = objc_retain(v35, v34);
+      dispatch_async(v31, &v36);
+      objc_release(v44);
+      objc_release(v43);
+      objc_release(v42);
+      objc_release(v41);
+    }
+  }
+  objc_release(v17);
+  objc_release(v14);
+  objc_release(v12);
+}
+
+id __cdecl -[SDImageCache queryDiskCacheForKey:done:](SDImageCache *self, SEL a2, id a3, id a4)
+{
+  SDImageCache *v4; // r6
+  id v5; // r5
+  int v6; // r4
+  int v7; // r1
+  int v8; // r0
+  int v9; // r5
+  struct objc_object *v10; // r0
+  int v11; // r8
+  int v12; // r6
+  void *v13; // r11
+  dispatch_queue_s *v14; // r10
+  int v15; // r11
+  int v16; // r1
+  int v17; // r1
+  int v18; // r1
+  int v19; // r10
+  int v20; // r1
+  void *v22; // [sp+0h] [bp-3Ch]
+  int v23; // [sp+4h] [bp-38h]
+  int v24; // [sp+8h] [bp-34h]
+  int (*v25)(); // [sp+Ch] [bp-30h]
+  void *v26; // [sp+10h] [bp-2Ch]
+  int v27; // [sp+14h] [bp-28h]
+  int v28; // [sp+18h] [bp-24h]
+  int v29; // [sp+1Ch] [bp-20h]
+  int v30; // [sp+20h] [bp-1Ch]
+
+  v4 = self;
+  v5 = a4;
+  v6 = objc_retain(a3, a2);
+  v8 = objc_retain(v5, v7);
+  v9 = v8;
+  if ( v8 )
+  {
+    if ( v6 )
+    {
+      v10 = -[SDImageCache imageFromMemoryCacheForKey:](v4, "imageFromMemoryCacheForKey:", v6);
+      v11 = objc_retainAutoreleasedReturnValue(v10);
+      if ( v11 )
+      {
+        (*(void (__fastcall **)(int, int, signed int))(v9 + 12))(v9, v11, 2);
+        v12 = 0;
+      }
+      else
+      {
+        v13 = objc_msgSend(&OBJC_CLASS___NSOperation, "new");
+        v14 = -[SDImageCache ioQueue](v4, "ioQueue");
+        v22 = &_NSConcreteStackBlock;
+        v23 = -1040187392;
+        v24 = 0;
+        v25 = sub_43BD6;
+        v26 = &unk_B9DA0;
+        v15 = objc_retain(v13, sub_43BD6);
+        v27 = v15;
+        v28 = objc_retain(v4, v16);
+        v29 = objc_retain(v6, v17);
+        v30 = objc_retain(v9, v18);
+        dispatch_async(v14, &v22);
+        v19 = v30;
+        v12 = objc_retain(v15, v20);
+        objc_release(v19);
+        objc_release(v29);
+        objc_release(v28);
+        objc_release(v27);
+        objc_release(v12);
+      }
+      objc_release(v11);
+    }
+    else
+    {
+      v12 = 0;
+      (*(void (**)(void))(v8 + 12))();
+    }
+  }
+  else
+  {
+    v12 = 0;
+  }
+  objc_release(v9);
+  objc_release(v6);
+  return (id)j__objc_autoreleaseReturnValue(v12);
+}
+
+id __cdecl +[YZSDKKeyChain getUserAgent](YZSDKKeyChain_meta *self, SEL a2)
+{
+  void *v2; // r0
+  void *v3; // r0
+  void *v4; // ST1C_4
+  void *v5; // r0
+  int v6; // r1
+  void *v7; // r0
+  void *v9; // [sp+24h] [bp-18h]
+  SEL v10; // [sp+28h] [bp-14h]
+  YZSDKKeyChain_meta *v11; // [sp+2Ch] [bp-10h]
+  int v12; // [sp+30h] [bp-Ch]
+
+  v11 = self;
+  v10 = a2;
+  v2 = _objc_msgSend(&OBJC_CLASS___NSUserDefaults, "standardUserDefaults");
+  v3 = (void *)objc_retainAutoreleasedReturnValue(v2);
+  v4 = v3;
+  v5 = _objc_msgSend(v3, "objectForKey:", CFSTR("LocalUserAgent"));
+  v9 = (void *)objc_retainAutoreleasedReturnValue(v5);
+  objc_release(v4);
+  if ( !(unsigned __int8)_objc_msgSend(v11, "isNullString:", v9)
+    && (v7 = _objc_msgSend(&OBJC_CLASS___NSString, "class"), (unsigned __int8)_objc_msgSend(v9, "isKindOfClass:", v7)) )
+  {
+    v12 = objc_retain(v9, v6);
+  }
+  else
+  {
+    v12 = objc_retain(&stru_BB578, v6);
+  }
+  objc_storeStrong(&v9, 0);
+  return (id)j__objc_autoreleaseReturnValue(v12);
+}
+
+id __cdecl -[SDImageCache diskImageForKey:](SDImageCache *self, SEL a2, id a3)
+{
+  SDImageCache *v3; // r6
+  int v4; // r0
+  int v5; // r8
+  struct objc_object *v6; // r0
+  int v7; // r0
+  int v8; // r10
+  void *v9; // r0
+  int v10; // r0
+  int v11; // r5
+  struct objc_object *v12; // r0
+  int v13; // r4
+  void *v14; // r0
+  int v15; // r5
+
+  v3 = self;
+  v4 = objc_retain(a3, a2);
+  v5 = v4;
+  v6 = -[SDImageCache diskImageDataBySearchingAllPathsForKey:](v3, "diskImageDataBySearchingAllPathsForKey:", v4);
+  v7 = objc_retainAutoreleasedReturnValue(v6);
+  v8 = v7;
+  if ( v7 )
+  {
+    v9 = objc_msgSend(&OBJC_CLASS___UIImage, "sd_imageWithData:", v7);
+    v10 = objc_retainAutoreleasedReturnValue(v9);
+    v11 = v10;
+    v12 = -[SDImageCache scaledImageForKey:image:](v3, "scaledImageForKey:image:", v5, v10);
+    v13 = objc_retainAutoreleasedReturnValue(v12);
+    objc_release(v11);
+    if ( -[SDImageCache shouldDecompressImages](v3, "shouldDecompressImages") )
+    {
+      v14 = objc_msgSend(&OBJC_CLASS___UIImage, "decodedImageWithImage:", v13);
+      v15 = objc_retainAutoreleasedReturnValue(v14);
+      objc_release(v13);
+      v13 = v15;
+    }
+  }
+  else
+  {
+    v13 = 0;
+  }
+  objc_release(v8);
+  objc_release(v5);
+  return (id)j__objc_autoreleaseReturnValue(v13);
+}
+
+void __cdecl -[SDImageCache storeImage:forKey:](SDImageCache *self, SEL a2, id a3, id a4)
+{
+  SDImageCache *v4; // r5
+  id v5; // r4
+  WXOMTA_meta *v6; // r6
+  SEL v7; // r1
+  id v8; // r2
+  id v9; // r3
+  char v10; // [sp+20h] [bp+8h]
+
+  v4 = self;
+  v5 = a4;
+  v6 = (WXOMTA_meta *)objc_retain(a3, a2);
+  -[SDImageCache storeImage:recalculateFromImage:imageData:forKey:toDisk:](
+    v4,
+    "storeImage:recalculateFromImage:imageData:forKey:toDisk:",
+    v6,
+    1,
+    0,
+    v5,
+    1);
+  j__objc_release(v6, v7, v8, v9, v10);
+}
+
+char __cdecl +[YZSDKKeyChain isNullString:](YZSDKKeyChain_meta *self, SEL a2, id a3)
+{
+  void *v3; // ST0C_4
+  void *v4; // r0
+  void *v6; // [sp+18h] [bp-18h]
+  SEL v7; // [sp+1Ch] [bp-14h]
+  YZSDKKeyChain_meta *v8; // [sp+20h] [bp-10h]
+  bool v9; // [sp+27h] [bp-9h]
+
+  v8 = self;
+  v7 = a2;
+  v6 = 0;
+  objc_storeStrong(&v6, a3);
+  if ( v6 )
+  {
+    v3 = v6;
+    v4 = _objc_msgSend(&OBJC_CLASS___NSString, "class");
+    if ( (unsigned __int8)_objc_msgSend(v3, "isKindOfClass:", v4) )
+      v9 = _objc_msgSend(v6, "length") == 0;
+    else
+      v9 = 1;
+  }
+  else
+  {
+    v9 = 1;
+  }
+  objc_storeStrong(&v6, 0);
+  return v9;
+}
+
+id __cdecl -[NSDictionary mtl_valueForJSONKeyPath:success:error:](NSDictionary *self, SEL a2, id a3, char *a4, id *a5)
+{
+  NSDictionary *v5; // r4
+  char *v6; // r8
+  void *v7; // r0
+  unsigned int v8; // r11
+  void *v9; // r0
+  int v10; // r5
+  int v11; // r1
+  int v12; // r4
+  int v13; // r1
+  void *v14; // r3
+  char **v15; // r4
+  unsigned int v16; // r8
+  void *v17; // r6
+  char **v18; // r11
+  int v19; // r4
+  void *v20; // r0
+  void *v21; // r10
+  int v22; // r6
+  bool v23; // zf
+  int v24; // r6
+  void *v25; // r0
+  void *v26; // r0
+  int v27; // r1
+  NSDictionary *v28; // r4
+  id v29; // r2
+  char *v30; // r3
+  void *v32; // r0
+  void *v33; // r0
+  void *v34; // ST34_4
+  void *v35; // r0
+  char *v36; // ST30_4
+  void *v37; // r0
+  void *v38; // r0
+  void *v39; // r11
+  void *v40; // r0
+  int v41; // r0
+  int v42; // r6
+  void *v43; // r0
+  int v44; // r4
+  void *v45; // r0
+  int v46; // r8
+  void *v47; // r0
+  int v48; // r0
+  int v49; // [sp+8h] [bp-C0h]
+  unsigned __int64 v50; // [sp+14h] [bp-B4h]
+  void *v51; // [sp+1Ch] [bp-ACh]
+  char *v52; // [sp+24h] [bp-A4h]
+  void *v53; // [sp+2Ch] [bp-9Ch]
+  int v54; // [sp+34h] [bp-94h]
+  __int64 v55; // [sp+38h] [bp-90h]
+  __int64 v56; // [sp+40h] [bp-88h]
+  __int64 v57; // [sp+48h] [bp-80h]
+  __int64 v58; // [sp+50h] [bp-78h]
+  int v59; // [sp+5Ch] [bp-6Ch]
+  int v60; // [sp+60h] [bp-68h]
+  char *v61; // [sp+64h] [bp-64h]
+  int v62; // [sp+68h] [bp-60h]
+  char v63; // [sp+6Ch] [bp-5Ch]
+
+  v5 = self;
+  v6 = a4;
+  v7 = (void *)objc_retain(a3, a2);
+  v8 = (unsigned int)v7;
+  v9 = objc_msgSend(v7, "componentsSeparatedByString:", CFSTR("."));
+  v10 = objc_retainAutoreleasedReturnValue(v9);
+  v12 = objc_retain(v5, v11);
+  v55 = 0LL;
+  v56 = 0LL;
+  v57 = 0LL;
+  v58 = 0LL;
+  v51 = (void *)objc_retain(v10, v13);
+  v53 = objc_msgSend(v51, "countByEnumeratingWithState:objects:count:", &v55, &v63, 16);
+  if ( v53 )
+  {
+    v14 = (void *)v12;
+    v54 = *(_DWORD *)v56;
+    v49 = v12;
+    v15 = &selRef_class;
+    v50 = __PAIR__(v8, (unsigned int)v6);
+    while ( 2 )
+    {
+      v16 = 0;
+      v17 = v14;
+      v52 = *v15;
+      do
+      {
+        if ( *(_DWORD *)v56 != v54 )
+          objc_enumerationMutation(v51);
+        if ( !v17 )
+        {
+          v21 = 0;
+LABEL_15:
+          objc_release(v51);
+          v8 = HIDWORD(v50);
+          v6 = (char *)v50;
+          goto LABEL_16;
+        }
+        v18 = v15;
+        v19 = *(_DWORD *)(HIDWORD(v55) + 4 * v16);
+        v20 = objc_msgSend(&OBJC_CLASS___NSNull, "null");
+        v21 = v17;
+        v22 = objc_retainAutoreleasedReturnValue(v20);
+        objc_release(v22);
+        v23 = v21 == (void *)v22;
+        v24 = (int)v21;
+        if ( v23 )
+          goto LABEL_15;
+        v25 = objc_msgSend(&OBJC_CLASS___NSDictionary, v52);
+        if ( !objc_msgSend(v21, "isKindOfClass:", v25) )
+        {
+          if ( a5 )
+          {
+            v59 = NSLocalizedDescriptionKey;
+            v32 = objc_msgSend(&OBJC_CLASS___NSBundle, "mainBundle");
+            v33 = (void *)objc_retainAutoreleasedReturnValue(v32);
+            v34 = v33;
+            v35 = objc_msgSend(
+                    v33,
+                    "localizedStringForKey:value:table:",
+                    CFSTR("Invalid JSON dictionary"),
+                    &stru_BB578,
+                    0);
+            v36 = (char *)objc_retainAutoreleasedReturnValue(v35);
+            v60 = NSLocalizedFailureReasonErrorKey;
+            v61 = v36;
+            v37 = objc_msgSend(&OBJC_CLASS___NSBundle, "mainBundle");
+            v38 = (void *)objc_retainAutoreleasedReturnValue(v37);
+            v39 = v38;
+            v40 = objc_msgSend(
+                    v38,
+                    "localizedStringForKey:value:table:",
+                    CFSTR("JSON key path %1$@ could not resolved because an incompatible JSON dictionary was supplied: \"%2$@\""),
+                    &stru_BB578,
+                    0);
+            v41 = objc_retainAutoreleasedReturnValue(v40);
+            v42 = v41;
+            v43 = objc_msgSend(&OBJC_CLASS___NSString, "stringWithFormat:", v41, HIDWORD(v50), v49);
+            v44 = objc_retainAutoreleasedReturnValue(v43);
+            v62 = v44;
+            v45 = objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:", &v61, &v59, 2);
+            v46 = objc_retainAutoreleasedReturnValue(v45);
+            objc_release(v44);
+            objc_release(v42);
+            objc_release(v39);
+            objc_release(v36);
+            objc_release(v34);
+            v24 = (int)v21;
+            v47 = objc_msgSend(
+                    &OBJC_CLASS___NSError,
+                    "errorWithDomain:code:userInfo:",
+                    CFSTR("MTLJSONAdapterErrorDomain"),
+                    3,
+                    v46);
+            v48 = objc_retainAutoreleasedReturnValue(v47);
+            *a5 = (id)objc_autorelease(v48);
+            objc_release(v46);
+          }
+          if ( (_DWORD)v50 )
+            *(_BYTE *)v50 = 0;
+          objc_release(v51);
+          v28 = 0;
+          v8 = HIDWORD(v50);
+          goto LABEL_19;
+        }
+        v26 = objc_msgSend(v21, "objectForKeyedSubscript:", v19);
+        v21 = (void *)objc_retainAutoreleasedReturnValue(v26);
+        objc_release(v24);
+        ++v16;
+        v17 = v21;
+        v15 = v18;
+      }
+      while ( v16 < (unsigned int)v53 );
+      v53 = objc_msgSend(v51, "countByEnumeratingWithState:objects:count:", &v55, &v63, 16);
+      v14 = v21;
+      v8 = HIDWORD(v50);
+      v6 = (char *)v50;
+      if ( v53 )
+        continue;
+      break;
+    }
+  }
+  else
+  {
+    v21 = (void *)v12;
+  }
+  objc_release(v51);
+LABEL_16:
+  if ( v6 )
+    *v6 = 1;
+  v24 = objc_retain(v21, v27);
+  v28 = (NSDictionary *)v24;
+LABEL_19:
+  objc_release(v24);
+  objc_release(v51);
+  objc_release(v8);
+  return j__objc_autoreleaseReturnValue(v28, __stack_chk_guard, v29, v30, a5);
+}
+
+UITextField *__cdecl -[LoginViewController passWordTextField](LoginViewController *self, SEL a2)
+{
+  return self->_passWordTextField;
+}
+
+void __cdecl +[WXOMTA trackCustomEventEnd:args:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, id a4, id a5, char a6)
+{
+  __int64 v6; // d8
+  __int64 v7; // d9
+  __int64 v8; // d10
+  __int64 v9; // d11
+  __int64 v10; // d12
+  __int64 v11; // d13
+  __int64 v12; // d14
+  __int64 v13; // d15
+  _QWORD *v14; // r4
+  _QWORD *v15; // r4
+  id v16; // r4
+  void *v17; // r8
+  int v18; // r1
+  int v19; // r10
+  int v20; // r1
+  int v21; // r11
+  struct objc_object *v22; // r0
+  void *v23; // r5
+  void *v24; // r6
+  struct objc_object *v25; // r0
+  void *v26; // r4
+  void *v27; // r5
+  int v28; // r0
+  int v29; // r4
+  int v30; // r1
+  void *v31; // r0
+  WXOMTACustomEvent *v32; // r0
+  int v33; // r0
+  void *v34; // r0
+  void *v35; // r0
+  void *v36; // r0
+  int v37; // r1
+  __int64 v38; // r4
+  int v39; // r1
+  __int64 v40; // r0
+  signed int v41; // r2
+  __int64 v42; // kr00_8
+  unsigned __int64 v43; // kr08_8
+  signed int v44; // r1
+  signed int v45; // r4
+  int v46; // [sp+0h] [bp-B8h]
+  void *v47; // [sp+4h] [bp-B4h]
+  int v48; // [sp+8h] [bp-B0h]
+  void *v49; // [sp+Ch] [bp-ACh]
+  void *v50; // [sp+10h] [bp-A8h]
+  int v51; // [sp+14h] [bp-A4h]
+  int v52; // [sp+18h] [bp-A0h]
+  void *v53; // [sp+1Ch] [bp-9Ch]
+  int v54; // [sp+20h] [bp-98h]
+  void *v55; // [sp+24h] [bp-94h]
+  int v56; // [sp+28h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+2Ch] [bp-8Ch]
+  int v58; // [sp+50h] [bp-68h]
+  int *v59; // [sp+54h] [bp-64h]
+  char v60; // [sp+60h] [bp-58h]
+  __int64 savedregs; // [sp+B8h] [bp+0h]
+
+  v14 = (_QWORD *)((unsigned int)&v60 & 0xFFFFFFF0);
+  *v14 = v6;
+  v14[1] = v7;
+  v14[2] = v8;
+  v14[3] = v9;
+  v15 = (_QWORD *)(((unsigned int)&v60 & 0xFFFFFFF0) + 32);
+  *v15 = v10;
+  v15[1] = v11;
+  v15[2] = v12;
+  v15[3] = v13;
+  v16 = a4;
+  v17 = (void *)objc_retain(a3, a2);
+  v19 = objc_retain(v16, v18);
+  v21 = objc_retain(a5, v20);
+  v22 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v23 = (void *)objc_retainAutoreleasedReturnValue(v22);
+  v24 = objc_msgSend(v23, "checkMTAEnable");
+  objc_release(v23);
+  fctx.personality = (_Unwind_Personality_Fn)&__objc_personality_v0;
+  fctx.lsda = &unk_B754C;
+  fctx.jbuf[0] = &savedregs;
+  v59 = &v46;
+  v58 = (0x304 | 1) + 538970;
+  _Unwind_SjLj_Register(&fctx);
+  if ( v24 )
+  {
+    fctx.call_site = -1;
+    v25 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    fctx.call_site = -1;
+    v26 = (void *)objc_retainAutoreleasedReturnValue(v25);
+    fctx.call_site = -1;
+    v27 = objc_msgSend(v26, "statEnable");
+    objc_release(v26);
+    if ( v27 )
+    {
+      if ( v17 && (fctx.call_site = -1, objc_msgSend(v17, "length")) )
+      {
+        if ( dword_D9C80 )
+        {
+          v54 = v21;
+          fctx.call_site = -1;
+          v53 = v17;
+          v51 = v19;
+          v28 = sub_83794(v17, v19);
+          fctx.call_site = -1;
+          v29 = objc_retainAutoreleasedReturnValue(v28);
+          v56 = objc_retain(dword_D9C80, v30);
+          objc_sync_enter(v56);
+          fctx.call_site = 1;
+          v52 = v29;
+          v31 = objc_msgSend((void *)dword_D9C80, "valueForKey:", v29);
+          fctx.call_site = -1;
+          v50 = (void *)objc_retainAutoreleasedReturnValue(v31);
+          if ( v50 )
+          {
+            fctx.call_site = 3;
+            v32 = objc_msgSend(&OBJC_CLASS___WXOMTACustomEvent, "alloc");
+            fctx.call_site = 4;
+            v55 = -[WXOMTACustomEvent init](v32, "init");
+            fctx.call_site = 5;
+            objc_msgSend(v55, "setEventID:", v53);
+            fctx.call_site = 6;
+            objc_msgSend(v55, "setArgs:", v51);
+            fctx.call_site = 7;
+            v33 = sub_84A6E(0, v54, 0);
+            fctx.call_site = 8;
+            objc_msgSend(v55, "setSid:", v33);
+            fctx.call_site = 9;
+            objc_msgSend(v55, "setIsRealTime:", a6);
+            fctx.call_site = 10;
+            v34 = objc_msgSend(&OBJC_CLASS___NSDate, "date");
+            fctx.call_site = -1;
+            v35 = (void *)objc_retainAutoreleasedReturnValue(v34);
+            fctx.call_site = 11;
+            v47 = v35;
+            v36 = objc_msgSend(v35, "timeIntervalSince1970");
+            v48 = v37;
+            v49 = v36;
+            objc_release(v47);
+            fctx.call_site = 12;
+            LODWORD(v38) = objc_msgSend(v50, "longLongValue");
+            HIDWORD(v38) = v39;
+            fctx.call_site = 13;
+            LODWORD(v40) = __fixdfdi(v49, v48);
+            v42 = v40 - v38;
+            LODWORD(v40) = (unsigned __int64)(v40 - v38) >> 32;
+            v41 = v42;
+            v44 = 0;
+            v43 = __PAIR__(v40, (unsigned int)v42) - 1;
+            if ( __PAIR__(v40, (unsigned int)v42) < 1 )
+              v44 = 1;
+            if ( v44 )
+              v41 = 1;
+            objc_msgSend(v55, "setDuration:", v41, (_DWORD)v43);
+            fctx.call_site = 14;
+            objc_msgSend(v55, "setAppkey:", v54);
+            fctx.call_site = 15;
+            objc_msgSend((void *)dword_D9C80, "removeObjectForKey:", v52);
+            v45 = 1;
+          }
+          else
+          {
+            fctx.call_site = 2;
+            sub_8694C(CFSTR("[ERROR]NULL key %@ for event_id:%@"));
+            v45 = 0;
+            v55 = 0;
+          }
+          objc_release(v50);
+          objc_sync_exit(v56);
+          objc_release(v56);
+          v19 = v51;
+          v21 = v54;
+          v17 = v53;
+          if ( v45 == 1 )
+          {
+            fctx.call_site = -1;
+            sub_823A8(v55);
+          }
+          objc_release(v52);
+          objc_release(v55);
+        }
+      }
+      else
+      {
+        fctx.call_site = -1;
+        sub_8694C(CFSTR("[ERROR]Failed to trace nil/empty event_id."));
+      }
+    }
+  }
+  objc_release(v21);
+  objc_release(v19);
+  objc_release(v17);
+  _Unwind_SjLj_Unregister(&fctx);
+}
+
+void __cdecl -[AFURLConnectionOperation setRunLoopModes:](AFURLConnectionOperation *self, SEL a2, id a3)
+{
+  j__objc_storeStrong(&self->_runLoopModes, a3);
+}
+
+void __cdecl -[UIView sd_removeImageLoadOperationWithKey:](UIView *self, SEL a2, id a3)
+{
+  UIView *v3; // r5
+  id v4; // r4
+  int v5; // r8
+  void *v6; // r0
+  WXOMTA_meta *v7; // r5
+  SEL v8; // r1
+  id v9; // r2
+  id v10; // r3
+  char v11; // [sp+18h] [bp+8h]
+
+  v3 = self;
+  v4 = a3;
+  v5 = objc_retain(a3, a2);
+  v6 = objc_msgSend((void *)v3, "operationDictionary");
+  v7 = (WXOMTA_meta *)objc_retainAutoreleasedReturnValue(v6);
+  objc_msgSend(v7, "removeObjectForKey:", v4);
+  objc_release(v5);
+  j__objc_release(v7, v8, v9, v10, v11);
+}
+
+id __cdecl +[AFNetworkReachabilityManager keyPathsForValuesAffectingValueForKey:](AFNetworkReachabilityManager_meta *self, SEL a2, id a3)
+{
+  AFNetworkReachabilityManager_meta *v3; // r5
+  void *v4; // r4
+  void *v5; // r0
+  NSDictionary *v6; // r5
+  SEL v7; // r1
+  id v8; // r2
+  char *v9; // r3
+  AFNetworkReachabilityManager_meta *v11; // [sp+0h] [bp-14h]
+  void **v12; // [sp+4h] [bp-10h]
+  id *v13; // [sp+1Ch] [bp+8h]
+
+  v3 = self;
+  v4 = (void *)objc_retain(a3, a2);
+  if ( objc_msgSend(v4, "isEqualToString:", CFSTR("reachable"))
+    || objc_msgSend(v4, "isEqualToString:", CFSTR("reachableViaWWAN"))
+    || objc_msgSend(v4, "isEqualToString:", CFSTR("reachableViaWiFi")) )
+  {
+    v5 = objc_msgSend(&OBJC_CLASS___NSSet, "setWithObject:", CFSTR("networkReachabilityStatus"));
+  }
+  else
+  {
+    v11 = v3;
+    v12 = &OBJC_METACLASS___AFNetworkReachabilityManager;
+    v5 = objc_msgSendSuper2(&v11, "keyPathsForValuesAffectingValueForKey:", v4);
+  }
+  v6 = (NSDictionary *)objc_retainAutoreleasedReturnValue(v5);
+  objc_release(v4);
+  return j__objc_autoreleaseReturnValue(v6, v7, v8, v9, v13);
+}
+
+id __cdecl +[WXOMTAHelper md5encrypt:](WXOMTAHelper_meta *self, SEL a2, id a3)
+{
+  void *v3; // r0
+  void *v4; // r4
+  void *v5; // r0
+  const char *v6; // r0
+  const char *v7; // r5
+  size_t v8; // r0
+  void *v9; // r0
+  NSDictionary *v10; // r5
+  id v11; // r2
+  char *v12; // r3
+  unsigned __int8 v14; // [sp+54h] [bp-2Ch]
+  unsigned __int8 v15; // [sp+55h] [bp-2Bh]
+  unsigned __int8 v16; // [sp+56h] [bp-2Ah]
+  unsigned __int8 v17; // [sp+57h] [bp-29h]
+  unsigned __int8 v18; // [sp+58h] [bp-28h]
+  unsigned __int8 v19; // [sp+59h] [bp-27h]
+  unsigned __int8 v20; // [sp+5Ah] [bp-26h]
+  unsigned __int8 v21; // [sp+5Bh] [bp-25h]
+  unsigned __int8 v22; // [sp+5Ch] [bp-24h]
+  unsigned __int8 v23; // [sp+5Dh] [bp-23h]
+  unsigned __int8 v24; // [sp+5Eh] [bp-22h]
+  unsigned __int8 v25; // [sp+5Fh] [bp-21h]
+  unsigned __int8 v26; // [sp+60h] [bp-20h]
+  unsigned __int8 v27; // [sp+61h] [bp-1Fh]
+  unsigned __int8 v28; // [sp+62h] [bp-1Eh]
+  unsigned __int8 v29; // [sp+63h] [bp-1Dh]
+  id *v30; // [sp+88h] [bp+8h]
+
+  v3 = (void *)objc_retain(a3, a2);
+  v4 = v3;
+  if ( v3 && objc_msgSend(v3, "length") )
+  {
+    v5 = (void *)objc_retainAutorelease(v4);
+    v6 = (const char *)objc_msgSend(v5, "UTF8String");
+    v7 = v6;
+    v8 = strlen(v6);
+    CC_MD5(v7, v8, &v14);
+    v9 = objc_msgSend(
+           &OBJC_CLASS___NSString,
+           "stringWithFormat:",
+           CFSTR("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"),
+           v14,
+           v15,
+           v16,
+           v17,
+           v18,
+           v19,
+           v20,
+           v21,
+           v22,
+           v23,
+           v24,
+           v25,
+           v26,
+           v27,
+           v28,
+           v29,
+           v17,
+           &OBJC_CLASS___NSString,
+           v16,
+           "stringWithFormat:",
+           v15,
+           v14);
+    v10 = (NSDictionary *)objc_retainAutoreleasedReturnValue(v9);
+  }
+  else
+  {
+    v10 = 0;
+  }
+  objc_release(v4);
+  return j__objc_autoreleaseReturnValue(v10, __stack_chk_guard, v11, v12, v30);
+}
+
+void __cdecl -[YZURLConnectionOperation setRunLoopModes:](YZURLConnectionOperation *self, SEL a2, id a3)
+{
+  objc_storeStrong(&self->_runLoopModes, a3);
+}
+
+id __cdecl +[GoodsModel JSONKeyPathsByPropertyKey](GoodsModel_meta *self, SEL a2)
+{
+  __int64 v2; // d18
+  __int64 v3; // d16
+  __int64 v4; // d24
+  __int64 v5; // d20
+  __int64 v6; // d22
+  __int64 v7; // d23
+  __int64 v8; // d21
+  __int64 v9; // d17
+  __int64 v10; // d27
+  __int64 v11; // d25
+  __int64 v12; // d28
+  __int64 v13; // d29
+  __int64 v14; // d19
+  __int64 v15; // d26
+  __int64 v16; // d30
+  __int64 v17; // d31
+  __int64 v19; // [sp+4h] [bp-C8h]
+  __int64 v20; // [sp+Ch] [bp-C0h]
+  __int64 v21; // [sp+14h] [bp-B8h]
+  __int64 v22; // [sp+1Ch] [bp-B0h]
+  __int64 v23; // [sp+24h] [bp-A8h]
+  __int64 v24; // [sp+2Ch] [bp-A0h]
+  __int64 v25; // [sp+34h] [bp-98h]
+  __int64 v26; // [sp+3Ch] [bp-90h]
+  __int64 v27; // [sp+44h] [bp-88h]
+  __int64 v28; // [sp+4Ch] [bp-80h]
+  __int64 v29; // [sp+54h] [bp-78h]
+  __int64 v30; // [sp+5Ch] [bp-70h]
+  __int64 v31; // [sp+64h] [bp-68h]
+  __int64 v32; // [sp+6Ch] [bp-60h]
+  __int64 v33; // [sp+74h] [bp-58h]
+  __int64 v34; // [sp+7Ch] [bp-50h]
+  __int64 v35; // [sp+84h] [bp-48h]
+  __int64 v36; // [sp+8Ch] [bp-40h]
+  __int64 v37; // [sp+94h] [bp-38h]
+  __int64 v38; // [sp+9Ch] [bp-30h]
+  __int64 v39; // [sp+A4h] [bp-28h]
+  __int64 v40; // [sp+ACh] [bp-20h]
+  __int64 v41; // [sp+B4h] [bp-18h]
+  __int64 v42; // [sp+BCh] [bp-10h]
+
+  LODWORD(v2) = CFSTR("desc");
+  LODWORD(v3) = CFSTR("postFee");
+  LODWORD(v4) = CFSTR("desc");
+  LODWORD(v5) = CFSTR("num_iid");
+  HIDWORD(v5) = CFSTR("alias");
+  HIDWORD(v4) = CFSTR("originPrice");
+  v6 = v4;
+  LODWORD(v7) = CFSTR("detailURL");
+  HIDWORD(v3) = CFSTR("picURL");
+  LODWORD(v8) = CFSTR("title");
+  LODWORD(v9) = CFSTR("picThumbURL");
+  LODWORD(v4) = CFSTR("title");
+  HIDWORD(v7) = CFSTR("shareURL");
+  HIDWORD(v9) = CFSTR("goodItemType");
+  HIDWORD(v4) = CFSTR("tagsId");
+  v10 = v4;
+  LODWORD(v4) = CFSTR("num");
+  v19 = v5;
+  v20 = v10;
+  HIDWORD(v4) = CFSTR("sold_num");
+  LODWORD(v11) = CFSTR("price");
+  HIDWORD(v11) = CFSTR("post_type");
+  LODWORD(v12) = CFSTR("goodsNum");
+  HIDWORD(v12) = CFSTR("soldNum");
+  LODWORD(v13) = CFSTR("price");
+  HIDWORD(v13) = CFSTR("postType");
+  HIDWORD(v2) = CFSTR("origin_price");
+  LODWORD(v14) = CFSTR("detail_url");
+  HIDWORD(v14) = CFSTR("share_url");
+  LODWORD(v15) = CFSTR("skus");
+  HIDWORD(v15) = CFSTR("item_imgs");
+  LODWORD(v10) = CFSTR("item_qrcodes");
+  HIDWORD(v10) = CFSTR("item_tags");
+  HIDWORD(v8) = CFSTR("tag_ids");
+  LODWORD(v16) = CFSTR("goodsSku");
+  HIDWORD(v16) = CFSTR("goodsItemImages");
+  LODWORD(v17) = CFSTR("goodsItemQRCodes");
+  v31 = v5;
+  v32 = v8;
+  HIDWORD(v17) = CFSTR("goodsItemTags");
+  v21 = v6;
+  v22 = v7;
+  LODWORD(v5) = CFSTR("is_virtual");
+  HIDWORD(v5) = CFSTR("is_listing");
+  LODWORD(v8) = CFSTR("is_lock");
+  v33 = v2;
+  v34 = v14;
+  HIDWORD(v8) = CFSTR("is_used");
+  v23 = v12;
+  v24 = v13;
+  LODWORD(v2) = CFSTR("isVirtual");
+  HIDWORD(v2) = CFSTR("isListing");
+  LODWORD(v14) = CFSTR("isLock");
+  v35 = v4;
+  v36 = v11;
+  HIDWORD(v14) = CFSTR("isUsed");
+  LODWORD(v6) = CFSTR("post_fee");
+  HIDWORD(v6) = CFSTR("pic_url");
+  LODWORD(v7) = CFSTR("pic_thumb_url");
+  v25 = v3;
+  v26 = v9;
+  HIDWORD(v7) = CFSTR("item_type");
+  v37 = v6;
+  v38 = v7;
+  v27 = v2;
+  v28 = v14;
+  v39 = v5;
+  v40 = v8;
+  v29 = v16;
+  v30 = v17;
+  v41 = v15;
+  v42 = v10;
+  return (id)objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:");
+}
+
+id __cdecl +[TradePromotionModel JSONKeyPathsByPropertyKey](TradePromotionModel_meta *self, SEL a2)
+{
+  __int64 v2; // d18
+  __int64 v3; // d19
+  __int64 v4; // d16
+  __int64 v5; // d17
+  __int64 v7; // [sp+4h] [bp-40h]
+  __int64 v8; // [sp+Ch] [bp-38h]
+  const __CFString *v9; // [sp+14h] [bp-30h]
+  const __CFString *v10; // [sp+18h] [bp-2Ch]
+  __int64 v11; // [sp+1Ch] [bp-28h]
+  __int64 v12; // [sp+24h] [bp-20h]
+  const __CFString *v13; // [sp+2Ch] [bp-18h]
+  const __CFString *v14; // [sp+30h] [bp-14h]
+
+  LODWORD(v2) = CFSTR("promotion_id");
+  HIDWORD(v2) = CFSTR("promotion_name");
+  LODWORD(v3) = CFSTR("promotion_type");
+  LODWORD(v4) = CFSTR("promotionId");
+  HIDWORD(v4) = CFSTR("promotionName");
+  LODWORD(v5) = CFSTR("promotionType");
+  HIDWORD(v3) = CFSTR("promotion_condition");
+  HIDWORD(v5) = CFSTR("promotionCondition");
+  v7 = v4;
+  v8 = v5;
+  v11 = v2;
+  v12 = v3;
+  v9 = CFSTR("userAt");
+  v13 = CFSTR("used_at");
+  v10 = CFSTR("discountFee");
+  v14 = CFSTR("discount_fee");
+  return (id)objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:");
+}
+
+void __cdecl +[WXOMTA reportAccount:type:ext:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, unsigned int a4, id a5, id a6, char a7)
+{
+  char v7; // r11
+  int v8; // r1
+  int v9; // r1
+  int v10; // r10
+  struct objc_object *v11; // r0
+  void *v12; // r6
+  void *v13; // r5
+  struct objc_object *v14; // r0
+  void *v15; // r5
+  void *v16; // r6
+  struct objc_object *v17; // r0
+  void *v18; // r5
+  struct objc_object *v19; // r0
+  void *v20; // r5
+  struct objc_object *v21; // r0
+  void *v22; // r5
+  int v23; // r1
+  int v24; // r11
+  struct objc_object *v25; // r0
+  void *v26; // r6
+  void *v27; // r5
+  struct objc_object *v28; // r0
+  void *v29; // r0
+  void *v30; // r4
+  void *v31; // r0
+  int v32; // r5
+  WXOMTAAccountEvent *v33; // r0
+  WXOMTAAccountEvent *v34; // r4
+  SEL v35; // r1
+  id v36; // r2
+  id v37; // r3
+  int v38; // [sp+4h] [bp-20h]
+  WXOMTA_meta *v39; // [sp+8h] [bp-1Ch]
+
+  v7 = a4;
+  v39 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v38 = objc_retain(a5, v8);
+  v10 = objc_retain(a6, v9);
+  v11 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v12 = (void *)objc_retainAutoreleasedReturnValue(v11);
+  v13 = objc_msgSend(v12, "checkMTAEnable");
+  objc_release(v12);
+  if ( v13 )
+  {
+    v14 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v15 = (void *)objc_retainAutoreleasedReturnValue(v14);
+    v16 = objc_msgSend(v15, "statEnable");
+    objc_release(v15);
+    if ( v16 )
+    {
+      v17 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+      v18 = (void *)objc_retainAutoreleasedReturnValue(v17);
+      objc_msgSend(v18, "setAccount:", v39);
+      objc_release(v18);
+      v19 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+      v20 = (void *)objc_retainAutoreleasedReturnValue(v19);
+      objc_msgSend(v20, "setAccountType:", v7);
+      objc_release(v20);
+      v21 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+      v22 = (void *)objc_retainAutoreleasedReturnValue(v21);
+      objc_msgSend(v22, "setAccountExt:", v38);
+      objc_release(v22);
+      sub_84A6E(0, v10, 0);
+      v24 = objc_retain(v10, v23);
+      v25 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+      v26 = (void *)objc_retainAutoreleasedReturnValue(v25);
+      v27 = objc_msgSend(v26, "statEnable");
+      objc_release(v26);
+      if ( v27 )
+      {
+        v28 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+        v29 = (void *)objc_retainAutoreleasedReturnValue(v28);
+        v30 = v29;
+        v31 = objc_msgSend(v29, "account");
+        v32 = objc_retainAutoreleasedReturnValue(v31);
+        objc_release(v32);
+        objc_release(v30);
+        if ( v32 )
+        {
+          v33 = objc_msgSend(&OBJC_CLASS___WXOMTAAccountEvent, "alloc");
+          v34 = -[WXOMTAAccountEvent init](v33, "init");
+          -[WXOMTAEvent setSid:](v34, "setSid:", dword_D9CA0);
+          -[WXOMTAEvent setAppkey:](v34, "setAppkey:", v24);
+          -[WXOMTAEvent setIsRealTime:](v34, "setIsRealTime:", a7);
+          sub_823A8(v34);
+          objc_release(v34);
+        }
+      }
+      objc_release(v24);
+    }
+  }
+  objc_release(v10);
+  objc_release(v38);
+  j__objc_release(v39, v35, v36, v37, (char)a5);
+}
+
+void __cdecl -[AFHTTPRequestSerializer setAuthorizationHeaderFieldWithUsername:password:](AFHTTPRequestSerializer *self, SEL a2, id a3, id a4)
+{
+  id v4; // r4
+  int v5; // r5
+  void *v6; // r4
+  int v7; // r0
+  WXOMTA_meta *v8; // r5
+  void *v9; // r6
+  void *v10; // r0
+  void *v11; // r0
+  void *v12; // r0
+  void *v13; // r6
+  void *v14; // r0
+  unsigned int v15; // r4
+  void *v16; // r0
+  int v17; // r5
+  unsigned __int8 *v18; // r10
+  _BYTE *v19; // r0
+  unsigned int v20; // r1
+  unsigned int v21; // r2
+  unsigned int v22; // r6
+  unsigned int v23; // r3
+  char v24; // r12
+  int v25; // r5
+  char v26; // r12
+  char v27; // r1
+  void *v28; // r0
+  void *v29; // r4
+  void *v30; // r0
+  int v31; // r5
+  SEL v32; // r1
+  id v33; // r2
+  id v34; // r3
+  void *v35; // [sp+4h] [bp-30h]
+  void *v36; // [sp+8h] [bp-2Ch]
+  WXOMTA_meta *v37; // [sp+14h] [bp-20h]
+  AFHTTPRequestSerializer *v38; // [sp+18h] [bp-1Ch]
+  char v39; // [sp+3Ch] [bp+8h]
+
+  v38 = self;
+  v4 = a4;
+  v5 = objc_retain(a3, a2);
+  v6 = objc_msgSend(&OBJC_CLASS___NSString, "stringWithFormat:", CFSTR("%@:%@"), v5, v4);
+  objc_release(v5);
+  v7 = objc_retainAutoreleasedReturnValue(v6);
+  v8 = (WXOMTA_meta *)objc_retainAutorelease(v7);
+  v9 = objc_msgSend(v8, "UTF8String");
+  v37 = v8;
+  v10 = objc_msgSend(v8, "lengthOfBytesUsingEncoding:", 4);
+  v11 = objc_msgSend(&OBJC_CLASS___NSData, "dataWithBytes:length:", v9, v10);
+  v12 = (void *)objc_retainAutoreleasedReturnValue(v11);
+  v13 = v12;
+  v14 = objc_msgSend(v12, "length");
+  v15 = (unsigned int)v14;
+  v16 = objc_msgSend(
+          &OBJC_CLASS___NSMutableData,
+          "dataWithLength:",
+          (unsigned int)(2 * (2863311531u * (unsigned __int64)((unsigned int)v14 + 2) >> 32)) & 0xFFFFFFFC);
+  v17 = objc_retainAutoreleasedReturnValue(v16);
+  v36 = (void *)objc_retainAutorelease(v13);
+  v18 = (unsigned __int8 *)objc_msgSend(v36, "bytes");
+  v35 = (void *)objc_retainAutorelease(v17);
+  v19 = objc_msgSend(v35, "mutableBytes");
+  if ( v15 )
+  {
+    v20 = 0;
+    do
+    {
+      v21 = v20 + 3;
+      v22 = 0;
+      if ( v20 <= 0xFFFFFFFC )
+      {
+        v23 = v20;
+        do
+        {
+          v22 <<= 8;
+          if ( v23 < v15 )
+            v22 |= v18[v23];
+          ++v23;
+        }
+        while ( v23 < v21 );
+      }
+      v24 = aAbcdefghijklmn_1[(v22 >> 12) & 0x3F];
+      v25 = 2 * (2863311531u * (unsigned __int64)v20 >> 32) & 0xFFFFFFFC;
+      v19[v25] = aAbcdefghijklmn_1[(v22 >> 18) & 0x3F];
+      v19[v25 | 1] = v24;
+      if ( v20 + 1 >= v15 )
+        v26 = 61;
+      else
+        v26 = aAbcdefghijklmn_1[(v22 >> 6) & 0x3F];
+      v19[v25 | 2] = v26;
+      if ( v20 + 2 >= v15 )
+        v27 = 61;
+      else
+        v27 = aAbcdefghijklmn_1[v22 & 0x3F];
+      v19[v25 | 3] = v27;
+      v20 = v21;
+    }
+    while ( v21 < v15 );
+  }
+  v28 = objc_msgSend(&OBJC_CLASS___NSString, "alloc");
+  v29 = objc_msgSend(v28, "initWithData:encoding:", v35, 1);
+  objc_release(v35);
+  objc_release(v36);
+  v30 = objc_msgSend(&OBJC_CLASS___NSString, "stringWithFormat:", CFSTR("Basic %@"), v29);
+  v31 = objc_retainAutoreleasedReturnValue(v30);
+  -[AFHTTPRequestSerializer setValue:forHTTPHeaderField:](
+    v38,
+    "setValue:forHTTPHeaderField:",
+    v31,
+    CFSTR("Authorization"));
+  objc_release(v31);
+  objc_release(v29);
+  j__objc_release(v37, v32, v33, v34, v39);
+}
+
+id __cdecl +[GoodsQRCodeModel JSONKeyPathsByPropertyKey](GoodsQRCodeModel_meta *self, SEL a2)
+{
+  __int64 v2; // d16
+  __int64 v3; // d22
+  __int64 v4; // d20
+  __int64 v5; // d23
+  __int64 v6; // d25
+  __int64 v7; // d17
+  __int64 v8; // d19
+  __int64 v9; // d21
+  __int64 v11; // [sp+4h] [bp-4Ch]
+  __int64 v12; // [sp+Ch] [bp-44h]
+  __int64 v13; // [sp+14h] [bp-3Ch]
+  __int64 v14; // [sp+1Ch] [bp-34h]
+  __int64 v15; // [sp+24h] [bp-2Ch]
+  __int64 v16; // [sp+2Ch] [bp-24h]
+  __int64 v17; // [sp+34h] [bp-1Ch]
+  __int64 v18; // [sp+3Ch] [bp-14h]
+
+  LODWORD(v2) = CFSTR("id");
+  LODWORD(v3) = CFSTR("decrease");
+  LODWORD(v4) = CFSTR("qrCodeId");
+  LODWORD(v5) = CFSTR("decrease");
+  HIDWORD(v3) = CFSTR("linkURL");
+  HIDWORD(v5) = CFSTR("link_url");
+  HIDWORD(v2) = CFSTR("name");
+  HIDWORD(v4) = CFSTR("qrCodeName");
+  LODWORD(v6) = CFSTR("weixinQrCodeURL");
+  LODWORD(v7) = CFSTR("name");
+  LODWORD(v8) = CFSTR("weixin_qrcode_url");
+  HIDWORD(v7) = CFSTR("discount");
+  LODWORD(v9) = CFSTR("qrCodeDesc");
+  HIDWORD(v8) = CFSTR("type");
+  HIDWORD(v9) = CFSTR("disCount");
+  HIDWORD(v6) = CFSTR("goodsScanFollow");
+  v15 = v2;
+  v16 = v7;
+  v11 = v4;
+  v12 = v9;
+  v13 = v3;
+  v14 = v6;
+  v17 = v5;
+  v18 = v8;
+  return (id)objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:");
+}
+
+NSMutableSet *__cdecl -[YZHTTPRequestSerializer mutableObservedChangedKeyPaths](YZHTTPRequestSerializer *self, SEL a2)
+{
+  return self->_mutableObservedChangedKeyPaths;
+}
+
+void __cdecl +[WXOMTA trackDirectPageViewBegin:appkey:](WXOMTA_meta *self, SEL a2, id a3, id a4)
+{
+  __int64 v4; // d8
+  __int64 v5; // d9
+  __int64 v6; // d10
+  __int64 v7; // d11
+  __int64 v8; // d12
+  __int64 v9; // d13
+  __int64 v10; // d14
+  __int64 v11; // d15
+  _QWORD *v12; // r4
+  _QWORD *v13; // r4
+  id v14; // r4
+  void *v15; // r6
+  int v16; // r1
+  int v17; // r8
+  struct objc_object *v18; // r0
+  void *v19; // r4
+  void *v20; // r5
+  int v21; // r0
+  int v22; // r0
+  void *v23; // r0
+  void *v24; // r0
+  char *v25; // r0
+  void *v26; // r4
+  void *v27; // r0
+  void *v28; // r0
+  int v29; // r1
+  double v30; // d8
+  void *v31; // r0
+  void *v32; // r2
+  void *v33; // r0
+  int v34; // [sp+0h] [bp-A8h]
+  void *v35; // [sp+4h] [bp-A4h]
+  char *v36; // [sp+8h] [bp-A0h]
+  void *v37; // [sp+Ch] [bp-9Ch]
+  int v38; // [sp+10h] [bp-98h]
+  void *v39; // [sp+14h] [bp-94h]
+  int v40; // [sp+18h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+1Ch] [bp-8Ch]
+  int v42; // [sp+40h] [bp-68h]
+  int *v43; // [sp+44h] [bp-64h]
+  char v44; // [sp+50h] [bp-58h]
+  __int64 savedregs; // [sp+A8h] [bp+0h]
+
+  v12 = (_QWORD *)((unsigned int)&v44 & 0xFFFFFFF0);
+  *v12 = v4;
+  v12[1] = v5;
+  v12[2] = v6;
+  v12[3] = v7;
+  v13 = (_QWORD *)(((unsigned int)&v44 & 0xFFFFFFF0) + 32);
+  *v13 = v8;
+  v13[1] = v9;
+  v13[2] = v10;
+  v13[3] = v11;
+  v14 = a4;
+  v15 = (void *)objc_retain(a3, a2);
+  v17 = objc_retain(v14, v16);
+  v18 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+  v19 = (void *)objc_retainAutoreleasedReturnValue(v18);
+  v20 = objc_msgSend(v19, "statEnable");
+  objc_release(v19);
+  fctx.personality = (_Unwind_Personality_Fn)&__objc_personality_v0;
+  fctx.lsda = &unk_B74B0;
+  fctx.jbuf[0] = &savedregs;
+  v43 = &v34;
+  v42 = (0x26C | 1) + 531408;
+  _Unwind_SjLj_Register(&fctx);
+  if ( v20 )
+  {
+    if ( v15 && (fctx.call_site = -1, objc_msgSend(v15, "length")) )
+    {
+      v36 = "getInstance";
+      fctx.call_site = -1;
+      sub_8694C(CFSTR("Trace begin page:%@"));
+      fctx.call_site = -1;
+      v38 = v17;
+      v21 = sub_81E70(0, v17, 0);
+      fctx.call_site = -1;
+      v22 = sub_85464(v21);
+      fctx.call_site = -1;
+      v40 = objc_retainAutoreleasedReturnValue(v22);
+      objc_sync_enter(v40);
+      fctx.call_site = 1;
+      v39 = v15;
+      v23 = objc_msgSend((void *)dword_D9C84, "objectForKey:", v15);
+      fctx.call_site = -1;
+      v37 = (void *)objc_retainAutoreleasedReturnValue(v23);
+      if ( v37 )
+      {
+        fctx.call_site = 2;
+        sub_8694C(CFSTR("[ERROR]Duplicate entry page %@"));
+LABEL_10:
+        objc_release(v37);
+        objc_sync_exit(v40);
+        objc_release(v40);
+        v15 = v39;
+        v17 = v38;
+        goto LABEL_11;
+      }
+      fctx.call_site = 3;
+      v35 = objc_msgSend((void *)dword_D9C84, "count");
+      fctx.call_site = 4;
+      v24 = objc_msgSend(&OBJC_CLASS___WXOMTAConfig, v36);
+      fctx.call_site = -1;
+      v25 = (char *)objc_retainAutoreleasedReturnValue(v24);
+      fctx.call_site = 5;
+      v36 = v25;
+      v26 = objc_msgSend(v25, "maxParallelTimingEvents");
+      objc_release(v36);
+      if ( v35 >= v26 )
+      {
+        fctx.call_site = 6;
+        sub_8694C(CFSTR("[ERROR]Too many parallel page events in memory."));
+        goto LABEL_10;
+      }
+      fctx.call_site = 7;
+      sub_8694C(CFSTR("set timedPageDis success,%@"));
+      fctx.call_site = 8;
+      v27 = objc_msgSend(&OBJC_CLASS___NSDate, "date");
+      fctx.call_site = -1;
+      v28 = (void *)objc_retainAutoreleasedReturnValue(v27);
+      fctx.call_site = 9;
+      v37 = v28;
+      LODWORD(v30) = objc_msgSend(v28, "timeIntervalSince1970");
+      HIDWORD(v30) = v29;
+      objc_release(v37);
+      v37 = (void *)dword_D9C84;
+      fctx.call_site = 10;
+      v31 = objc_msgSend(&OBJC_CLASS___NSNumber, "numberWithUnsignedLong:", (unsigned int)v30);
+      fctx.call_site = -1;
+      v32 = (void *)objc_retainAutoreleasedReturnValue(v31);
+      fctx.call_site = 11;
+      v33 = v37;
+      v37 = v32;
+      objc_msgSend(v33, "setObject:forKey:");
+      objc_release(v37);
+      objc_sync_exit(v40);
+      objc_release(v40);
+      fctx.call_site = -1;
+      v17 = v38;
+      sub_84A6E(1, v38, 0);
+      v15 = v39;
+    }
+    else
+    {
+      fctx.call_site = -1;
+      sub_8694C(CFSTR("[ERROR]Failed to trace nil/empty page."));
+    }
+  }
+LABEL_11:
+  objc_release(v17);
+  objc_release(v15);
+  _Unwind_SjLj_Unregister(&fctx);
+}
+
+void __cdecl +[WXOMTA trackCustomKeyValueEventEnd:props:](WXOMTA_meta *self, SEL a2, id a3, id a4)
+{
+  WXOMTA_meta *v4; // r5
+  id v5; // r4
+  WXOMTA_meta *v6; // r6
+  SEL v7; // r1
+  id v8; // r2
+  id v9; // r3
+  char v10; // [sp+1Ch] [bp+8h]
+
+  v4 = self;
+  v5 = a4;
+  v6 = (WXOMTA_meta *)objc_retain(a3, a2);
+  objc_msgSend(v4, "trackCustomKeyValueEventEnd:props:appkey:isRealTime:", v6, v5, 0, 0);
+  j__objc_release(v6, v7, v8, v9, v10);
+}
+
+char __cdecl +[WXOMTA startWithAppkey:checkedSdkVersion:](WXOMTA_meta *self, SEL a2, id a3, id a4)
+{
+  int v4; // r8
+  int v5; // ST00_4
+  id v6; // r5
+  int v7; // r8
+  int v8; // r1
+  void *v9; // r5
+  struct objc_object *v10; // r0
+  void *v11; // r4
+  char v12; // r6
+
+  v5 = v4;
+  v6 = a4;
+  v7 = objc_retain(a3, a2);
+  v9 = (void *)objc_retain(v6, v8);
+  if ( objc_msgSend(v9, "compare:options:", CFSTR("1.5.1.1"), 64, v5) == (void *)1 )
+  {
+    sub_8694C(CFSTR("[ERROR]Current SDK's version %@ is lower than expected %@, use latest MTA SDK instead."));
+    v10 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v11 = (void *)objc_retainAutoreleasedReturnValue(v10);
+    v12 = 0;
+    objc_msgSend(v11, "setStatEnable:", 0);
+    objc_release(v11);
+  }
+  else
+  {
+    +[WXOMTA startWithAppkey:](&OBJC_CLASS___WXOMTA, "startWithAppkey:", v7);
+    v12 = 1;
+  }
+  objc_release(v9);
+  objc_release(v7);
+  return v12;
+}
+
+void __cdecl -[MTAWX setAppkey:](MTAWX *self, SEL a2, id a3)
+{
+  objc_setProperty(self, a2, 4, a3, 0, 0);
+}
+
+void __cdecl +[WXOMTA trackCustomKeyValueEvent:props:](WXOMTA_meta *self, SEL a2, id a3, id a4)
+{
+  WXOMTA_meta *v4; // r5
+  id v5; // r4
+  WXOMTA_meta *v6; // r6
+  SEL v7; // r1
+  id v8; // r2
+  id v9; // r3
+  char v10; // [sp+1Ch] [bp+8h]
+
+  v4 = self;
+  v5 = a4;
+  v6 = (WXOMTA_meta *)objc_retain(a3, a2);
+  objc_msgSend(v4, "trackCustomKeyValueEvent:props:appkey:isRealTime:", v6, v5, 0, 0);
+  j__objc_release(v6, v7, v8, v9, v10);
+}
+
+void __cdecl -[LoginViewController setPassWordTextField:](LoginViewController *self, SEL a2, id a3)
+{
+  j__objc_storeStrong(&self->_passWordTextField, a3);
+}
+
+void __cdecl +[WXOMTA trackError:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, id a4, char a5)
+{
+  id v5; // r5
+  WXOMTA_meta *v6; // r11
+  int v7; // r1
+  int v8; // r10
+  struct objc_object *v9; // r0
+  void *v10; // r5
+  void *v11; // r4
+  struct objc_object *v12; // r0
+  void *v13; // r4
+  void *v14; // r5
+  WXOMTAErrorEvent *v15; // r0
+  WXOMTAErrorEvent *v16; // r6
+  int v17; // r0
+  SEL v18; // r1
+  id v19; // r2
+  id v20; // r3
+
+  v5 = a4;
+  v6 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v8 = objc_retain(v5, v7);
+  v9 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v10 = (void *)objc_retainAutoreleasedReturnValue(v9);
+  v11 = objc_msgSend(v10, "checkMTAEnable");
+  objc_release(v10);
+  if ( v11 )
+  {
+    v12 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v13 = (void *)objc_retainAutoreleasedReturnValue(v12);
+    v14 = objc_msgSend(v13, "statEnable");
+    objc_release(v13);
+    if ( v14 )
+    {
+      if ( v6 && objc_msgSend(v6, "length") )
+      {
+        v15 = objc_msgSend(&OBJC_CLASS___WXOMTAErrorEvent, "alloc");
+        v16 = -[WXOMTAErrorEvent init](v15, "init");
+        -[WXOMTAErrorEvent setError:](v16, "setError:", v6);
+        -[WXOMTAErrorEvent setAttr:](v16, "setAttr:", 0);
+        v17 = sub_84A6E(0, v8, 0);
+        -[WXOMTAEvent setSid:](v16, "setSid:", v17);
+        -[WXOMTAEvent setAppkey:](v16, "setAppkey:", v8);
+        -[WXOMTAEvent setIsRealTime:](v16, "setIsRealTime:", a5);
+        sub_823A8(v16);
+        objc_release(v16);
+      }
+      else
+      {
+        sub_8694C(CFSTR("[ERROR]Failed to trace nil/empty error."));
+      }
+    }
+  }
+  objc_release(v8);
+  j__objc_release(v6, v18, v19, v20, a5);
+}
+
+void __cdecl -[YZSDKKeyChain setAppClientIPAddress:](YZSDKKeyChain *self, SEL a2, id a3)
+{
+  void *v3; // r0
+  int v4; // [sp+10h] [bp-14h]
+  SEL v5; // [sp+14h] [bp-10h]
+  YZSDKKeyChain *v6; // [sp+18h] [bp-Ch]
+
+  v6 = self;
+  v5 = a2;
+  v4 = 0;
+  objc_storeStrong(&v4, a3);
+  v3 = _objc_msgSend(v6, "class");
+  if ( (unsigned __int8)_objc_msgSend(v3, "isNullString:", v4) && (unsigned __int8)_objc_msgSend(v6, "openDebugLog") )
+  {
+    NSLog(CFSTR("如果您使用的是自有微信支付模式，请先设置所需的IP地址；如果使用代销模式，请忽略打印日志..."));
+    objc_storeStrong(&v6->_appClientIPAddress, &stru_BB578);
+  }
+  objc_storeStrong(&v6->_appClientIPAddress, v4);
+  objc_storeStrong(&v4, 0);
+}
+
+void __cdecl -[SDImageCache storeImage:forKey:toDisk:](SDImageCache *self, SEL a2, id a3, id a4, char a5)
+{
+  SDImageCache *v5; // r5
+  id v6; // r4
+  WXOMTA_meta *v7; // r6
+  SEL v8; // r1
+  id v9; // r2
+  id v10; // r3
+
+  v5 = self;
+  v6 = a4;
+  v7 = (WXOMTA_meta *)objc_retain(a3, a2);
+  -[SDImageCache storeImage:recalculateFromImage:imageData:forKey:toDisk:](
+    v5,
+    "storeImage:recalculateFromImage:imageData:forKey:toDisk:",
+    v7,
+    1,
+    0,
+    v6,
+    a5);
+  j__objc_release(v7, v8, v9, v10, a5);
+}
+
+void __cdecl -[PayResp setReturnKey:](PayResp *self, SEL a2, id a3)
+{
+  objc_setProperty(self, a2, 16, a3, 0, 0);
+}
+
+void __cdecl -[AFHTTPResponseSerializer setAcceptableStatusCodes:](AFHTTPResponseSerializer *self, SEL a2, id a3)
+{
+  j__objc_setProperty_nonatomic_copy(self, a2, a3, 8);
+}
+
+NSString *__cdecl -[SDWebImageDownloader password](SDWebImageDownloader *self, SEL a2)
+{
+  return self->_password;
+}
+
+void __cdecl +[YZSDKKeyChain userAgentInit:version:autoPrefix:](YZSDKKeyChain_meta *self, SEL a2, id a3, id a4, char a5)
+{
+  id v5; // ST88_4
+  void *v6; // r0
+  void *v7; // r0
+  void *v8; // r0
+  void *v9; // r1
+  void *v10; // r0
+  void *v11; // r0
+  void *v12; // ST60_4
+  void *v13; // r0
+  void *v14; // ST50_4
+  void *v15; // r0
+  int v16; // ST44_4
+  void *v17; // r0
+  void *v18; // ST30_4
+  void *v19; // r0
+  void *v20; // ST24_4
+  void *v21; // r0
+  void *v22; // ST14_4
+  void *v23; // r1
+  void *v24; // [sp+90h] [bp-28h]
+  int v25; // [sp+94h] [bp-24h]
+  void *v26; // [sp+98h] [bp-20h]
+  YZSDKKeyChain_meta *selfa; // [sp+9Ch] [bp-1Ch]
+  char v28; // [sp+A3h] [bp-15h]
+  int v29; // [sp+A4h] [bp-14h]
+  void *v30; // [sp+A8h] [bp-10h]
+  SEL v31; // [sp+ACh] [bp-Ch]
+  YZSDKKeyChain_meta *v32; // [sp+B0h] [bp-8h]
+
+  v32 = self;
+  v31 = a2;
+  v30 = 0;
+  v5 = a4;
+  objc_storeStrong(&v30, a3);
+  v29 = 0;
+  objc_storeStrong(&v29, v5);
+  v28 = a5;
+  if ( (unsigned __int8)_objc_msgSend(v32, "isNullString:", v30) )
+  {
+    selfa = (YZSDKKeyChain_meta *)1;
+  }
+  else
+  {
+    if ( !v29 )
+      objc_storeStrong(&v29, &stru_BB578);
+    v6 = _objc_msgSend(v30, "uppercaseString");
+    v26 = (void *)objc_retainAutoreleasedReturnValue(v6);
+    if ( v28 && !(unsigned __int8)_objc_msgSend(v26, "hasPrefix:", CFSTR("KDTUNION")) )
+    {
+      v7 = _objc_msgSend(&OBJC_CLASS___NSString, "stringWithFormat:", CFSTR(" kdtUnion_%@"), v30);
+      v8 = (void *)objc_retainAutoreleasedReturnValue(v7);
+      v9 = v30;
+      v30 = v8;
+      objc_release(v9);
+    }
+    v10 = _objc_msgSend(&OBJC_CLASS___UIWebView, "alloc");
+    v11 = _objc_msgSend(v10, "init");
+    v12 = v11;
+    v13 = _objc_msgSend(v11, "stringByEvaluatingJavaScriptFromString:", CFSTR("navigator.userAgent"));
+    v25 = objc_retainAutoreleasedReturnValue(v13);
+    objc_release(v12);
+    v14 = _objc_msgSend(&OBJC_CLASS___NSDictionary, "alloc");
+    v15 = _objc_msgSend(&OBJC_CLASS___NSString, "stringWithFormat:", CFSTR("%@ %@ %@"), v25, v30, v29);
+    v16 = objc_retainAutoreleasedReturnValue(v15);
+    v24 = _objc_msgSend(v14, "initWithObjectsAndKeys:", v16, CFSTR("UserAgent"), 0);
+    objc_release(v16);
+    v17 = _objc_msgSend(&OBJC_CLASS___NSUserDefaults, "standardUserDefaults");
+    v18 = (void *)objc_retainAutoreleasedReturnValue(v17);
+    _objc_msgSend(v18, "registerDefaults:", v24);
+    objc_release(v18);
+    v19 = _objc_msgSend(&OBJC_CLASS___NSUserDefaults, "standardUserDefaults");
+    v20 = (void *)objc_retainAutoreleasedReturnValue(v19);
+    _objc_msgSend(v20, "setObject:forKey:", v30, CFSTR("LocalUserAgent"));
+    objc_release(v20);
+    v21 = _objc_msgSend(&OBJC_CLASS___NSUserDefaults, "standardUserDefaults");
+    v22 = (void *)objc_retainAutoreleasedReturnValue(v21);
+    _objc_msgSend(v22, "synchronize");
+    objc_release(v22);
+    objc_storeStrong(&v24, 0);
+    objc_storeStrong(&v25, 0);
+    objc_storeStrong(&v26, 0);
+    selfa = 0;
+  }
+  objc_storeStrong(&v29, 0);
+  objc_storeStrong(&v30, 0);
+  if ( (unsigned int)selfa > 1 )
+    +[YZSDKKeyChain getUserAgent](selfa, v23);
+}
+
+void __cdecl -[NSMutableDictionary addObject:forKey:](NSMutableDictionary *self, SEL a2, id a3, id a4)
+{
+  id v4; // ST34_4
+  void *v5; // ST28_4
+  void *v6; // r0
+  bool v7; // zf
+  char v8; // r0
+  int v9; // ST14_4
+  void *v10; // r0
+  int v11; // r0
+  char v12; // r0
+  void *v13; // r1
+  char v14; // [sp+1Ch] [bp-48h]
+  char v15; // [sp+30h] [bp-34h]
+  char v16; // [sp+3Bh] [bp-29h]
+  int v17; // [sp+3Ch] [bp-28h]
+  YZSDKBaseNetworkService_meta *selfa; // [sp+40h] [bp-24h]
+  char v19; // [sp+47h] [bp-1Dh]
+  int v20; // [sp+48h] [bp-1Ch]
+  void *v21; // [sp+4Ch] [bp-18h]
+  int v22; // [sp+50h] [bp-14h]
+  SEL v23; // [sp+54h] [bp-10h]
+  NSMutableDictionary *v24; // [sp+58h] [bp-Ch]
+
+  v24 = self;
+  v23 = a2;
+  v22 = 0;
+  v4 = a4;
+  objc_storeStrong(&v22, a3);
+  v21 = 0;
+  objc_storeStrong(&v21, v4);
+  v19 = 0;
+  v15 = 1;
+  if ( v21 )
+  {
+    v5 = v21;
+    v6 = _objc_msgSend(&OBJC_CLASS___NSNull, "null");
+    v20 = objc_retainAutoreleasedReturnValue(v6);
+    v19 = 1;
+    v15 = 1;
+    if ( v5 != (void *)v20 )
+    {
+      v7 = _objc_msgSend(v21, "length") == 0;
+      v8 = 0;
+      if ( v7 )
+        v8 = 1;
+      v15 = v8;
+    }
+  }
+  if ( v19 & 1 )
+    objc_release(v20);
+  if ( v15 & 1 )
+  {
+    selfa = (YZSDKBaseNetworkService_meta *)1;
+  }
+  else
+  {
+    v16 = 0;
+    v14 = 1;
+    if ( v22 )
+    {
+      v9 = v22;
+      v10 = _objc_msgSend(&OBJC_CLASS___NSNull, "null");
+      v11 = objc_retainAutoreleasedReturnValue(v10);
+      v17 = v11;
+      v16 = 1;
+      v7 = v9 == v11;
+      v12 = 0;
+      if ( v7 )
+        v12 = 1;
+      v14 = v12;
+    }
+    if ( v16 & 1 )
+      objc_release(v17);
+    if ( v14 & 1 )
+    {
+      _objc_msgSend((void *)v24, "setObject:forKey:", &stru_BB578, v21);
+      selfa = (YZSDKBaseNetworkService_meta *)1;
+    }
+    else
+    {
+      _objc_msgSend((void *)v24, "setObject:forKey:", v22, v21);
+      selfa = 0;
+    }
+  }
+  objc_storeStrong(&v21, 0);
+  objc_storeStrong(&v22, 0);
+  if ( (unsigned int)selfa > 1 )
+    +[YZSDKBaseNetworkService timeOutInterval](selfa, v13);
+}
+
+int __cdecl -[NSDictionary wxApi_integerForKey:](NSDictionary *self, SEL a2, id a3)
+{
+  __int64 v3; // d8
+  __int64 v4; // d9
+  __int64 v5; // d10
+  __int64 v6; // d11
+  __int64 v7; // d12
+  __int64 v8; // d13
+  __int64 v9; // d14
+  __int64 v10; // d15
+  _QWORD *v11; // r4
+  _QWORD *v12; // r4
+  NSDictionary *v13; // r5
+  id v14; // r4
+  void *v15; // r0
+  void *v16; // r0
+  void *v17; // r4
+  void *v18; // r0
+  char *v20; // [sp+0h] [bp-98h]
+  char *v21; // [sp+4h] [bp-94h]
+  void *v22; // [sp+8h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+Ch] [bp-8Ch]
+  int v24; // [sp+30h] [bp-68h]
+  char **v25; // [sp+34h] [bp-64h]
+  char v26; // [sp+40h] [bp-58h]
+  __int64 savedregs; // [sp+98h] [bp+0h]
+
+  v11 = (_QWORD *)((unsigned int)&v26 & 0xFFFFFFF0);
+  *v11 = v3;
+  v11[1] = v4;
+  v11[2] = v5;
+  v11[3] = v6;
+  v12 = (_QWORD *)(((unsigned int)&v26 & 0xFFFFFFF0) + 32);
+  *v12 = v7;
+  v12[1] = v8;
+  v12[2] = v9;
+  v12[3] = v10;
+  v13 = self;
+  v14 = a3;
+  fctx.personality = (_Unwind_Personality_Fn)&__gxx_personality_sj0;
+  fctx.lsda = &unk_B7304;
+  fctx.jbuf[0] = &savedregs;
+  v25 = &v20;
+  v24 = (0xEA | 1) + 458310;
+  fctx.call_site = 1;
+  _Unwind_SjLj_Register(&fctx);
+  v15 = objc_msgSend((void *)v13, "objectForKey:", v14);
+  fctx.call_site = -1;
+  v22 = (void *)objc_retainAutoreleasedReturnValue(v15);
+  fctx.call_site = 2;
+  v21 = "class";
+  v16 = objc_msgSend(&OBJC_CLASS___NSNumber, "class");
+  fctx.call_site = 3;
+  v20 = "isKindOfClass:";
+  if ( objc_msgSend(v22, "isKindOfClass:", v16) )
+  {
+    fctx.call_site = 4;
+    v17 = objc_msgSend(v22, "integerValue");
+  }
+  else
+  {
+    fctx.call_site = 5;
+    v18 = objc_msgSend(&OBJC_CLASS___NSString, v21);
+    fctx.call_site = 6;
+    if ( objc_msgSend(v22, v20, v18) )
+    {
+      fctx.call_site = 7;
+      v17 = objc_msgSend(v22, "integerValue");
+    }
+    else
+    {
+      v17 = 0;
+    }
+  }
+  objc_release(v22);
+  _Unwind_SjLj_Unregister(&fctx);
+  return (int)v17;
+}
+
+void __cdecl -[AFHTTPRequestSerializer observeValueForKeyPath:ofObject:change:context:](AFHTTPRequestSerializer *self, SEL a2, id a3, id a4, id a5, void *a6)
+{
+  AFHTTPRequestSerializer *v6; // r8
+  struct objc_object *v7; // r2
+  struct objc_object *v8; // r3
+  WXOMTA_meta *v9; // r4
+  void *v10; // r1
+  void *v11; // r0
+  void *v12; // r6
+  void *v13; // r0
+  int v14; // r5
+  void *v15; // r10
+  NSMutableSet *v16; // r0
+  void *v17; // r5
+  char **v18; // r0
+
+  v6 = self;
+  v9 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v10 = a6;
+  if ( off_D93EC == a6 )
+  {
+    v11 = objc_msgSend(a5, "objectForKeyedSubscript:", NSKeyValueChangeNewKey);
+    v12 = (void *)objc_retainAutoreleasedReturnValue(v11);
+    v13 = objc_msgSend(&OBJC_CLASS___NSNull, "null");
+    v14 = objc_retainAutoreleasedReturnValue(v13);
+    v15 = objc_msgSend(v12, "isEqual:", v14);
+    objc_release(v14);
+    objc_release(v12);
+    v16 = -[AFHTTPRequestSerializer mutableObservedChangedKeyPaths](v6, "mutableObservedChangedKeyPaths");
+    v17 = (void *)objc_retainAutoreleasedReturnValue(v16);
+    if ( v15 )
+      v18 = &selRef_removeObject_;
+    else
+      v18 = &selRef_addObject_;
+    objc_msgSend(v17, *v18, v9);
+    objc_release(v17);
+  }
+  j__objc_release(v9, v10, v7, v8, (char)a5);
+}
+
+void __cdecl -[YZHTTPRequestSerializer setMutableObservedChangedKeyPaths:](YZHTTPRequestSerializer *self, SEL a2, id a3)
+{
+  objc_storeStrong(&self->_mutableObservedChangedKeyPaths, a3);
+}
+
+NSDictionary *__cdecl -[MTLJSONAdapter JSONKeyPathsByPropertyKey](MTLJSONAdapter *self, SEL a2)
+{
+  return (NSDictionary *)j__objc_getProperty(self);
+}
+
+id __cdecl +[GoodsTagModel JSONKeyPathsByPropertyKey](GoodsTagModel_meta *self, SEL a2)
+{
+  __int64 v2; // d18
+  __int64 v3; // d16
+  __int64 v4; // d19
+  __int64 v5; // d17
+  __int64 v7; // [sp+4h] [bp-4Ch]
+  __int64 v8; // [sp+Ch] [bp-44h]
+  const __CFString *v9; // [sp+14h] [bp-3Ch]
+  const __CFString *v10; // [sp+18h] [bp-38h]
+  const __CFString *v11; // [sp+1Ch] [bp-34h]
+  __int64 v12; // [sp+20h] [bp-30h]
+  __int64 v13; // [sp+28h] [bp-28h]
+  const __CFString *v14; // [sp+30h] [bp-20h]
+  const __CFString *v15; // [sp+34h] [bp-1Ch]
+  const __CFString *v16; // [sp+38h] [bp-18h]
+
+  LODWORD(v2) = CFSTR("id");
+  LODWORD(v3) = CFSTR("goodTagId");
+  HIDWORD(v2) = CFSTR("name");
+  HIDWORD(v3) = CFSTR("goodTagName");
+  LODWORD(v4) = CFSTR("type");
+  LODWORD(v5) = CFSTR("goodTagType");
+  HIDWORD(v5) = CFSTR("goodTagItemNum");
+  HIDWORD(v4) = CFSTR("item_num");
+  v12 = v2;
+  v13 = v4;
+  v7 = v3;
+  v8 = v5;
+  v9 = CFSTR("goodTagURL");
+  v14 = CFSTR("tag_url");
+  v10 = CFSTR("goodTagShareURL");
+  v11 = CFSTR("goddTagDesc");
+  v15 = CFSTR("share_url");
+  v16 = CFSTR("desc");
+  return (id)objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:");
+}
+
+void __cdecl +[WXOMTA trackDirectPageViewEnd:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, id a4, char a5)
+{
+  __int64 v5; // d8
+  __int64 v6; // d9
+  __int64 v7; // d10
+  __int64 v8; // d11
+  __int64 v9; // d12
+  __int64 v10; // d13
+  __int64 v11; // d14
+  __int64 v12; // d15
+  _QWORD *v13; // r4
+  _QWORD *v14; // r4
+  id v15; // r4
+  void *v16; // r10
+  int v17; // r1
+  int v18; // r8
+  struct objc_object *v19; // r0
+  void *v20; // r4
+  void *v21; // r5
+  void *v22; // r0
+  int v23; // r0
+  void *v24; // r0
+  void *v25; // r0
+  void *v26; // r0
+  int v27; // r1
+  __int64 v28; // r4
+  int v29; // r1
+  __int64 v30; // r0
+  signed int v31; // r3
+  __int64 v32; // kr00_8
+  unsigned __int64 v33; // kr08_8
+  signed int v34; // r1
+  WXOMTAPageView *v35; // r0
+  void *v36; // r0
+  void *v37; // r0
+  void *v38; // r0
+  int v39; // r0
+  int v40; // r0
+  void *v41; // r0
+  char *v42; // r0
+  signed int v43; // r4
+  int v44; // [sp+0h] [bp-B8h]
+  int v45; // [sp+8h] [bp-B0h]
+  void *v46; // [sp+Ch] [bp-ACh]
+  int v47; // [sp+10h] [bp-A8h]
+  char *v48; // [sp+14h] [bp-A4h]
+  void *v49; // [sp+18h] [bp-A0h]
+  int v50; // [sp+1Ch] [bp-9Ch]
+  void *v51; // [sp+20h] [bp-98h]
+  void *v52; // [sp+24h] [bp-94h]
+  int v53; // [sp+28h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+2Ch] [bp-8Ch]
+  int v55; // [sp+50h] [bp-68h]
+  int *v56; // [sp+54h] [bp-64h]
+  char v57; // [sp+60h] [bp-58h]
+  __int64 savedregs; // [sp+B8h] [bp+0h]
+
+  v13 = (_QWORD *)((unsigned int)&v57 & 0xFFFFFFF0);
+  *v13 = v5;
+  v13[1] = v6;
+  v13[2] = v7;
+  v13[3] = v8;
+  v14 = (_QWORD *)(((unsigned int)&v57 & 0xFFFFFFF0) + 32);
+  *v14 = v9;
+  v14[1] = v10;
+  v14[2] = v11;
+  v14[3] = v12;
+  v15 = a4;
+  v16 = (void *)objc_retain(a3, a2);
+  v18 = objc_retain(v15, v17);
+  v19 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+  v20 = (void *)objc_retainAutoreleasedReturnValue(v19);
+  v21 = objc_msgSend(v20, "statEnable");
+  objc_release(v20);
+  fctx.personality = (_Unwind_Personality_Fn)&__objc_personality_v0;
+  fctx.lsda = &unk_B74CC;
+  fctx.jbuf[0] = &savedregs;
+  v56 = &v44;
+  v55 = (0x32C | 1) + 532542;
+  _Unwind_SjLj_Register(&fctx);
+  if ( v21 )
+  {
+    if ( v16 && (fctx.call_site = -1, (v22 = objc_msgSend(v16, "length")) != 0) )
+    {
+      v48 = "getInstance";
+      v50 = v18;
+      fctx.call_site = -1;
+      v23 = sub_85464(v22);
+      fctx.call_site = -1;
+      v53 = objc_retainAutoreleasedReturnValue(v23);
+      objc_sync_enter(v53);
+      fctx.call_site = 1;
+      v51 = v16;
+      v24 = objc_msgSend((void *)dword_D9C84, "objectForKey:", v16);
+      fctx.call_site = -1;
+      v49 = (void *)objc_retainAutoreleasedReturnValue(v24);
+      if ( v49 )
+      {
+        fctx.call_site = 3;
+        v25 = objc_msgSend(&OBJC_CLASS___NSDate, "date");
+        fctx.call_site = -1;
+        v26 = (void *)objc_retainAutoreleasedReturnValue(v25);
+        fctx.call_site = 4;
+        v46 = v26;
+        v52 = objc_msgSend(v26, "timeIntervalSince1970");
+        v47 = v27;
+        objc_release(v46);
+        fctx.call_site = 5;
+        LODWORD(v28) = objc_msgSend(v49, "longLongValue");
+        HIDWORD(v28) = v29;
+        fctx.call_site = 6;
+        LODWORD(v30) = __fixdfdi(v52, v47);
+        v32 = v30 - v28;
+        LODWORD(v30) = (unsigned __int64)(v30 - v28) >> 32;
+        v31 = v32;
+        v34 = 0;
+        v33 = __PAIR__(v30, (unsigned int)v32) - 1;
+        if ( __PAIR__(v30, (unsigned int)v32) < 1 )
+          v34 = 1;
+        if ( v34 )
+          v31 = 1;
+        v47 = v31;
+        v35 = objc_msgSend(&OBJC_CLASS___WXOMTAPageView, "alloc", (_DWORD)v33);
+        fctx.call_site = 7;
+        v52 = -[WXOMTAPageView init](v35, "init");
+        fctx.call_site = 8;
+        objc_msgSend(v52, "setPage:", v51);
+        fctx.call_site = 9;
+        v36 = objc_msgSend(&OBJC_CLASS___WXOMTA, v48);
+        fctx.call_site = -1;
+        v37 = (void *)objc_retainAutoreleasedReturnValue(v36);
+        fctx.call_site = 10;
+        v46 = v37;
+        v38 = objc_msgSend(v37, "lastPage");
+        fctx.call_site = -1;
+        v39 = objc_retainAutoreleasedReturnValue(v38);
+        fctx.call_site = 11;
+        v45 = v39;
+        objc_msgSend(v52, "setRefer:");
+        objc_release(v45);
+        objc_release(v46);
+        fctx.call_site = 12;
+        v40 = sub_84A6E(0, v50, 0);
+        fctx.call_site = 13;
+        objc_msgSend(v52, "setSid:", v40);
+        fctx.call_site = 14;
+        objc_msgSend(v52, "setDuration:", v47);
+        fctx.call_site = 15;
+        objc_msgSend(v52, "setAppkey:", v50);
+        fctx.call_site = 16;
+        objc_msgSend(v52, "setIsRealTime:", a5);
+        fctx.call_site = 17;
+        objc_msgSend((void *)dword_D9C84, "removeObjectForKey:", v51);
+        fctx.call_site = 18;
+        v41 = objc_msgSend(&OBJC_CLASS___WXOMTA, v48);
+        fctx.call_site = -1;
+        v42 = (char *)objc_retainAutoreleasedReturnValue(v41);
+        fctx.call_site = 19;
+        v48 = v42;
+        objc_msgSend(v42, "setLastPage:", v51);
+        objc_release(v48);
+        v43 = 1;
+      }
+      else
+      {
+        fctx.call_site = 2;
+        sub_8694C(CFSTR("[ERROR]NULL entry for page:%@"));
+        v43 = 0;
+        v52 = 0;
+      }
+      objc_release(v49);
+      objc_sync_exit(v53);
+      objc_release(v53);
+      v16 = v51;
+      v18 = v50;
+      if ( v43 == 1 )
+      {
+        fctx.call_site = -1;
+        sub_823A8(v52);
+      }
+      objc_release(v52);
+    }
+    else
+    {
+      fctx.call_site = -1;
+      sub_8694C(CFSTR("[ERROR]Failed to trace nil/empty page."));
+    }
+  }
+  objc_release(v18);
+  objc_release(v16);
+  _Unwind_SjLj_Unregister(&fctx);
+}
+
+void __cdecl +[WXOMTAKeyChain delete:](WXOMTAKeyChain_meta *self, SEL a2, id a3)
+{
+  void *v3; // r0
+  WXOMTA_meta *v4; // r4
+  SEL v5; // r1
+  id v6; // r2
+  id v7; // r3
+  char v8; // [sp+Ch] [bp+8h]
+
+  v3 = objc_msgSend(self, "getKeychainQuery:", a3);
+  v4 = (WXOMTA_meta *)objc_retainAutoreleasedReturnValue(v3);
+  SecItemDelete();
+  j__objc_release(v4, v5, v6, v7, v8);
+}
+
+id __cdecl +[AFSecurityPolicy keyPathsForValuesAffectingPinnedPublicKeys](AFSecurityPolicy_meta *self, SEL a2)
+{
+  return (id)j__objc_msgSend(&OBJC_CLASS___NSSet, "setWithObject:", CFSTR("pinnedCertificates"));
+}
+
+void __cdecl -[YZSDKKeyChain setOpenDebugLog:](YZSDKKeyChain *self, SEL a2, char a3)
+{
+  self->_openDebugLog = a3;
+}
+
+id __cdecl -[AFURLSessionManager tasksForKeyPath:](AFURLSessionManager *self, SEL a2, id a3)
+{
+  __int64 v3; // d8
+  __int64 v4; // d9
+  __int64 v5; // d10
+  __int64 v6; // d11
+  __int64 v7; // d12
+  __int64 v8; // d13
+  __int64 v9; // d14
+  __int64 v10; // d15
+  _QWORD *v11; // r4
+  _QWORD *v12; // r4
+  AFURLSessionManager *v13; // r4
+  NSURLSession *v14; // r0
+  void *v15; // r4
+  int v16; // r0
+  int v17; // r1
+  int v18; // r0
+  int v19; // r5
+  int v20; // r1
+  int v21; // r4
+  struct objc_object *v22; // r4
+  int v24; // [sp+0h] [bp-D8h]
+  void *v25; // [sp+4h] [bp-D4h]
+  int v26; // [sp+8h] [bp-D0h]
+  int v27; // [sp+Ch] [bp-CCh]
+  void *v28; // [sp+10h] [bp-C8h]
+  int v29; // [sp+14h] [bp-C4h]
+  int v30; // [sp+18h] [bp-C0h]
+  int (*v31)(); // [sp+1Ch] [bp-BCh]
+  void *v32; // [sp+20h] [bp-B8h]
+  int v33; // [sp+24h] [bp-B4h]
+  int v34; // [sp+28h] [bp-B0h]
+  int *v35; // [sp+2Ch] [bp-ACh]
+  int v36; // [sp+30h] [bp-A8h]
+  int *v37; // [sp+34h] [bp-A4h]
+  int v38; // [sp+38h] [bp-A0h]
+  int v39; // [sp+3Ch] [bp-9Ch]
+  int (*v40)(); // [sp+40h] [bp-98h]
+  int (*v41)(); // [sp+44h] [bp-94h]
+  int v42; // [sp+48h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+4Ch] [bp-8Ch]
+  int v44; // [sp+70h] [bp-68h]
+  int *v45; // [sp+74h] [bp-64h]
+  char v46; // [sp+80h] [bp-58h]
+  __int64 savedregs; // [sp+D8h] [bp+0h]
+
+  v11 = (_QWORD *)((unsigned int)&v46 & 0xFFFFFFF0);
+  *v11 = v3;
+  v11[1] = v4;
+  v11[2] = v5;
+  v11[3] = v6;
+  v12 = (_QWORD *)(((unsigned int)&v46 & 0xFFFFFFF0) + 32);
+  *v12 = v7;
+  v12[1] = v8;
+  v12[2] = v9;
+  v12[3] = v10;
+  v13 = self;
+  v27 = objc_retain(a3, a2);
+  v36 = 0;
+  v37 = &v36;
+  v38 = 838860800;
+  v39 = 28;
+  v40 = sub_FDEC;
+  v41 = sub_FDF6;
+  v42 = 0;
+  v26 = dispatch_semaphore_create(0);
+  fctx.personality = (_Unwind_Personality_Fn)&__objc_personality_v0;
+  fctx.lsda = &unk_B6EBC;
+  fctx.jbuf[0] = &savedregs;
+  v45 = &v24;
+  v44 = (0xF2 | 1) + 73104;
+  fctx.call_site = 1;
+  _Unwind_SjLj_Register(&fctx);
+  v14 = -[AFURLSessionManager session](v13, "session");
+  fctx.call_site = -1;
+  v15 = (void *)objc_retainAutoreleasedReturnValue(v14);
+  v28 = &_NSConcreteStackBlock;
+  v29 = -1040187392;
+  v30 = 0;
+  v31 = sub_11EB0;
+  v32 = &unk_B8BC0;
+  v16 = objc_retain(v27, sub_11EB0);
+  v27 = v16;
+  v33 = v16;
+  v35 = &v36;
+  v18 = objc_retain(v26, v17);
+  v26 = v18;
+  v34 = v18;
+  fctx.call_site = 2;
+  v25 = v15;
+  objc_msgSend(v15, "getTasksWithCompletionHandler:", &v28);
+  objc_release(v25);
+  v19 = v26;
+  dispatch_semaphore_wait(v26, -1, -1);
+  v21 = objc_retain(v37[6], v20);
+  objc_release(v34);
+  objc_release(v33);
+  objc_release(v19);
+  _Block_object_dispose(&v36, 8);
+  objc_release(v42);
+  objc_release(v27);
+  v22 = (struct objc_object *)objc_autoreleaseReturnValue(v21);
+  _Unwind_SjLj_Unregister(&fctx);
+  return v22;
+}
+
+id __cdecl +[TradeOrderPromotionModel JSONKeyPathsByPropertyKey](TradeOrderPromotionModel_meta *self, SEL a2)
+{
+  __int64 v2; // d16
+  __int64 v3; // d18
+  __int64 v4; // d17
+  __int64 v5; // d19
+  __int64 v7; // [sp+4h] [bp-2Ch]
+  __int64 v8; // [sp+Ch] [bp-24h]
+  __int64 v9; // [sp+14h] [bp-1Ch]
+  __int64 v10; // [sp+1Ch] [bp-14h]
+
+  LODWORD(v2) = CFSTR("promotion_name");
+  LODWORD(v3) = CFSTR("promotionName");
+  HIDWORD(v2) = CFSTR("promotion_type");
+  HIDWORD(v3) = CFSTR("promotionType");
+  LODWORD(v4) = CFSTR("apply_at");
+  LODWORD(v5) = CFSTR("applyAt");
+  HIDWORD(v5) = CFSTR("discountFee");
+  HIDWORD(v4) = CFSTR("discount_fee");
+  v7 = v3;
+  v8 = v5;
+  v9 = v2;
+  v10 = v4;
+  return (id)objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:");
+}
+
+id __cdecl -[SDImageCache diskImageDataBySearchingAllPathsForKey:](SDImageCache *self, SEL a2, id a3)
+{
+  SDImageCache *v3; // r6
+  int v4; // r0
+  int v5; // r8
+  struct objc_object *v6; // r0
+  int v7; // r0
+  void *v8; // r10
+  void *v9; // r0
+  int v10; // r0
+  int v11; // r1
+  NSDictionary *v12; // r11
+  void *v13; // r0
+  int v14; // r0
+  int v15; // r6
+  void *v16; // r0
+  int v17; // r4
+  int v18; // r0
+  id v19; // r2
+  char *v20; // r3
+  NSMutableArray *v22; // r0
+  void *v23; // r4
+  void *v24; // r6
+  int v25; // r1
+  int v26; // r10
+  struct objc_object *v27; // r0
+  int v28; // r0
+  void *v29; // r6
+  void *v30; // r0
+  int v31; // r0
+  int v32; // r1
+  signed int v33; // r5
+  int v34; // r4
+  void *v35; // r0
+  int v36; // r0
+  int v37; // r8
+  void *v38; // r0
+  int v39; // r1
+  void *v40; // [sp+4h] [bp-ACh]
+  int v41; // [sp+10h] [bp-A0h]
+  void *v42; // [sp+18h] [bp-98h]
+  int v43; // [sp+1Ch] [bp-94h]
+  void *v44; // [sp+20h] [bp-90h]
+  SDImageCache *v45; // [sp+2Ch] [bp-84h]
+  __int64 v46; // [sp+30h] [bp-80h]
+  __int64 v47; // [sp+38h] [bp-78h]
+  __int64 v48; // [sp+40h] [bp-70h]
+  __int64 v49; // [sp+48h] [bp-68h]
+  char v50; // [sp+54h] [bp-5Ch]
+  id *v51; // [sp+B8h] [bp+8h]
+
+  v3 = self;
+  v4 = objc_retain(a3, a2);
+  v5 = v4;
+  v6 = -[SDImageCache defaultCachePathForKey:](v3, "defaultCachePathForKey:", v4);
+  v7 = objc_retainAutoreleasedReturnValue(v6);
+  v8 = (void *)v7;
+  v9 = objc_msgSend(&OBJC_CLASS___NSData, "dataWithContentsOfFile:", v7);
+  v10 = objc_retainAutoreleasedReturnValue(v9);
+  if ( v10 )
+    goto LABEL_4;
+  v45 = v3;
+  v12 = (NSDictionary *)"stringByDeletingPathExtension";
+  v13 = objc_msgSend(v8, "stringByDeletingPathExtension");
+  v14 = objc_retainAutoreleasedReturnValue(v13);
+  v15 = v14;
+  v16 = objc_msgSend(&OBJC_CLASS___NSData, "dataWithContentsOfFile:", v14);
+  v17 = objc_retainAutoreleasedReturnValue(v16);
+  objc_release(v15);
+  if ( v17 )
+  {
+    v10 = v17;
+LABEL_4:
+    v18 = objc_retain(v10, v11);
+    v12 = (NSDictionary *)v18;
+    goto LABEL_5;
+  }
+  v22 = -[SDImageCache customPaths](v45, "customPaths");
+  v23 = (void *)objc_retainAutoreleasedReturnValue(v22);
+  v24 = objc_msgSend(v23, "copy");
+  objc_release(v23);
+  v46 = 0LL;
+  v47 = 0LL;
+  v48 = 0LL;
+  v49 = 0LL;
+  v42 = (void *)objc_retain(v24, v25);
+  v44 = objc_msgSend(v42, "countByEnumeratingWithState:objects:count:", &v46, &v50, 16);
+  if ( v44 )
+  {
+    v40 = v8;
+    v43 = *(_DWORD *)v47;
+    v41 = v5;
+LABEL_8:
+    v26 = 0;
+    while ( 1 )
+    {
+      if ( *(_DWORD *)v47 != v43 )
+        objc_enumerationMutation(v42);
+      v27 = -[SDImageCache cachePathForKey:inPath:](
+              v45,
+              "cachePathForKey:inPath:",
+              v5,
+              *(_DWORD *)(HIDWORD(v46) + 4 * v26));
+      v28 = objc_retainAutoreleasedReturnValue(v27);
+      v29 = (void *)v28;
+      v30 = objc_msgSend(&OBJC_CLASS___NSData, "dataWithContentsOfFile:", v28);
+      v31 = objc_retainAutoreleasedReturnValue(v30);
+      if ( v31 )
+      {
+        v12 = (NSDictionary *)objc_retain(v31, v32);
+        v33 = 0;
+        v34 = (int)v12;
+      }
+      else
+      {
+        v35 = objc_msgSend(v29, "stringByDeletingPathExtension");
+        v36 = objc_retainAutoreleasedReturnValue(v35);
+        v37 = v36;
+        v38 = objc_msgSend(&OBJC_CLASS___NSData, "dataWithContentsOfFile:", v36);
+        v34 = objc_retainAutoreleasedReturnValue(v38);
+        objc_release(v37);
+        if ( v34 )
+        {
+          v12 = (NSDictionary *)objc_retain(v34, v39);
+          v33 = 0;
+          v34 = (int)v12;
+        }
+        else
+        {
+          v33 = 1;
+        }
+        v5 = v41;
+      }
+      objc_release(v34);
+      objc_release(v29);
+      if ( v33 != 1 )
+        break;
+      if ( ++v26 >= (unsigned int)v44 )
+      {
+        v44 = objc_msgSend(v42, "countByEnumeratingWithState:objects:count:", &v46, &v50, 16);
+        if ( v44 )
+          goto LABEL_8;
+        v12 = 0;
+        break;
+      }
+    }
+    v8 = v40;
+  }
+  else
+  {
+    v12 = 0;
+  }
+  objc_release(v42);
+  objc_release(v42);
+  v18 = 0;
+LABEL_5:
+  objc_release(v18);
+  objc_release(v8);
+  objc_release(v5);
+  return j__objc_autoreleaseReturnValue(v12, __stack_chk_guard, v19, v20, v51);
+}
+
+void __cdecl +[WXOMTA trackGameUser:world:level:appkey:isRealTime:](WXOMTA_meta *self, SEL a2, id a3, id a4, id a5, id a6, char a7)
+{
+  id v7; // r5
+  WXOMTA_meta *v8; // r10
+  int v9; // r1
+  int v10; // r1
+  int v11; // r11
+  int v12; // r1
+  int v13; // r5
+  struct objc_object *v14; // r0
+  void *v15; // r4
+  void *v16; // r8
+  struct objc_object *v17; // r0
+  void *v18; // r6
+  void *v19; // r4
+  WXOMTAGameUserEvent *v20; // r0
+  WXOMTAGameUserEvent *v21; // r6
+  int v22; // r0
+  SEL v23; // r1
+  id v24; // r2
+  id v25; // r3
+  int v26; // [sp+0h] [bp-1Ch]
+
+  v7 = a4;
+  v8 = (WXOMTA_meta *)objc_retain(a3, a2);
+  v26 = objc_retain(v7, v9);
+  v11 = objc_retain(a5, v10);
+  v13 = objc_retain(a6, v12);
+  v14 = +[WXOMTAHelper getInstance](&OBJC_CLASS___WXOMTAHelper, "getInstance");
+  v15 = (void *)objc_retainAutoreleasedReturnValue(v14);
+  v16 = objc_msgSend(v15, "checkMTAEnable");
+  objc_release(v15);
+  if ( v16 )
+  {
+    v17 = +[WXOMTAConfig getInstance](&OBJC_CLASS___WXOMTAConfig, "getInstance");
+    v18 = (void *)objc_retainAutoreleasedReturnValue(v17);
+    v19 = objc_msgSend(v18, "statEnable");
+    objc_release(v18);
+    if ( v19 )
+    {
+      if ( v8 )
+      {
+        v20 = objc_msgSend(&OBJC_CLASS___WXOMTAGameUserEvent, "alloc");
+        v21 = -[WXOMTAGameUserEvent init](v20, "init");
+        v22 = sub_84A6E(0, v13, 0);
+        -[WXOMTAEvent setSid:](v21, "setSid:", v22);
+        -[WXOMTAGameUserEvent setUid:](v21, "setUid:", v8);
+        -[WXOMTAGameUserEvent setWorld:](v21, "setWorld:", v26);
+        -[WXOMTAGameUserEvent setLevel:](v21, "setLevel:", v11);
+        -[WXOMTAEvent setAppkey:](v21, "setAppkey:", v13);
+        -[WXOMTAEvent setIsRealTime:](v21, "setIsRealTime:", a7);
+        sub_823A8(v21);
+        objc_release(v21);
+      }
+      else
+      {
+        sub_8694C(CFSTR("[ERROR]Invalid arguments for trackGameUser: null uid."));
+      }
+    }
+  }
+  objc_release(v13);
+  objc_release(v11);
+  objc_release(v26);
+  j__objc_release(v8, v23, v24, v25, (char)a5);
+}
+
+id __cdecl +[WXOMTAKeyChain load:](WXOMTAKeyChain_meta *self, SEL a2, id a3)
+{
+  __int64 v3; // d8
+  __int64 v4; // d9
+  __int64 v5; // d10
+  __int64 v6; // d11
+  __int64 v7; // d12
+  __int64 v8; // d13
+  __int64 v9; // d14
+  __int64 v10; // d15
+  _QWORD *v11; // r4
+  _QWORD *v12; // r4
+  WXOMTAKeyChain_meta *v13; // r4
+  int v14; // r0
+  void *v15; // r0
+  int v16; // r4
+  int v17; // r5
+  void *v18; // r0
+  struct objc_object *v19; // r4
+  int v21; // [sp+0h] [bp-A8h]
+  int v22; // [sp+10h] [bp-98h]
+  int v23; // [sp+14h] [bp-94h]
+  void *v24; // [sp+18h] [bp-90h]
+  struct SjLj_Function_Context fctx; // [sp+1Ch] [bp-8Ch]
+  int v26; // [sp+40h] [bp-68h]
+  int *v27; // [sp+44h] [bp-64h]
+  char v28; // [sp+50h] [bp-58h]
+  __int64 savedregs; // [sp+A8h] [bp+0h]
+
+  v11 = (_QWORD *)((unsigned int)&v28 & 0xFFFFFFF0);
+  *v11 = v3;
+  v11[1] = v4;
+  v11[2] = v5;
+  v11[3] = v6;
+  v12 = (_QWORD *)(((unsigned int)&v28 & 0xFFFFFFF0) + 32);
+  *v12 = v7;
+  v12[1] = v8;
+  v12[2] = v9;
+  v12[3] = v10;
+  v13 = self;
+  v14 = objc_retain(a3, a2);
+  v23 = v14;
+  v15 = objc_msgSend(v13, "getKeychainQuery:", v14);
+  v24 = (void *)objc_retainAutoreleasedReturnValue(v15);
+  objc_msgSend(v24, "setObject:forKey:", kCFBooleanTrue, kSecReturnData);
+  objc_msgSend(v24, "setObject:forKey:", kSecMatchLimitOne, kSecMatchLimit);
+  v16 = 0;
+  v22 = 0;
+  v17 = SecItemCopyMatching(v24, &v22);
+  fctx.personality = (_Unwind_Personality_Fn)&__objc_personality_v0;
+  fctx.lsda = &unk_B7788;
+  fctx.jbuf[0] = &savedregs;
+  v27 = &v21;
+  v26 = (0x7C | 1) + 604308;
+  _Unwind_SjLj_Register(&fctx);
+  if ( !v17 )
+  {
+    fctx.call_site = 1;
+    v18 = objc_msgSend(&OBJC_CLASS___NSKeyedUnarchiver, "unarchiveObjectWithData:", v22);
+    fctx.call_site = -1;
+    v16 = objc_retainAutoreleasedReturnValue(v18);
+  }
+  if ( v22 )
+  {
+    fctx.call_site = -1;
+    CFRelease();
+  }
+  objc_release(v24);
+  objc_release(v23);
+  v19 = (struct objc_object *)objc_autoreleaseReturnValue(v16);
+  _Unwind_SjLj_Unregister(&fctx);
+  return v19;
+}
+
+id __cdecl -[SDImageCache imageFromDiskCacheForKey:](SDImageCache *self, SEL a2, id a3)
+{
+  float32x2_t v3; // d8
+  float32x2_t v4; // d9
+  _QWORD *v5; // r4
+  SDImageCache *v6; // r8
+  int v7; // r0
+  int v8; // r4
+  struct objc_object *v9; // r0
+  int v10; // r0
+  int v11; // r1
+  int v12; // r5
+  char *v13; // r6
+  struct objc_object *v14; // r0
+  int v15; // r1
+  void *v16; // r11
+  void *v17; // r10
+  float32x2_t v18; // d17
+  float32x2_t v19; // d16
+  NSCache *v20; // r0
+  void *v21; // r8
+  SEL v22; // r1
+  id v23; // r2
+  char *v24; // r3
+  float v26; // [sp+10h] [bp-38h]
+  char v27; // [sp+18h] [bp-30h]
+  float v28; // [sp+1Ch] [bp-2Ch]
+  char v29; // [sp+20h] [bp-28h]
+  id *v30; // [sp+50h] [bp+8h]
+
+  v5 = (_QWORD *)((unsigned int)&v29 & 0xFFFFFFF0);
+  *v5 = v3.n64_u64[0];
+  v5[1] = v4.n64_u64[0];
+  v6 = self;
+  v7 = objc_retain(a3, a2);
+  v8 = v7;
+  v9 = -[SDImageCache imageFromMemoryCacheForKey:](v6, "imageFromMemoryCacheForKey:", v7);
+  v10 = objc_retainAutoreleasedReturnValue(v9);
+  v12 = v10;
+  if ( v10 )
+  {
+    v13 = (char *)objc_retain(v10, v11);
+  }
+  else
+  {
+    v14 = -[SDImageCache diskImageForKey:](v6, "diskImageForKey:", v8);
+    v13 = (char *)objc_retainAutoreleasedReturnValue(v14);
+    if ( v13 && -[SDImageCache shouldCacheImagesInMemory](v6, "shouldCacheImagesInMemory") )
+    {
+      v13 = (char *)objc_retain(v13, v15);
+      objc_msgSend_stret(&v27, v13, "size");
+      v3.n64_f32[0] = v28;
+      objc_msgSend_stret(&v26, v13, "size");
+      v4.n64_f32[0] = v26;
+      v16 = objc_msgSend(v13, "scale");
+      v17 = objc_msgSend(v13, "scale");
+      objc_release(v13);
+      v18.n64_u32[0] = (unsigned __int32)v16;
+      v18.n64_u32[1] = (unsigned __int32)v16;
+      v19.n64_u64[0] = vmul_f32(vmul_f32(v3, v4), v18).n64_u64[0];
+      v18.n64_u32[0] = (unsigned __int32)v17;
+      v18.n64_u32[1] = (unsigned __int32)v17;
+      v20 = -[SDImageCache memCache](v6, "memCache");
+      v21 = (void *)objc_retainAutoreleasedReturnValue(v20);
+      objc_msgSend(v21, "setObject:forKey:cost:", v13, v8, (unsigned int)*(_QWORD *)&vcvt_u32_f32(vmul_f32(v19, v18)));
+      objc_release(v21);
+    }
+  }
+  objc_release(v12);
+  objc_release(v8);
+  return j__objc_autoreleaseReturnValue((NSDictionary *)v13, v22, v23, v24, v30);
+}
+
+id __cdecl +[TradeOrderModel JSONKeyPathsByPropertyKey](TradeOrderModel_meta *self, SEL a2)
+{
+  __int64 v2; // d20
+  __int64 v3; // d22
+  __int64 v4; // d16
+  __int64 v5; // d18
+  __int64 v6; // d23
+  __int64 v7; // d19
+  __int64 v8; // d17
+  __int64 v9; // d24
+  __int64 v10; // d21
+  __int64 v11; // d25
+  __int64 v12; // d26
+  __int64 v13; // d27
+  __int64 v15; // [sp+4h] [bp-84h]
+  __int64 v16; // [sp+Ch] [bp-7Ch]
+  __int64 v17; // [sp+14h] [bp-74h]
+  __int64 v18; // [sp+1Ch] [bp-6Ch]
+  __int64 v19; // [sp+24h] [bp-64h]
+  __int64 v20; // [sp+2Ch] [bp-5Ch]
+  const __CFString *v21; // [sp+34h] [bp-54h]
+  const __CFString *v22; // [sp+38h] [bp-50h]
+  const __CFString *v23; // [sp+3Ch] [bp-4Ch]
+  __int64 v24; // [sp+40h] [bp-48h]
+  __int64 v25; // [sp+48h] [bp-40h]
+  __int64 v26; // [sp+50h] [bp-38h]
+  __int64 v27; // [sp+58h] [bp-30h]
+  __int64 v28; // [sp+60h] [bp-28h]
+  __int64 v29; // [sp+68h] [bp-20h]
+  const __CFString *v30; // [sp+70h] [bp-18h]
+  const __CFString *v31; // [sp+74h] [bp-14h]
+  const __CFString *v32; // [sp+78h] [bp-10h]
+
+  LODWORD(v2) = CFSTR("fenxiao_price");
+  LODWORD(v3) = CFSTR("orderId");
+  LODWORD(v4) = CFSTR("discount_fee");
+  LODWORD(v5) = CFSTR("discountFee");
+  HIDWORD(v2) = CFSTR("fenxiao_payment");
+  HIDWORD(v5) = CFSTR("payment");
+  HIDWORD(v4) = CFSTR("payment");
+  HIDWORD(v3) = CFSTR("num_iid");
+  LODWORD(v6) = CFSTR("title");
+  LODWORD(v7) = CFSTR("imageURL");
+  LODWORD(v8) = CFSTR("pic_path");
+  HIDWORD(v6) = CFSTR("sellerNick");
+  HIDWORD(v8) = CFSTR("pic_thumb_path");
+  LODWORD(v9) = CFSTR("fenxiaoPrice");
+  LODWORD(v10) = CFSTR("price");
+  HIDWORD(v9) = CFSTR("fenxiaoPayment");
+  LODWORD(v11) = CFSTR("price");
+  HIDWORD(v10) = CFSTR("total_fee");
+  HIDWORD(v11) = CFSTR("totalFee");
+  HIDWORD(v7) = CFSTR("thumbImageURL");
+  LODWORD(v12) = CFSTR("oid");
+  HIDWORD(v12) = CFSTR("num_iid");
+  LODWORD(v13) = CFSTR("title");
+  HIDWORD(v13) = CFSTR("seller_nick");
+  v15 = v3;
+  v16 = v6;
+  v24 = v12;
+  v25 = v13;
+  v17 = v9;
+  v18 = v11;
+  v26 = v2;
+  v27 = v10;
+  v19 = v5;
+  v20 = v7;
+  v28 = v4;
+  v29 = v8;
+  v21 = CFSTR("itemType");
+  v30 = CFSTR("item_type");
+  v22 = CFSTR("buyerMessageArray");
+  v23 = CFSTR("orderPromotionDetailArray");
+  v31 = CFSTR("buyer_messages");
+  v32 = CFSTR("order_promotion_details");
+  return (id)objc_msgSend(&OBJC_CLASS___NSDictionary, "dictionaryWithObjects:forKeys:count:");
+}
+
+id __cdecl -[SDWebImageManager cacheKeyFilter](SDWebImageManager *self, SEL a2)
+{
+  return (id)j__objc_getProperty(self);
+}
+
