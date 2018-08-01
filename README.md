@@ -49,6 +49,7 @@ There are 5 steps that the user should do when using Corgi.
 
 ### Arguments
 ```
+appName                     specify the APP's name
 -f, --file                  specify the Binary file name
 -j, --jumpto(optional)      jump to the specific step of Corgi if 
                             you've done the parts before that.
