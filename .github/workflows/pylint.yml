@@ -2,6 +2,9 @@ name: Pylint
 
 on: [push]
 
+env:
+  SERVER: env
+
 jobs:
   build:
 
