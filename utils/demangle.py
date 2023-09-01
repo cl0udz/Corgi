@@ -45,4 +45,4 @@ def batch_demangle(input_file, output_file, batch_size=100):
     return True, f"Demangled results written to {output_file}"
 
 if __name__ == "__main__":
-    print(batch_demangle("../class_filter_result/wallet-ios-core_origin_class.txt", "../class_filter_result/wallet-ios-core_origin_class.txt"))
+    print(batch_demangle("../class_filter_result/wallet-ios-core_origin_class.txt", "../class_filter_result/wallet-ios-demangled.txt"))
