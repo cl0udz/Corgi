@@ -118,7 +118,7 @@ function hookObjC(FuncName, ArgNum){
         filecnt = 0
 
         self.nf = open(os.path.join(self.path, binname) + "_0.js", 'w+')
-        print >> self.nf, self.script_head
+        print(self.script_head, file = self.nf)
         for line in self.f:
             cnt += 1
             if cnt >= 3000:

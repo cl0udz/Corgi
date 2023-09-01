@@ -5,14 +5,14 @@ import sys
 import frida
 import time
 
-import MySQLdb
+import pymysql
 
 import config
 
 from threading import Timer
 from termcolor import colored
 
-db = MySQLdb.connect("localhost", "username", "password", "hook_log")
+db = pymysql.connect(host = "localhost", user = "root", password = "", database = "hook_log")
 jsno = 0
 
 actionId = 0
@@ -56,7 +56,7 @@ def on_msg(msg, data):
     if msg['type'] == 'send':
         infoArray = msg['payload']
         if infoArray[0] == None:
-            print colored("[ScriptExecutor] [Dust 1]" + str(msg), "grey")
+            print(colored("[ScriptExecutor] [Dust 1]" + str(msg), "grey"))
             return
 
         argNum = int(infoArray[0])
@@ -64,7 +64,7 @@ def on_msg(msg, data):
         #print argNum + 5
         #print msg['payload'].__len__
         if msg['payload'].__len__() != argNum + 5:
-            print colored("[ScriptExecutor] [Dust 2]" + str(msg), "grey")
+            print(colored("[ScriptExecutor] [Dust 2]" + str(msg), "grey"))
         else:
             args = []
             args.append(infoArray[argNum+2])
@@ -81,13 +81,13 @@ def on_msg(msg, data):
             
             try:
                 cur.execute("INSERT INTO frida_log_%s VALUES(%d, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', default, %d)"
-                                                   % (config.get('cur_file_name'), actionId, infoArray[argNum+4], args[0], args[1], args[2], args[3], args[4], args[5], args[6],
+                                                   % (config.get('cur_file_name').replace('-', '')), actionId, infoArray[argNum+4], args[0], args[1], args[2], args[3], args[4], args[5], args[6],
                                                     args[7], args[8], args[9], args[10],
-                                                    infoArray[argNum+3], jsno))
+                                                    infoArray[argNum+3], jsno)
                 db.commit()
             except Exception as e:
-                print colored("[ScriptExecutor] [ERROR] INSERT INTO frida_log_%s VALUES(%d, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', default, %d)"
-                                                   % (config.get('cur_file_name'), actionId, infoArray[argNum+4], args[0], args[1], args[2], args[3], args[4], args[5], args[6],
+                print(colored("[ScriptExecutor] [ERROR] INSERT INTO frida_log_%s VALUES(%d, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', default, %d)"
+                                                   % (config.get('cur_file_name').replace('-', '')), actionId, infoArray[argNum+4], args[0], args[1], args[2], args[3], args[4], args[5], args[6],
                                                     args[7], args[8], args[9], args[10],
                                                     infoArray[argNum+3], jsno), 'red')
 
@@ -105,9 +105,11 @@ class ScriptExecutor(object):
         SetJsNo(new_no)
         SetActionID(action_id)
 
-        db.cursor().execute("create table if not exists frida_log_%s(ActionId int null,Function_Name text not null,ARG0 text not null,ARG1 text not null,\
+        query_str = "create table if not exists frida_log_%s(ActionId int null,Function_Name text not null,ARG0 text not null,ARG1 text not null,\
             ARG2 text null,ARG3 text null,ARG4 text null,ARG5 text null,ARG6 text null,ARG7 text null,ARG8 text null,ARG9 text null,\
-            ARG10 text null,Return_Value text null,CreateTime timestamp default CURRENT_TIMESTAMP null comment '创建时间',JSid int null)" % (config.get('cur_file_name')))
+            ARG10 text null,Return_Value text null,CreateTime timestamp default CURRENT_TIMESTAMP null comment '创建时间',JSid int null)" % (config.get('cur_file_name').replace('-', ''))
+        print(query_str)
+        db.cursor().execute(query_str)
 
         db.commit()
 

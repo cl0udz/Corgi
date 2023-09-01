@@ -4,11 +4,7 @@
 import sqlite3
 from termcolor import colored
 
-
 import sys, os
-reload(sys)
-sys.setdefaultencoding("utf-8")
-
 import config
 
 class FuncFilter(object):
@@ -35,7 +31,7 @@ class FuncFilter(object):
         else:
             self.class_keyword_filter_list = [
                                     'UI', 'Button', 'TextView', 'AlertView', 'NS', 'Model', 'Layout', 'SDK', 'Toast', 'Delegate',
-                                    'Parse', 'Parser', 'Brightness', 'App', 'APP', 'Copy', 'Controller'
+                                    'Parse', 'Parser', 'Brightness', 'App', 'APP', 'Copy'
                                 ]
 
         if class_head_filter_list != None:
@@ -50,15 +46,14 @@ class FuncFilter(object):
                                 'GTM', 'Animation', "PD", "MW", "MJ", 'LFCG', 'LD', 'JP', 'JK', 'IVY', 'IS', 'Iphone', 'IFly',
                                 "DW", "BB", 'GPB', 'CV', 'CipherDB', 'BM', 'API', 'All', 'Ali', 'AF', 'Acc', 'Jeky', "YFB",
                                 'TC', 'WeChat', 'WK', 'Xiami', 'WX', 'TTS', 'UT', "Wap", "WB", "SSAIO", "TB", "UIC", 'UP',
-                                 'UTD', 'WV', '_', 'JSON', 'BDN', 'Bainuo'
+                                 'UTD', 'WV', 'JSON', 'BDN', 'Bainuo'
                                  ]
 
         if class_tail_filter_list != None:
             self.class_tail_filter_list = class_tail_filter_list
         else:
             self.class_tail_filter_list = [
-                                "View", "view", "Item", "item", "btn", "Label", "Cell", "ActionSheet", "Button", "Layout", 'Bar',
-                                'Agent', "Delegate", 'Alert', 'Controller'
+                                "Item", "item", "btn", "Label", "ActionSheet", "Layout", 'Bar', 'Agent', "Delegate", 'Alert'
                                 ]
 
         if method_keyword_filter_list != None:
@@ -67,7 +62,7 @@ class FuncFilter(object):
             self.method_keyword_filter_list = [
                                     'UI', 'Button', 'TextView', 'AlertView', 'NS', 'Size', 'size', 'Animated', 
                                     'hide', 'Animation', 'Format', 'Java', 'java', 'Script', 'action', 'Toast',
-                                    'Font', 'JSON', 'view', 'View', 'Input', 'Btn', '_', 'Delegate', 'Input', 'Button',
+                                    'Font', 'JSON', 'Input', 'Btn', 'Delegate', 'Input', 'Button',
                                     'show', 'btn', 'click', 'Click', 'Convert', 'convert', 'Height', 'Width', 'left',
                                     'Left', 'right', 'Right', 'down', 'Down', 'up', 'Up', 'top', 'Top', 'Parse',
                                     'Parser', 'parse', 'color', 'Color', 'Cell', 'Json', 'json', 'navigation',
@@ -128,8 +123,8 @@ class FuncFilter(object):
     # 
     def __FilterByClassName(self, cand_class_name):
 
-        conn = sqlite3.connect(config.get('db_path'))
-        c = conn.cursor()
+        # conn = sqlite3.connect(config.get('db_path'))
+        # c = conn.cursor()
 
         ## rule 0: if the class name passed before, just go
         if cand_class_name in self.passed_class:
@@ -141,11 +136,11 @@ class FuncFilter(object):
 
 
         ## rule 2: if the class name belong to some third party lib
-        c.execute('SELECT classname FROM classmap WHERE classname == ?', [cand_class_name])
+        # c.execute('SELECT classname FROM classmap WHERE classname == ?', [cand_class_name])
 
-        if c.fetchone() != None:
-            self.filtered_class.append(cand_class_name)
-            return True
+        # if c.fetchone() != None:
+        #     self.filtered_class.append(cand_class_name)
+        #     return True
 
         ## rule 3: if the class name startwith one keyword given in class_head_filter_list
         for j in self.class_head_filter_list:
@@ -230,7 +225,7 @@ class FuncFilter(object):
                 count += 1
                 cand_class_name = self.__GetClassName(i)
 
-                print colored("\r[FuncFilter] [%02.2f%%]" % (float(count)/self.file_length * 100), 'yellow'),# Dealing with class name : %s" % (float(count)/self.file_length * 100, cand_class_name[:maxcol-50]), 'yellow'),
+                print(colored("\r[FuncFilter] [%02.2f%%]" % (float(count)/self.file_length * 100), 'yellow'), end = '')# Dealing with class name : %s" % (float(count)/self.file_length * 100, cand_class_name[:maxcol-50]), 'yellow'),
 
                 ## if not passed, continue
                 if self.__FilterByClassName(cand_class_name):
@@ -239,7 +234,7 @@ class FuncFilter(object):
                 # filter by method name
                 cand_method_name = self.__GetMethodName(i)
 
-                print colored("\r[FuncFilter] [%02.2f%%]" % (float(count)/self.file_length * 100), 'yellow'),# Dealing with method name : %s" % (float(count)/self.file_length * 100, cand_class_name[:maxcol-50]), 'yellow'),
+                print(colored("\r[FuncFilter] [%02.2f%%]" % (float(count)/self.file_length * 100), 'yellow'), end = '')# Dealing with method name : %s" % (float(count)/self.file_length * 100, cand_class_name[:maxcol-50]), 'yellow'),
 
                 ## if not passed, continue
                 if self.__FilterByMethodName(cand_method_name):
@@ -248,7 +243,7 @@ class FuncFilter(object):
                 ## if all passed, add the name into result list
                 result.append(i)
         except Exception as e:
-            print colored(cand_class_name, 'red')
+            print(colored(cand_class_name, 'red'))
             raise e
 
 
@@ -290,7 +285,7 @@ class FuncFilter(object):
         parsedname = parsedname + srcname[lastword:]
 
         with open('log.txt', 'a+') as f:
-            print >> f, parsedname
+            print(parsedname, file = f)
 
         return parsedname.split(' ')
 
@@ -314,7 +309,7 @@ def main():
 
     with open(cp + '_filtered_class.txt', 'w+') as f:
         for i in result:
-            print >> f, i[:-1]
+            print(i[:-1], file = f)
 
 if __name__ == '__main__':
     main()

@@ -126,7 +126,7 @@ function hookObjC(FuncName, ArgNum){
         sp = os.path.join(config.get('script_path'), config.get('cur_file_name')) + ".js"
 
         g = open(sp, 'w+')
-        print >> g, self.script_head
+        print(self.script_head, file = g)
 
 
         flp = os.path.join(config.get('class_filtered_dir'), funclist)
@@ -134,12 +134,12 @@ function hookObjC(FuncName, ArgNum){
             for line in f:
                 script = self.__generate_script(line[:-1])
 
-                print >> g, script
+                print(script, file = g)
 
         g.close()
 
 def main():
-    print colored("[ScriptGenerator] Start generating...", 'yellow')
+    print(colored("[ScriptGenerator] Start generating...", 'yellow'))
     config._init()
 
     with open('log.txt', 'w+') as f:
@@ -154,7 +154,7 @@ def main():
 
     sg = ScriptGenerator()
     sg.GenerateScript("BWA_filtered_class.txt")
-    print colored("[ScriptGenerator] Generating finished...", 'yellow')
+    print(colored("[ScriptGenerator] Generating finished...", 'yellow'))
 
 if __name__ == '__main__':
     main()

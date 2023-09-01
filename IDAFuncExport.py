@@ -13,6 +13,9 @@ pattern_list = [
 	'nullsub'
 ]
 
+def DeMangleName(name):
+	return idc.Demangle(name, idc.GetLongPrm(idc.INF_SHORT_DN))
+
 def GetFunctionList():
 	candidate = []
 
