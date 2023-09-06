@@ -118,7 +118,8 @@ function hookObjC(FuncName, ArgNum){
         filecnt = 0
 
         self.nf = open(os.path.join(self.path, binname) + "_0.js", 'w+')
-        print(self.script_head, file = self.nf)
+        # Remove the line because the script head is already in the original script
+        # print(self.script_head, file = self.nf)
         for line in self.f:
             cnt += 1
             if cnt >= 3000:
@@ -126,7 +127,7 @@ function hookObjC(FuncName, ArgNum){
                 cnt = 0
                 self.nf.close()
                 self.nf = open(os.path.join(self.path, binname) + "_"+ str(filecnt) +".js", 'w+')
-                print >> self.nf, self.script_head
+                print(self.script_head, file = self.nf)
                 self.nf.write(line)
             else:
                 self.nf.write(line)

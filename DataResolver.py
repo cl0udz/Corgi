@@ -29,7 +29,7 @@ class DataResolver(object):
         rp = os.path.join(config.get("report_dir"), config.get("cur_file_name")) + "_ActionID_%d.txt" % action_id
 
         f = open(rp, 'w+')
-        db = pymysql.connect("localhost", "root", "", "hook_log")
+        db = pymysql.connect(host = "localhost", user = "root", password = "", database = "hook_log")
         cur = db.cursor()
 
         cur.execute("CREATE TABLE tmp_%d_%d SELECT DISTINCT ActionId, Function_Name, JSid FROM (SELECT * FROM frida_log_%s WHERE ActionID = %d or ActionID = %d) as PI" % (action_id, compare_id, (config.get('cur_file_name').replace('-', '')), action_id, compare_id))
@@ -41,7 +41,7 @@ class DataResolver(object):
 
         pi = cur.fetchone()
         while pi != None:
-            print >> f, pi
+            print(pi, file = f)
             pi = cur.fetchone()
 
         cur.execute("DROP TABLE tmp_%d_%d" % (action_id, compare_id))
